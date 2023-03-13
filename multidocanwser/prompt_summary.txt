@@ -1,0 +1,7 @@
+Write a concise but detailed summary of the following text, the summary needs to respond the question.
+
+QUESTION: <<QUESTION>>
+
+<<SUMMARY>>
+
+DETAILED SUMARRY:

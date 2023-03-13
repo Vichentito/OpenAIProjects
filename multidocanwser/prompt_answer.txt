@@ -1,0 +1,10 @@
+Use the following text to give a detailed answer to the question:
+
+
+QUESTION: <<QUERY>>
+
+
+TEXT: <<PASSAGE>>
+
+
+DETAILED ANSWER:
