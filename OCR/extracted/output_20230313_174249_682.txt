@@ -1,0 +1,68 @@
+Desarrollar un sistema distribuido en Java de acuerdo a las siguientes especificaciones:
+
+1. Desarrollar un servidor TCP (servidor A) multithread el cual recibira tres nmeros enteros de 64 bits (NUMERO,
+NUMERO_INICIAL y NUMERO_FINAL).
+
+El servidor A debera dividir el NUMERO entre cada numero n desde NUMERO_INICIAL hasta NUMERO_FINAL, si hay un
+numero n que divide a NUMERO, entonces el servidor A regresara al cliente la palabra "DIVIDE", de otra manera regresara
+al cliente "NO DIVIDE".
+
+Se sugiere utilizar el operador médulo % para determinar si un numero n divide a NUMERO, esto es:
+
+Si NUMERO%n==0 entonces n divide a NUMERO
+
+
+2. Desarrollar un servidor TCP (servidor B) el cual brindara el servicio de determinar si un numero entero mayor que 1 es
+primo o no.
+
+Utilizando el programa cliente que se describe en el inciso 3, se enviara al servidor B un numero entero de 64 bits.
+
+Para determinar si NUMERO es primo, el servidor B dividira el intervalo [2, NUMERO-1] en tres intervalos, entonces el
+servidor B se conectara a tres instancias del servidor A. El servidor B enviara, a cada instancia del servidor A, NUMERO yel
+intervalo [NUMERO_INICIAL, NUMERO_FINAL] correspondiente.
+
+Cada instancia del servidor A debera ejecutar en una ventana independiente de Windows o Linux.
+
+Si las tres instancias del servidor A regresan "NO DIVIDE" al servidor B, entonces el servidor B regresara al cliente las
+palabras "ES PRIMO". Si alguna instancia del servidor A regresa "DIVIDE", entonces el servidor B regresara al cliente las
+palabras "NO ES PRIMO".
+
+Por ejemplo, si el servidor B recibe el numero 1234567811, entonces el servidor B enviara los siguientes numeros a las
+instancias:
+
+
+Instancia 1:
+1234567811, 2, 411522603
+
+Instancia 2:
+1234567811, 411522604 , 823045206
+
+Instancia 3:
+1234567811, 823045207 , 1234567810
+
+Entonces cada servidor A regresara "NO DIVIDE", por tanto el servidor B regresara al cliente "ES PRIMO".
+Se sugiere utilizar las siguientes formulas para obtener los tres intervalos.
+
+Sea K=NUMERO/3 (la division es entera), entonces:
+
+Intervalo NUMERO INICIAL NUMERO FINAL
+1 2 K
+2 K+1 2*K
+3 2*K+1 NUMERO-1
+
+
+3. Desarrollar un cliente TCP que reciba como parametro un numero entero de 64 bits y lo envié al servidor B, entonces el
+cliente debera recibir del servidor B una string. El cliente desplegara la string que recibié del servidor B.
+
+Para verificar si un numero es primo, se puede utilizar la siguiente pagina: https://www.wolframalpha.com/
+
+Por ejemplo, para verificar si 1234567811 es primo, ingresar:
+
+isprime 1234567811
+
+4. Subir a Moodle un reporte en PDF incluyendo portada, las capturas de pantalla de la ejecucion del cliente, la ejecucion
+del servidor B, la ejecucion de los servidores A y conclusiones.
+
+Subir a Moodle el codigo fuente del Servidor A y del Servidor B en formato texto.
+
+Valor de la tarea: 25% (1.75 puntos de la primera evaluacion parcial)
