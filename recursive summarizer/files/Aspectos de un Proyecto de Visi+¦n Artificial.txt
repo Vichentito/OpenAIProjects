@@ -1,0 +1,1019 @@
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+Aspectos de un Sistema de Vision Artificial
+
+Este apunte tiene como objetivo presentar brevemente los pasos fundamentales de un
+proyecto de vision artificial.
+
+La visién artificial es una técnica basada en la adquisicién de imagenes, generalmente
+en dos dimensiones, para luego procesarlas digitalmente mediante algun tipo de CPU
+(computadora, microcontrolador, DSP, etc), con el fin de extraer y medir determinadas
+propiedades de la imagenes adquiridas. Se trata, por tanto, de una tecnologia que combi-
+na las computadoras con las camaras de video para adquirir, analizar e interpretar image-
+nes de una forma equivalente a la inspeccién visual humana.
+
+Actualmente se aplica en diversos procesos cientificos y militares, extendiéndose su u-
+so ademas, en un amplio rango de sectores industriales para la automatizacién de tareas
+anteriormente reservadas para la inspeccidn visual humana. Este tipo de incremento de u-
+tilizacién a nivel industrial es debido a que se trata de una tecnologia especialmente util
+en labores de inspeccién o supervision, siendo cuantitativamente mas objetivos y consis-
+tentes que la inspeccién humana. Un segundo aspecto complementario de estas técnicas
+es la automatizacién derivada de esta inspeccién y la posibilidad de actuar sobre el proce-
+so de fabricacién 0 inspeccién modificando parametros de la maquina de produccidn. Las
+técnicas de visi6n artificial, como demuestra su gran uso en la industria, son particular-
+mente apropiadas para la realizacién de trabajos visuales altamente repetitivos que sean
+fatigosos o dificiles de realizar para un operario, especialmente cuando este trabajo es i-
+neficiente 0 costoso en términos econdédmicos o temporales.
+
+Un sistema de visidn artificial se compone basicamente de los siguientes elementos:
+
+e Fuente de luz: es un aspecto de vital importancia ya que debe proporcionar unas
+condiciones de iluminacién uniformes e independientes del entorno, facilitando ade-
+mas, si es posible, la extraccién de los rasgos de interés para una determinada a-
+plicacién.
+
+e Sensor de imagen: es el encargado de recoger las caracteristicas del objeto bajo
+estudio.
+
+e Tarjeta de captura o adquisici6n de imagenes: es la interfaz entre el sensor y la
+computadora o mddulo de proceso que permite al mismo disponer de la informa-
+cién capturada por el sensor de imagen.
+
+e Algoritmos de andalisis de imagen: es la parte inteligente del sistema. Su misién
+consiste en aplicar las transformaciones necesarias y extracciones de informacién
+de las imagenes capturadas, con el fin de obtener los resultados para los que haya
+sido disefado.
+
+e Computadora o mddulo de proceso: es el sistema que analiza las imagenes recibi-
+das por el sensor para extraer la informacién de interés en cada uno de los casos
+implementando y ejecutando los algoritmos disefados para la obtencidn de los ob-
+jetivos.
+
+Aspectos de un Sistema de Visi6n Artificial 1
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+e Sistema de respuesta en tiempo real: con la informacién extraida, los sistemas de
+vision artificial pueden tomar decisiones que afecten al sistema productivo con el fin
+de mejorar la calidad global de producci6n.
+
+Computadora (CPU o
+médulo de proceso)
+
+Fuente de luz y lentes
+(iluminacién)
+
+Algoritmos de
+procesamiento
+
+Tarjeta
+Adquisidora
+
+Actuadores
+
+externos
+
+del proceso
+
+Figura 1: Elementos de un sistema de vision artificial.
+
+Fuentes de luz
+
+La fuente de luz es un factor de vital importancia en los sistemas de visi6n artificial y a-
+fectan de forma crucial a los algoritmos de visi6n que se vayan a utilizar bajo esas condi-
+ciones. Una iluminaci6n arbitraria del entorno no suele ser aceptable ya que muy proba-
+blemente se obtengan imagenes con un bajo contraste, reflexiones especulares, ademas
+de sombras y detalles espurios. Los objetivos de una iluminaci6n adecuada son, basica-
+mente, independizar las condiciones del entorno y resaltar los rasgos de interés de una
+determinada aplicacién.
+
+Tipos de iluminacion
+
+A continuacién sdlo se enuncian los diferentes tipos de iluminacién. En el apunte
+“Tipos de Iluminacion.pdf” se pueden encontrar los detalles acerca de las técnicas de i-
+luminaciédn mas comunes y generalmente usadas.
+
+lluminacién posterior (backlight).
+
+lluminacién Frontal Oblicua y Direccional.
+
+lluminacién Frontal Axial (difusa).
+
+lluminaci6n de Dia Nublado (cloudy day ilumination, CDI).
+lluminaci6n de Campo Oscuro (dark field).
+
+Array de luces.
+
+lluminacién de campo claro (0 brillante).
+
+Aspectos de un Sistema de Visi6n Artificial 2
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+La fuente de luz, el difusor y la camara se integraron mediante una estructura (campa-
+na) rigida. Para favorecer la difusién de la luz aportada por los LEDs, la estructura se pin-
+td interiormente de color blanco mate.
+
+La primera estructura de iluminacién desarrollada fue complementada con un lente de
+4mm instalado en la Smart-camera. Luego de observar las imagenes obtenidas con esta
+estructura, se observ6é que ésta no brindaba un iluminacién uniforme: era mas intensa en
+el centro de las imagenes. Por este motivo se debid redisefar la estructura eliminando las
+terminaciones en angulos rectos. En esta segunda estructura se observé una mejora en la
+distribucion de luz.
+
+La utilizaci6n de un lente de 4mm gener6 una importante deformacién geomeétrica de
+la imagen. Para reducir este efecto no deseado, se decidi6d su reemplazo por un lente de
+8mm. El cambio de lente implicé que la segunda estructura deba ser redisefhada para una
+nueva distancia camara-objeto de 42.7cm, dando paso a la creacién de la tercera estruc-
+tura de iluminaci6n.
+
+En las imagenes captadas usando la tercera estructura se observ6 que las deforma-
+ciones geométricas se redujeron notablemente. Esto fue sumamente beneficioso para lo-
+grar mayor simplicidad y robustez en la etapa de procesamiento.
+
+A pesar de haberse obtenido unas imagenes muy adecuadas para el procesamiento,
+esta tercera estructura debid ser redisefada una vez mas. Este cambio se debidé a que,
+por cuestiones operativas y de espacio, el tamafo de la estructura (que se ubica sobre la
+mesa de amasado de la blistera) debié ser reducido.
+
+El disefio de la estructura definitiva tuvo en cuenta un sistema de montaje robusto para
+la camara, que la aisle de los cambios de luz del entorno y la resguarde mecanicamente.
+
+Software. Algoritmos de analisis de imagen
+
+El software esta integrado por una Idgica de control y analisis y una interfase hombre-
+maquina.
+
+Para el funcionamiento del sistema, el software requiere de la determinaci6n de varios
+parametros. Por ello, se configur6 de modo que como primera instancia, luego del arran-
+que automatico, se carguen automaticamente dichos parametros desde un archivo de
+configuracién almacenado en el disco de la Smart-camera.
+
+Como se mencioné, para el procesamiento y analisis de las imagenes se eligieron las
+funciones contenidas en la libreria mvIMPACT-SDK de Matrix Vision.
+
+En la figura 3, 4 y 5 se pueden ver diferentes diagramas de flujo que muestran esque-
+maticamente la forma en que trabaja el software.
+
+Aspectos de un Sistema de Visi6n Artificial 11
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizacién y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+Encendido de la Smart-camera
+Inicio automatico del sistema
+Carga de la configuracién del sistema
+
+Almacenamiento de la imagen con fondo blanco
+
+Imagen en Vivo
+
+Configurar
+6
+Analizar?
+
+Configurar
+
+Captura de Imagen
+
+Rutina
+Configuracién
+
+Analizar
+
+Rutina Analisis
+Carga configuracién
+
+Graba
+Configuracion
+
+~ | Rutina Configuracién ~
+
+Detecta
+Pulso?
+
+SI
+Captura Imagen
+Realiza Analisis
+
+Genera / Actualiza
+estadisticas
+
+Detener?
+
+Figura 3: Diagrama de estados.
+
+Aspectos de un Sistema de Vision Artificial 12
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizacién y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+Captura Imagen
+
+wv
+Compensaci6n de Iluminacion
+
+Define Zona de anialisis
+Calcula Histograma
+Calcula Umbral Optimo
+[Segments Imagen]
+Procesa Imagen
+Filtra Objetos Extrafios
+——____ wv
+
+Analizar Imagen
+
+Calcula el Numero de Calles
+
+Guarda Configuraci6n
+
+Figura 4: Diagrama de la Rutina Configuraci6on.
+
+Aspectos de un Sistema de Vision Artificial
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+A continuacién se explica brevemente algunos de los pasos presentados en los diagra-
+mas.
+
+Compensacion de Iluminacion: debido a la forma rectangular de la estructura de ilu-
+minacion del sistema, se debid proceder a realizar una compensacion por software de la
+luminosidad de la imagen. La compensaci6n de la intensidad de los pixeles de la imagen
+se realiza en base a la distribucién de la intensidad detectada en una imagen con fondo
+blanco. Esta imagen es capturada por Unica vez al instalar el sistema y se encuentra al-
+macenada en el disco de la Smart-camera.
+
+Define Zona de Analisis: esta funcidn tiene como objetivo delimitar la zona de anali-
+sis con el fin de descartar posible contaminacidn de la imagen, excluyendo zonas que ex-
+ceden los limites de interés.
+
+Calcula Histograma: permite determinar en qué rango de intensidades se encuentra
+centralizada la mayor cantidad de pixeles.
+
+Calculo Umbral Optimo: esta funcién permite el calculo éptimo del umbral de una i-
+magen o histograma, usando el método de Otsu.
+
+Segmentaci6n de la Imagen: usando el umbral dptimo, se realiza la segmentacion de
+la imagen. Si el objeto y el fondo difieren en el nivel de gris, se pueden identificar los pixe-
+les que pertenecen al objeto mediante el proceso de segmentado. Para segmentar la ima-
+gen se utiliza la binarizacién: se etiqueta con cero los pixeles cuyo nivel de gris sean me-
+nores al valor del umbral dptimo y con 1 a los pixeles con nivel de gris mayor.
+
+Proceso Imagen: la imagen utilizada para obtener la configuraci6n es la imagen a to-
+mar como patrén. De ésta, se obtienen los valores que determinaran qué comprimido
+cumple las especificaciones y cuales no. Por este motivo se procesa esta imagen de mo-
+do de obtener los datos mas exactos. Con este fin, en esta etapa se aplican dos funciones
+a los efectos de eliminar las fallas de iluminacién u otros factores que afecten la definicién
+de la imagen a establecer como patrén. Estas son:
+
+1) Transformada de Morfologia Open: esta funcién se aplica sobre la imagen seg-
+mentada (binarizada) y sirve para suavizar los contornos de los comprimidos, sepa-
+rando asi objetos que se encuentren vinculados por pequefas uniones.
+
+2) Filtrado de Objetos por Area: esta funcién permite remover objetos basdndose en
+su area. De este modo podemos filtrar (eliminar) todos los objetos de una imagen
+cuya area sea menor que un determinado valor.
+
+Analizar Imagen: Esta etapa es la mas importante de la rutina, dado que previo pro-
+cesado de la imagen, se obtienen los parametros esenciales del patrén. Estos componen
+la configuracién que se utilizara como base para el control de la blisteada de este produc-
+to.
+
+Los parametros que se utilizaron para la creacién de la configuracién fueron:
+1. Area (AREA);
+
+2. Factor de forma (ROUDNESS);
+
+3. Coordenadas del rectangulo perimetral (EXTREME_BOX).
+
+Aspectos de un Sistema de Visi6n Artificial 14
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+En base a las caracteristicas de las fallas que se pretenden detectar, se comprob6 em-
+piricamente que este conjunto de parametros otorgaba una gran confiabilidad requiriendo
+un tiempo de procesamiento reducido.
+
+Definicién de los parametros:
+
+Area (AREA): es el numero de pixeles blancos en un objeto. El numero de pixeles es
+multiplicado por el valor del area del pixel. Los agujeros no contribuyen para el area.
+
+Factor de forma (ROUDNESS): este valor es derivado del perimetro y el area de un
+objeto. Este parametro tiene un rango de valores de 0 a 1. Un objeto circular tiene el maxi-
+mo valor del rango (1) y para objetos irregulares o alargados el parametro tiende al mini-
+mo valor del rango (0). Su ecuacidn es:
+
+Roudness = 4x. Area
+
+: 2
+Perimetro
+
+Coordenadas del rectangulo perimetral (EXTREME BOX): especifica la maxima y la
+minima coordenada de un objeto (bounding box). Las coordenadas son retornadas en dos
+puntos en las unidades especificadas: el punto superior izquierdo (XMIN,YMIN) y el punto
+inferior derecho (XMAX,YMAX). De modo que:
+
+ancho = X ya, — X yin +1
+alto = Yvioe —Y vin +1
+
+Max Min
+
+XMIN, YMIN ——po, 202 ences eee eee -
+
+' YMAX,YMIN
+
+oe nae eee eee ?_—
+
+Guardo Configuracion: los parametros extraidos del andalisis de la imagen patr6én son
+guardados en un archivo en el disco de la camara con extensidn ‘txt’. Los datos que se
+guardan son los siguientes: numero de alvéolos; area minima y maxima; factor de forma
+minimo y maximo; valor del umbral; flag de descarte por comprimido fallado, ausente y
+manchado; tipo de fondo; coordenadas del rectangulo perimetral de cada alvéolo; numero
+de calles; y posicién de las calles.
+
+El valor del umbral se calcula en forma automatica y es un parametro altamente afec-
+tado por las variaciones en la iluminacién. Por este motivo, es muy importante que el sis-
+tema de iluminacién implementado permita un aislamiento adecuado del sistema a las va-
+riaciones externas de la luz, y que a su vez otorgue una iluminacién constante y uniforme
+sobre la zona de analisis.
+
+Aspectos de un Sistema de Visi6n Artificial 15
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizacién y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+Imagen en Vivo
+
+SI —___¥_
+Carga Configuracién
+NO
+Detener? Detecta Pulso
+
+:
+
+Captura Imagen
+
+Compensacion de Iluminacion
+
+Segmenta Imagen
+SI
+
+Define Zona de Analisis
+p/Alvéolo
+
+Funcion Control
+
+SI
+
+Genera Sefial de Descarte
+
+Figura 5: Diagrama de flujo de la Rutina Analizar.
+
+Aspectos de un Sistema de Vision Artificial
+
+16
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+A continuacién se describen algunos de los pasos de la Rutina Analizar.
+
+Carga Configuracion: carga en la memoria de la Smart-camera los parametros guar-
+dados en el archivo de configuracién (en el disco de la camara), correspondientes al tipo
+de blisteado a realizarse.
+
+Detecta Pulso: una vez cargada la configuracién, el sistema se queda a la espera de
+la sefial digital que envia el sensor a la Smart-camera para realizar la captura y procesa-
+miento de la imagen a analizar.
+
+Compensaci6n de Iluminacion: Idem a la Rutina Configuracion.
+
+Segmenta Imagen: se realiza usando el valor de umbral calculado en base a la ima-
+gen patron. Este valor es cargado del archivo de configuracién.
+
+Proceso Imagen: a diferencia de la rutina configuracién, en esta etapa no se realiza el
+filtrado de objetos por area minima. Si realizaramos ese filtrado en este paso, podriamos
+perder informacién importante para realizar la supervisién del correcto estado de los com-
+primidos de los blisters.
+
+Define Zona de Analisis por Alvéolo: en esta etapa se define una subimagen por al-
+véolo. El numero total de alvéolos y sus correspondientes coordenadas son parametros
+que se cargan del archivo de configuracién. Las regiones definidas por estas coordenadas
+corresponden a los rectangulos externos de cada alvéolo de la imagen patrén con la que
+se realizd la configuracién. Se trabaja con una subimagen para optimizar la busqueda y
+minimizar el tiempo de requerido por el sistema para ejecutar la rutina de andlisis.
+
+Funcion Control: la subimagen definida en la etapa anterior es pasada como parame-
+tro ala Subrutina Control, donde se realiza un andlisis y se determina el correcto estado
+del comprimido de ese alvéolo.
+
+Genera Sefial de Descarte: en caso de producirse la detecci6n de un comprimido de-
+fectuoso, la subrutina retorna un valor que indica que se produjo una falla en el comprimi-
+do de ese alvéolo, por lo que se genera en forma automatica la sefal de descarte de ese
+blister.
+
+Fases del Proyecto
+
+A continuacién se enunciaran las pasos que constituyeron el desarrollo del sistema de
+visi6n (ordenados temporalmente):
+
+e Analisis de las caracteristicas técnicas (alcances y limitaciones) de la Smart-came-
+ra mvBlueLINX.
+
+e Puesta en funcionamiento de la Smart-camera mvBlueLYNX: Upgrade del softwa-
+re, conexionado, configuracién de interfases.
+
+e Configuracién del puerto serial RS 232 requeridos para la comunicaci6n e interac-
+cidn entre la Smart-camera mvBlueLYNX y la PC mediante el protocolo de comuni-
+cacién TCP.
+
+Aspectos de un Sistema de Visi6n Artificial 17
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+Configuracién de la interfase Ethernet LAN para establecer la comunicacién entre
+la Smart-camera mvBlueLYNX y una PC mediante el protocolo FTP (para enviar a
+la Smart-camera los programas compilados en la PC de desarrollo).
+
+Instalaci6n, configuracién y actualizaciédn de los programas y librerias requeridas
+para el desarrollo y compilacién de los programas en la PC.
+
+Estudio de la libreria mvIMPACT-SDK.
+
+Programacién en el entorno de desarrollo Visual C++ de las rutinas de configura-
+cidn y analisis mediante el uso de las funciones de andlisis y procesamiento de i-
+magenes definidas en la libreria mvIMPACT-SDK.
+
+Prueba y ajuste del funcionamiento de las rutinas de configuracion y analisis en la
+PC mediante el uso de la funcién import de la libreria mvIMPACT-SDK, la cual per-
+mite la carga de imagenes guardadas en el disco.
+
+Estudio de la libreria GNU-PicoGUI mediante el andlisis de ejemplos y el manual
+de referencia API.
+
+Desarrollo de la interfase hombre-maquina mediante el uso de la libreria GNU-
+PicoGUI.
+
+Acople a las rutinas de configuraci6n y andalisis de la interfase hombre-maquina.
+Pruebas y ajustes del funcionamiento del nuevo software integrado en la Smart-
+camera mvBlueLYNX.
+
+Disefio y armado de la primera estructura de iluminacidn.
+
+Calculo de lente acorde a las dimensiones de la estructura de iluminacién y la zona
+de inspeccion definida.
+
+Modificacién del software para la captura de imagenes por deteccién de la sefal
+digital emitida por el sensor.
+
+Montaje de la mesa de ensayos para el sistema integrado por la Smart-camera
+mvBlueLYNxX, el software, la estructura de iluminacion y el lente.
+
+Realizacién de pruebas y ajustes del sistema integrado en la mesa de ensayos.
+Instalacién y ensayo del prototipo en la planta.
+
+Procesamiento de los resultados del ensayo.
+
+Ajustes en el disefio de la estructura de iluminaci6n.
+
+Segundo ensayo en la planta.
+
+Ajustes en el disefio y tamafo de la estructura de iluminaci6n.
+
+Calculo del lente adecuado a la nueva estructura de iluminacién.
+
+Tercer ensayo en planta.
+
+Redisefo de la estructura de iluminacién para una mejor integraci6n mecanica a la
+linea de blisteado, e inclusién de un mecanismo para el montaje de la Smart-came-
+ra mvBlueLYNX.
+
+Adaptacion del software a la nueva estructura de iluminaci6n.
+
+Pruebas y ajustes del sistema final.
+
+Realizacién de prueba final en la mesa de ensayos con el sistema terminado.
+
+Resultados obtenidos
+
+Durante las pruebas de funcionamiento, el sistema present6 una muy buena res-
+puesta en la deteccién de comprimidos ausentes, manchados y calados.
+
+Aspectos de un Sistema de Visi6n Artificial 18
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+e Se presentaron algunos casos de no deteccién de comprimidos partidos, dado que
+la deteccién de éstos depende fuertemente del valor del umbral que calcula el sis-
+tema para la segmentacién de la imagen. Otro factor que afecta a la detecciédn de
+estos casos es la holgura (0 la falta de la misma) existente entre el comprimido y el
+alvéolo. Se debe tener en cuenta que los casos no detectados por el sistema auto-
+matico tampoco son facilmente detectables por el operador humano.
+
+e La forma rectangular de la estructura de iluminacién (con su distribucién no unifor-
+me de la luz) dificult6 la determinacién de un umbral Unico adecuado para la co-
+rrecta segmentacidn de toda la imagen. Por ello, se debid proceder a compensar
+por software el efecto de la iluminacién a fin de evitar que el calculo automatico del
+umbral se vea afectado.
+
+e El tiempo requerido por la Smart-camera mvBlueLYNX para realizar un andalisis
+completo fue de aproximadamente 1.5 segundos, siendo el tiempo maximo admi-
+sible para el analisis de 1 segundo. En este punto se propone como solucidén posi-
+ble la adquisicién de una Smart-camera mvBlueLYNX de mayor capacidad de pro-
+cesamiento.
+
+A continuacién se presenta un ejemplo de la puesta a prueba del sistema con una tan-
+da de blisteado en el que se forzaron diferentes casos de comprimidos defectuosos.
+
+Total comprimidos analizados 640
+Total comprimidos OK 621
+Total comprimidos NoOK 19
+Total comprimidos ausentes 6
+Total comprimidos fallados 10
+Total comprimidos manchados 2
+Total comprimidos superpuestos 1
+
+Durante esta prueba, el sistema presento tan solo 2 falencias en la deteccion de
+un total de 640 comprimidos analizados (Tasa de Error: 0,31%).
+
+Referencias
+
+1) AITEX — Instituto Tecnolégico Textil, “Analisis de la tecnologia de visién artificial
+aplicada al sector textil”.
+http://www.aitex.es/estudios/Vision_Artificial1.pdf
+
+2) Iris Herrero, “Control de Blisters mediante Visién Artificial’, Informe del Proyecto
+Final de la carrera de Ingenieria en Automatizacién y Control Industrial de la Universidad
+Nacional de Quilmes.
+
+Aspectos de un Sistema de Visi6n Artificial 19
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+Sensores de imagen
+
+Los sensores de imagen son componentes sensibles a la luz que modifican su sefal e-
+léctrica en funcién de la intensidad luminosa que perciben. La tecnologia mas habitual en
+este tipo de sensores es el CCD (charge coupled devices o dispositivos de acoplamiento
+de carga) donde se integra en un mismo chip los elementos fotosensibles y el conjunto de
+puertas ldgicas y circuiteria de control asociada. En éstos, la sefal eléctrica que transmi-
+ten los fotodiodos es funcidn de la intensidad luminosa que reciben, su espectro, y el tiem-
+po de integracién (tiempo durante el cual los fotodiodos son sensibles a la luz incidente).
+Otra tecnologia que esta empezando a extenderse son los sensores CMOS (complemen-
+tary metal oxide semiconductor) dada las ventajas de éstos sobre los CCD, y la reduccién
+de precios de estos dispositivos. En cuanto al rango dinamico (rango de amplitud entre los
+valores maximos y minimos que un elemento puede producir, medido en decibeles) se pa-
+sa de los 70dB de los sensores CCD a los 120dB de los sensores CMOS, valor mas cer-
+cano a los 200dB del ojo humano, lo que facilita la autoadaptaci6n en el propio chip al bri-
+llo existente en el entorno. El sensor CMOS puede amplificar de forma individual la res-
+puesta de los pixeles en funcién de sus respectivas condiciones de iluminacién. El acceso
+multipixel permite configurar individualmente distintos intervalos de tiempo de integracidn,
+mejorando la calidad de imagen mediante la seleccién del mejor tiempo de exposicién de
+cada pixel.
+
+Resolucién
+
+Existen diferentes arquitecturas de sensores. En primer lugar estan los sensores linea-
+les. En éstos, el sensor es una linea de fotodiodos. Esta arquitectura permite la utilizacién
+de sensores de 1x1024, 1x2048, 1x4096, e incluso 1x6000 pixeles, lo que la hace muy a-
+decuada para trabajar con altas resoluciones sobre superficies en movimiento. Para con-
+diciones de iluminaci6én muy exigentes o velocidades de trabajo muy altas existe la posibi-
+lidad del uso de sensores TDI (time delay integrated). Esta tecnologia consiste en el uso
+de varias lineas de captura sobre la misma linea del objeto, con el fin de sumar su carga y
+obtener asi una mayor sensibilidad. En segundo lugar estan los sensores de area. Estos
+alcanzan resoluciones habituales de 1024x1024, aunque existen en el mercado algunas
+casas que disponen de camaras especiales con resoluciones de hasta 3072x2048. En es-
+te caso existen tecnologias de adquisicién de imagenes, entrelazada y no entrelazada. El
+método entrelazado captura las lineas pares e impares que forman una imagen en instan-
+tes de tiempo diferentes. La tecnologia de no entrelazado (progressive scan) captura to-
+das las lineas en el mismo instante de tiempo. Es mas costoso econdémicamente, pero in-
+dispensable para trabajar con objetos en movimiento.
+
+Cuantizaci6n
+
+Independientemente de la arquitectura utilizada, existen otros aspectos importantes en
+estos sensores. La cuantizaci6n (conversién analdgica-digital) determina el numero de
+bits usados para representar la informacién capturada. Por ejemplo, usando un sistema
+blanco y negro de 8 bits tenemos 256 niveles diferentes mientras que, usando un sistema
+de 10 bits, obtendriamos 1024 niveles de gris diferentes, lo que permite una mayor defini-
+cion.
+
+La evolucién de las capacidades y caracteristicas técnicas de estos dispositivos ha se-
+guido una tendencia muy favorable, potenciado en parte por el mayor uso industrial de es-
+tos sistemas. Por tanto, en el mercado existen hoy en dia numerosos dispositivos para a-
+
+Aspectos de un Sistema de Visi6n Artificial 3
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+bordar cualquier tipo de aplicacién, ya sea en blanco y negro o color, a las velocidades re-
+queridas en los procesos de producci6n.
+
+Entre los avances mas significativos, ademas de la utilizaci6n de puertos de comunica-
+cién cada vez mas potentes y fiables, esta una capacidad de proceso mas o menos rele-
+vante e integrada en la propia camara. Por ejemplo, la camara lineal OPSIS 5150ALC dis-
+pone de FPGA (Field-programmable gate array, matriz de puertas programable por cam-
+po) programable y de un microprocesador Motorola Power PC con sistema operativo en
+tiempo real VxWorks que permite realizar procesamiento de imagenes. De esta forma se
+puede transmitir la imagen, la imagen preprocesada, o los resultados del procesamiento
+de la imagen a través de los puertos de comunicacién de que dispone la camara, hacien-
+do innecesario el uso de tarjetas de captura.
+
+Tarjetas de captura (o adquisidora)
+
+Las tarjetas de captura de imagen permiten transferir la imagen de la camara a la me-
+moria de la computadora con el fin de que ésta pueda realizar el procesamiento adecuado
+a las imagenes.
+
+Aspectos importantes en la adquisidora: velocidad de transmisi6n, el formato de los
+datos, la profundidad de pixel, la capacidad de captura por disparo, la capacidad de pre-
+procesado de la imagen, la velocidad de transferencia de la imagen de la memoria de la
+tarjeta a la memoria de la computadora, el reset asincrono o la capacidad de controlar pa-
+rametros de la camara en tiempo real. Evidentemente, todos los datos relativos a veloci-
+dades de transmisi6n son especialmente importantes para poder trabajar en tiempo real.
+Este aspecto ha mejorado notablemente en los ultimos afios. Otro parametro que ha evo-
+lucionado muy favorablemente es el formato de los datos. Con la estandarizacidén definiti-
+va de los formatos EIA-644 o LVDS, y del IEEE 1394, se consigue no sdlo aumentar la ve-
+locidad de transferencia, sino que también se hace con una mayor inmunidad al ruido y
+con longitudes de cableado aceptadas mucho mayores (de 2-10 metros a 25 metros de
+distancia camara — tarjeta). La capacidad de sincronizar la captura de las imagenes con
+una sefial externa también se ha mejorado con el reset asincrono, lo que habilita el inicio
+de la captura sin tener que esperar el siguiente vertical blank (es decir, sin necesidad de
+finalizar completamente la captura de anterior). La capacidad de controlar la camara con
+salidas RS-232 de la tarjeta facilita la variaci6n de parametros de la camara, fundamen-
+talmente la ganancia de los canales RGB, o de 6pticas motorizadas en tiempo real.
+
+Un aspecto relativamente reciente es la capacidad de poder trabajar con multitap. E-
+xisten tarjetas capaces de trabajar con varias camaras a la vez (hasta 6 camaras de 8 bits
+por pixel), o usar los canales de que dispone para trabajar con camaras multitap que
+transmiten a la vez varios pixeles por cada uno de los canales. Por ejemplo, a 40 MHz, u-
+na tarjeta puede recibir la informacién por un canal de 8 bits a 40 Mbytes/seg mientras
+que si usa dos canales, la informacién la puede recibir a 80Mbytes/seg, incrementandose
+de forma proporcional al numero de canales la velocidad de transmisi6n.
+
+En cuanto a la capacidad de proceso de las tarjetas, actualmente sdlo existe la posibi-
+lidad de incorporar un Procesador Digital de Sefal (DSP), que permite realizar determina-
+dos algoritmos de analisis de imagen en la propia memoria de la tarjeta, acelerando la im-
+
+Aspectos de un Sistema de Visi6n Artificial 4
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+plementacién de los algoritmos de visién. El desarrollo de mdédulos de proceso altamente
+especializados ha sido abandonado debido a la evidencia de la evolucién superior en
+prestaciones de los procesadores convencionales, que hacen que el costo de desarrollo
+de las placas altamente especializadas no sea rentable para las casas fabricantes de la
+misma, al ser éstos rapidamente superados por los constantes incrementos en velocidad
+y mejoras internas de los procesadores convencionales.
+
+Otra de las recientes ventajas en cuanto a las tarjetas de captura de imagenes es la in
+integracion de la tarjeta de captura, la visualizacién, y el médulo de proceso (CPU) en un
+
+solo elemento. Estos equipos se proporcionan en un chasis adecuado para trabajar en en-
+tornos industriales.
+
+Algoritmos de analisis de imagen y reconocimiento de formas
+
+Los algoritmos relacionados con visi6n artificial son muy variados y abarcan numero-
+sas técnicas y objetivos. Los pasos mas comunes en que consiste el analisis 0 procesa-
+miento de imagen se muestran en la figura 2.
+
+Filtrado o Segmentacion Calculo de
+preprocesamiento caracteristicas
+Seleccién de Disefio del
+caracteristicas clasificador
+
+Figura 2: Etapas de un proceso de reconocimiento de formas.
+
+Implementacién
+
+Clasificacion
+
+Disefio
+
+Filtrado o Pre-procesamiento
+
+Cuando se adquiere una imagen mediante cualquier sistema de captura, por lo general
+esta no es directamente utilizable por el sistema de visién. La aparicién de variaciones en
+intensidad debidas al ruido, por deficiencias en la iluminacién, 0 la obtencién de imagenes
+de bajo contraste, hace necesario un preprocesamiento de la imagen con el objetivo fun-
+damental de corregir estos problemas, ademas de aplicar aquellas transformaciones a la
+imagen que acentuen las caracteristicas que se deseen extraer de las mismas, de manera
+que se facilite las operaciones de las etapas posteriores. A este campo pertenecen las
+técnicas de transformaciones geométricas, las basadas en el histograma, el filtrado espa-
+cial (apunte “Filtrado Espacial.pdf’) y el filtrado frecuencial (apunte “Filtrado en el do-
+minio de la frecuencia.pdf”). Aunque existen lineas de investigacién abiertas, no es el
+campo mas activo en ese sentido, y las técnicas existentes son bastante utiles para la ma-
+yoria de las aplicaciones.
+
+Algunas de las técnicas mas habituales son:
+
+e Conversion de los niveles de gris: su objetivo es la mejora de la calidad de la ima-
+gen.
+
+Aspectos de un Sistema de Visi6n Artificial 5
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+e Transformaciones geométricas: los objetivos de ésta son la correccién de la pers-
+pectiva y la reconstrucci6n tridimensional de los objetos de la escena.
+
+e Transformacién del histograma: las transformaciones del histograma pueden facili-
+tar la segmentacién de objetos de la imagen, aunque habitualmente sdlo sirve para
+modificar el contraste de la imagen y el rango dinamico de los niveles de gris.
+
+e Filtrado espacial y frecuencial: dado que pueden suponer una importante modifica-
+cidn de la imagen original, generalmente sdlo se consideran filtrados aquellas ope-
+raciones realizadas en el dominio espacial o frecuencial que suponen transforma-
+ciones pequefias de la imagen original.
+
+Segmentacion o aislamiento de los objetos de interés
+
+Cuando ya se dispone de la imagen capturada y filtrada, es necesario aislar 0 separar
+los objetos de interés de la escena. Se pretende por tanto dividir una imagen en diferentes
+regiones, o dicho de otra forma, detectar automaticamente los bordes entre los elementos
+o regiones. Las operaciones de segmentacién de una escena dependen de la propia es-
+cena y de la informacién que se busque dentro de la imagen. Por ejemplo, en fotografia a-
+érea se utiliza para separar regiones pobladas, agricolas, bosques, aguas, etc. En imagen
+médica se usa para aislar zonas enfermas de los érganos, o para detectar y contar micro-
+organismos en microscopia. Industrialmente, se usa como primer paso para la medicién
+de piezas, para determinar la correcta disposicién del etiquetado de los envases (aislar el
+envase, aislar la etiqueta, determinar si la relaci6n entre estos dos objetos es correcta),
+para la medicién de irregularidades en superficies homogéneas, para la detecciédn de
+cambios de texturas en las que el sistema ha de determinar si es un defecto 0 no lo es,
+etc.
+
+Las técnicas basicas de segmentacién se pueden dividir en tres grupos:
+
+e Aplicacién de umbrales de niveles de gris (apunte “Segmentaci6n por umbraliza-
+cién - Método de Otsu.pdf’).
+
+e Agrupacién por rasgos comunes.
+
+e Extraccion de bordes.
+
+La segmentacién de imagen es una tematica actual de investigacién y se han definido
+numerosos métodos disefados para aplicaciones particulares. No obstante, no hay méto-
+dos que sean utiles en una amplia variedad de situaciones, por lo que cada problema ne-
+cesita la adaptaci6n o desarrollo de nuevas técnicas.
+
+Extraccion y seleccion de caracteristicas
+Con los objetos a estudiar ya definidos, es necesario extraer una serie de medidas que
+los caractericen adecuadamente, en forma de vector de caracteristicas.
+
+Como norma general, para la eleccién de caracteristicas se intenta que:
+e Sean discriminantes, es decir, tengan valores numéricos diferentes para clases di-
+
+ferentes.
+e Sean fiables, es decir, tengan valores parecidos dentro de una misma clase.
+
+Aspectos de un Sistema de Visi6n Artificial 6
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+e Estén incorreladas, es decir, obtener la misma informacién con el minimo numero
+de caracteristicas.
+
+e Se calculen en un tiempo aceptable, de manera que sea utilizable en problemas de
+tiempo real.
+
+Dado que las caracteristicas relevantes son a menudo desconocidas a priori, habitual-
+mente se introducen muchas caracteristicas candidatas para intentar representar mejor
+las clases, aun cuando muchas de ellas puedan ser parcial o completamente redundantes
+o irrelevantes. No obstante, existen unas técnicas para mejorar las prestaciones del con-
+junto de caracteristicas escogido inicialmente. Estas estan intimamente ligadas al recono-
+cimiento de formas en su etapa de disefio del clasificador.
+
+Reconocimiento de formas e inteligencia artificial
+
+Normalmente, la vision artificial se utiliza para tomar decisiones a partir de la informa-
+cidn proporcionada por el sistema de adquisicién de imagenes y las transformaciones y o-
+peraciones realizadas con ellas. La informacién extraida se puede considerar como un
+vector que recoge las caracteristicas 0 rasgos diferenciadores de la imagen analizada. En
+el caso de que se trate de una aplicacién de medicién, este vector recoge todas aquellas
+medidas que se deseaban obtener. En aplicaciones de inspeccién, y sobre todo, en apli-
+caciones de clasificacién, este vector es el conjunto de datos con los que ha de trabajar
+un reconocedor o clasificador encargado de extraer las conclusiones posibles a partir del
+vector de entrada. Para el disefio del clasificador es necesaria una etapa de seleccién de
+caracteristicas y una etapa de aprendizaje 0 entrenamiento. Generalmente, se usa el pro-
+pio clasificador como evaluador del conjunto de caracteristicas en prueba dado que el mé-
+todo que proporciona la mayor fiabilidad, aunque sea el mas costoso temporalmente y de
+menor generalidad 0 capacidad de aplicacién del clasificador a otros problemas. Respecto
+a los métodos clasicos de busqueda secuencial, actualmente uno de los campos de inves-
+tigacién abiertos es el uso de algoritmos genéticos para la seleccién en paralelo de carac-
+teristicas.
+
+En el reconocimiento de formas aplicado a la visién artificial se utilizan técnicas de re-
+conocimiento geométrico de formas, como el aprendizaje supervisado (se conoce la clase
+a la que pertenece cada vector) en condiciones estadisticas o algoritmos de clasificacién
+no supervisados o clustering y, ademas, las redes neuronales, siendo estas ultimas espe-
+cialmente interesantes por su capacidad de aprendizaje adaptativo. Existen numerosos al-
+goritmos para cada una de estas técnicas y se investiga ampliamente el desarrollo de
+nuevos algoritmos e implementaciones hardware de éstos. El problema fundamental de
+estas técnica, es que cada una de ellas suele ser la mas adecuada para las caracteristi-
+cas de un tipo especifico de problema no conocidas a priori, lo que dificulta la seleccién
+de la técnica con la que se desea abordar inicialmente el problema.
+
+CPU o modulo de proceso
+
+Se trata del sistema encargado de recibir y analizar, mediante los algoritmos adecua-
+dos, las imagenes a la velocidad necesaria para poder interactuar con el entorno en tiem-
+
+Aspectos de un Sistema de Visi6n Artificial 7
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+po real. Es, pues, la parte del sistema encargada de implementar las funciones y objetivos
+para los que se haya disefnado el sistema.
+
+Los altos requerimientos computacionales de esta tecnologia no se pueden especificar
+de una forma genérica. Un ejemplo demostrativo de estos requerimientos es el del reco-
+nocimiento automatico de matriculas mediante una camara de 8 bits y una resolucién de
+640x480 (307.200 pixeles). En esta aplicaciédn se necesita una etapa de filtrado, una bina-
+rizaci6n que convierta la imagen de 256 niveles de gris a sdlo 2, una de segmentacién
+que aisle cada caracter de la matricula y una de clasificacién. Las operaciones necesarias
+se resumen en la siguiente tabla:
+
+Op. en coma
+
+Comparaciones | Sumas y restas | Multiplicaciones | Divisiones
+flotante
+
+Filtrado 0} 2.457.600 0, 307.200
+Binarizacion 307.200 0 0 0
+
+Segmentacion 1.229.310 1.510 o| 1.000
+
+Clasificacion 0 3.304 129.857
+
+Total 1.536.510, 2.462.414] 129.857| 308.200 417|_4.437.398|
+
+Si se tiene en cuenta que el sistema ha de trabajar en tiempo real, capturando para e-
+llo 30 imagenes por segundo, se necesita una capacidad de calculo de 133.121.940 ins-
+trucciones por segundo (133 MIPS). Teniendo en cuenta que el ejemplo comentado es u-
+na aplicacion relativamente simple, podemos comprender los altos requerimientos compu-
+tacionales para el uso de estas técnicas.
+
+Quizas sea este el campo que mas rapidamente ha evolucionado, debido al uso gene-
+ralizado de este tipo de sistemas en todos los campos. La rapida evolucidn de los proce-
+sadores de propdsito general ha desbancado la utilizaci6n de procesadores especializa-
+dos (mas caros y de una evolucién mas lenta por la demanda del mercado), excepto para
+casos muy concretos. Por tanto, la potencia de los procesadores actuales, junto con las
+arquitecturas hardware y software que soportan los sistemas multiprocesadores, permiten
+el desarrollo de algoritmos complejos con tiempo de respuesta muy cortos y dentro de los
+requerimientos de las aplicaciones en tiempo real.
+
+Entre las mejoras mas destacadas podemos mencionar:
+
+e Pipeline: capacidad de separar la ejecucién de cada instruccién en varias etapas, lo
+que permite que varias instrucciones se ejecuten en paralelo. El primer procesador
+Pentium dispone de 5 etapas mientras que el Pentium IV dispone de 20.
+
+e Tecnologias de ejecucién dinamica: éstas permiten una ejecucién especulativa su-
+perando la secuenciacién lineal de las instrucciones de busqueda y ejecucién de
+instruccién. El procesador Pentium contiene un buffer de 40 instrucciones, mientras
+que el Pentium IV tiene un buffer de 126 instrucciones y un algoritmo mejorado pa-
+ra la prediccién de saltos.
+
+e Juegos de instrucciones SIMD (Single Instruction, Multiple Data): las 57 instruccio-
+nes MMX de 64 bits que aparecieron con los primeros Pentium MMX permitian un
+alto paralelismo en la ejecucidn de instrucciones con tipos de datos multimedia, co-
+mo son, por ejemplo, las imagenes utilizadas en los sistemas de visién. Esto se tra-
+duce en importantisimas mejoras en los tiempos de ejecuci6n de determinadas o-
+
+Aspectos de un Sistema de Visi6n Artificial 8
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+peraciones muy utilizadas en los algoritmos de procesamiento de imagenes, como
+las convoluciones o las transformadas de Fourier. Los procesadores Pentium IV
+disponen del juego de instrucciones de 128 bits SSE2 con 144 instrucciones nue-
+vas.
+
+e Cachés de 2° nivel: estas cachés permiten disponer de memoria para instrucciones
+y datos dentro de la propia pastilla del procesador, lo que evita los ciclos de acceso
+a la memoria convencional, incapaz de proporcionar los datos a las velocidades
+que los procesadores pueden consumirlas. El procesador Pentium II dispone de
+512Kb de caché L2 para cddigo y datos, y un bus de 64 bits para conseguir altas
+transferencias de datos entre la caché y el procesador.
+
+e Unidades de ejecucién en coma flotante FPU avanzadas: soporte del formato IEEE
+754 de 32, 64 y 80 bits.
+
+No obstante, para aplicaciones de muy elevados requerimientos computacionales y
+estrictos requerimientos de tiempo, la existencia de hardware especializado o, principal-
+mente, la utilizacién de otras arquitecturas paralelas que hagan uso de DSP o sistemas
+FPGA aseguran la viabilidad en este sentido de cualquier aplicacién de visi6n artificial, al
+permitir la utilizaci6n de sistemas multiprocesadores con los DSP en paralelo que se ne-
+cesiten en la aplicacién.
+
+Paralelamente al hardware utilizado, se han desarrollado librerias software que imple-
+mentan numerosas funciones utilizadas habitualmente en esta tecnologia, lo que permite
+reducir el ciclo de desarrollo de las aplicaciones y facilita la obtencién e implementacién
+de algoritmos complejos con tiempos de ejecuci6én adecuadamente bajos.
+
+Sistemas de respuesta
+
+Se trata de automatismos que responden electromecanicamente con el fin de corregir
+o evitar, por ejemplo, en los sistemas de producci6n, las causas generadoras de los pro-
+blemas de deteccién. Otra de las funciones de estos sistemas es la generacién de esta-
+disticas e informes de del proceso al que estan asociados, lo que permite disponer de una
+informacidn global de los procesos para facilitar la toma de decisiones.
+
+En cuanto a los dispositivos electromecanicos utilizables en los sistemas de visidén,
+destacan los variadores de frecuencia para el control de motores y la comunicacién entre
+las PC’s y los aut6ématas programables que gestionan los distintos dispositivos mediante
+redes de campo como “Profibus” o “WorldFIP”, y mas recientemente mediante “Industrial
+Ethernet”, y protocolos Wireless. Estos buses permiten la integracién de los sistemas de
+visién y sus acciones de respuesta dentro de la estructura CIM de las empresas, lo que
+supone un ahorro econémico en los casos en que ya se disponga de esta estructura.
+
+Aspectos de un Sistema de Visi6n Artificial 9
+
+ NEW PAGE 
+Universidad Nacional de Quilmes — Ing. en Automatizaci6n y Control Industrial
+Catedra: Visién Artificial Octubre de 2005
+
+Ejemplo de un Sistema de Vision: Control de Blisters
+
+En esta seccién se presentara un breve resumen del proyecto final de carrera de la e-
+gresada de la Universidad Nacional de Quilmes, Iris Herrero, de manera que puedan ver-
+se los aspectos de un sistema de visidn en una aplicaci6n probada y aprobada.
+
+El proyecto consiste en el desarrollo de un sistema de visién para la inspeccién y su-
+pervision de blisters con base de PVC o aluminio. Tal inspeccién debe ser capaz de deter-
+minar la ausencia de comprimidos en los alvéolos, la presencia de comprimidos fuera de
+los alvéolos, alvéolos sobrecargados, presencia de cuerpos extrafhos, comprimidos parti-
+dos, comprimidos con desmoronamientos, y comprimidos manchados. Todo el analisis
+necesario debe tomar como maximo 1 segundo por cada paso de la blistera. Ademas, el
+proyecto cuenta con una interfase hombre-maquina que permite configurar ciertos para-
+metros de la inspeccion (nivel de rigurosidad), proporcionar informacién del error detecta-
+do y generar estadisticas de produccién. No obstante, nos concentraremos en lo relacio-
+nado a la inspeccion y supervision.
+
+El sistema
+
+El sistema consiste basicamente en la integracién de un sensor, una CPU, un lente, un
+software y una estructura de iluminacién y montaje.
+
+Para la implementacién del proyecto se definid la utilizaci6n de la tecnologia de la
+Smart-camera mvBlueLYNX, de la libreria mvIMPACT-SDK de Matriz Vision para el pro-
+cesamiento y analisis de imagenes, y de la libreria GNU-PicoGUI para la programacién de
+la interfase hombre-maquina.
+
+En particular, la Smart-camera mvBlueLYNX integra el sensor con el CPU, obteniendo
+una potente herramienta de desarrollo para una amplia gama de aplicaciones. Su tamafo
+reducido, sumado al hecho de no necesitar una PC dedicada para que realice el procesa-
+miento, permite que el sistema sea altamente portable y adaptable a los diferentes mode-
+los de blisteras.
+
+Sensor, tarjeta de captura y CPU
+Por lo dicho en el parrafo anterior, se eligid la Smart-camera mvBlueLYNX como ele-
+mento sensor, que ademas integra la tarjeta de captura (necesaria para la digitalizacién
+
+de las imagenes) y el médulo de proceso o CPU. Puede encontrarse informacion detalla-
+da de esta camara en la siguiente pagina web:
+
+http://www. matrix-vision.com/manuals/mvBlueL YNX/main.html
+
+Fuente de luz. Tipo de Iluminacion. Lentes
+
+Para resaltar los detalles de interés en los comprimidos, se optd por luz blanca difusa
+como iluminaci6én. Para ello, se utilizaron como fuentes de luz arrays de LEDs blancos. La
+técnica de iluminaci6n frontal se logré6 mediante una combinaci6n de difusién y reflexidn.
+
+Aspectos de un Sistema de Visi6n Artificial 10
+
+ NEW PAGE

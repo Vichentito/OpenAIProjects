@@ -1,0 +1,1009 @@
+1
+
+El Reconocimiento de Formas
+
+1.1 Fundamentos
+
+Si bien es relativamente sencillo el conseguir que una maquina (p.e.: un
+ordenador) capte lo que le rodea (basta dotarle de una adecuada serie de
+sensores y/o transductores: células fotoeléctricas, micrdfonos,...), no lo es
+tanto el conseguir que sea capaz de interpretarlo y/o reconocerlo.
+
+Ciertamente, es casi trivial conseguir que la maquina "clasifique" de
+manera elemental una serie de medidas recogidas por un sensor (basta una
+tabla) e identifique de esta manera una situaci6n, un objeto o una variacién
+de su entorno (p.e.: bajada de temperatura) (figura 1.1). Y efectivamente, ello
+equivale a una tarea perceptiva simple.
+
+Figura 1.1 Una Maquina capaz de percibir (el estado del tiempo).
+
+Pero el problema se presenta cuando la interpretacién de lo que sucede
+en el entorno depende, no solo de un sensor, sino de varios; no solo de una
+medida de ese sensor, sino de muchas medidas recogidas a lo largo del
+tiempo. Y se complica mucho més cuando para poder comprender el
+entorno es necesario recurrir a una gran base de conocimientos
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+(experiencias) previamente almacenadas, y que debe ser consultada y
+comparada rdpidamente con lo captado a través de los sensores. Con todo, la
+dificultad mds grande aparece cuando se considera que las medidas de los
+sensores no son absolutamente fiables, y peor atin, que la descripcién que se
+tiene del entorno tampoco lo es.
+
+La complejidad involucrada es tal, que hoy en dia, a pesar de largos
+estudios sobre la funcién perceptiva realizados por los psicélogos sobre
+personas y animales, y del ininterrumpido intento de duplicarla por parte de
+los técnicos (generalmente informdaticos), la percepcién, en su acepcién mas
+general, sigue siendo una tarea que, si bien todos los seres humanos
+llevamos a cabo rutinariamente, nadie sabe realmente cémo.
+
+A pesar de todo ello, es enorme el interés que tiene el poder construir
+mdquinas capaces de reconocer caracteres (leer libros), imagenes (p.e.
+identificar aviones), sonidos (p.e. entender cuando se les habla), etc..., por lo
+que nunca se ha cejado en el empefio. En la actualidad, principalmente
+gracias a la evolucién de la informatica, se han conseguido interesantes
+resultados practicos, y lo que es mds importante, grandes avances en la
+comprehension de las dificultades y en la definicién de los medios que
+deben ponerse en accién para superarlas. En el resto de este capitulo
+describimos (muy por encima) algunos de estos resultados, asi como los
+medios que se utilizan para obtenerlos.
+
+1.1.1 Las etapas de un reconocedor
+
+La percepcién de objetos por un sistema es el objetivo declarado de la
+disciplina del Reconocimiento de Formas, que se engloba en un conjunto de
+técnicas mucho més ambiciosas: la Inteligencia Artificial [Cohen,82]. El
+reconocimiento de formas, sin embargo, ha ido adquiriendo entidad de por
+si mismo, hasta el punto de que en la actualidad constituye un campo de
+investigaci6n que evoluciona con dindmica propia, a menudo
+independiente de la inteligencia artificial.
+
+Reconocer un objeto consiste en asociarle (identificarlo con) un mensaje
+semdntico, es decir un significado. En el caso mas general, este mensaje
+semdntico es simplemente un punto (también llamado forma) de un
+universo semdntico (a veces llamado universo interno, en oposicién al
+universo externo captado por los sensores). Normalmente, a una forma
+(p.e.: silla) le corresponden muchos posibles objetos (p.e.: todas las posibles
+sillas). Dicho de otro modo, una forma es un conjunto de objetos que se
+caracterizan por estar etiquetados por un mismo mensaje semdntico.
+
+Un sistema de reconocimiento de formas, en su versién mds simple,
+estard constituido de la manera esquematizada en la figura 1.2, es decir, por
+dos médulos:
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+1.1.6 El tamano de las subestructuras
+
+Entre las muchas caracterfsticas relevantes de un objeto a la hora de
+reconocerlo, se encuentra una de especial interés para este trabajo: el tamafio
+
+(longitud) de las subestructuras.
+
+El tamafio relativo (espacial o temporal) de los componentes de un
+objeto suele ser de cardcter discriminativo, siendo por lo tanto a menudo
+parte integral de la descripcién de una forma: no es posible distinguir un
+objeto de otro sin tener en cuenta lo grande o pequefio de las subformas que
+
+los componen.
+
+De entre los muchos ejemplos posibles podemos mencionar: la
+acentuacién de una silaba (que a menudo sélo se percibe por su mayor
+duracién), que distingue una palabra de otra; la duracidn de otra silaba, que
+no cambia el significado de la palabra; la longitud de un brazo en la imagen
+de un cromosoma, que lo diferencia de otro; la longitud de un trazo en la
+imagen de una letra, que hace que sea esa y no otra... (figura 1.6).
+
+>
+=_ annaa Todos
+o —_ aaaaaaaannnnnnnnaaaaaaaa son
+-_ @ anaaaaaaaa Jana/
+-_ ( aaaaannnnnnnnna
+\ |
+i
+=
+=
+=//
+wy
+) /\onh
+(am \
+\
+ff \oo\ La ultima letra, “Es una ‘a’ o una 'd'?.
+
+Es tos cr omosomas, gSon ono son el mismo?.
+
+Figura 1.6 La importancia del tamajfio para el reconocimiento de formas.
+
+A pesar de la importancia de esta caracteristica, a menudo no se la ha
+tenido explicitamente en cuenta a la hora de estudiar y disefiar una
+determinada representacién de objetos o formas, lo que conduce a que
+muchos modelos ampliamente utilizados hoy en dia tengan una fuerte
+disfuncién en este campo. Actualmente se tiende a introducir de manera
+mas o menos explicita la representacién de la longitud de las subestructuras,
+ya sea complicando modelos ya existentes 0, como es el caso en el presente
+trabajo, desarrollando nuevos modelos que tengan implicita a priori dicha
+
+representacién [Rulot,87].
+
+11
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+1.1.7 El Aprendizaje Automatico
+
+Sea cual sea el modelo escogido para representar las formas, sera
+necesario proporcionar el conjunto de éstas al sistema antes de que sea
+posible utilizar el médulo de interpretacién. Desgraciadamente, en general
+no se conoce la descripcidn exacta de una forma en los términos del modelo
+elegido (y normalmente en ningtin otro), lo que obliga a dotar al sistema de
+la capacidad de aprender (inferir) [Angluin,83] (el conjunto de) las formas.
+
+1.1.7.1 Taxonomia del aprendizaje
+
+El proceso de aprender una forma se puede llevar a cabo mediante
+instruccién directa por parte del "maestro", es decir mediante transferencia
+sin mas del procedimiento para reconocerla (p.e: mediante programaci6n,
+introduccién de reglas). Ello se conoce como aprendizaje deductivo. Por el
+contrario, en el aprendizaje inductivo, el sistema debe llevar a cabo algun
+proceso de abstraccién (generar formas) por si mismo. Ello hace
+imprescindible la utilizacién de ejemplos, que el sistema analiza y clasifica
+sin ayuda (aprendizaje no supervisado) 0 con ayuda del maestro
+(aprendizaje supervisado) (figura 1.7).
+
+En el caso del aprendizaje supervisado activo o informante, el sistema
+estudia los ejemplos y sugiere otros nuevos; el maestro le dice cémo
+clasificarlos. Si el aprendizaje es pasivo o textual el sistema no genera
+nuevos ejemplos y la labor del maestro se limita a clasificar los ejemplos
+iniciales. Los ejemplos en el aprendizaje supervisado pueden ser sdélo
+positivos (son de esa forma) o positivos y negativos (no son de esa forma).
+
+En general en el aprendizaje inductivo las tnicas abstracciones que se le
+piden al sistema se refieren a la generacién de nuevas formas. El resto de la
+informacion (representacién mds adecuada, tipo de estructura, método de
+identificacién apropiado, etc...) se le proporciona de manera deductiva. Nada
+impide sin embargo que el sistema sea capaz de abstraer (generar hipotesis)
+en este campo también, aunque usualmente no es necesario (ni facil).
+
+1.1.7.2 Factibilidad del aprendizaje Inductivo
+
+El método usual de aprendizaje inductivo es la presentacién de
+ejemplos. Se debe disponer de una serie de objetos del mundo real,
+etiquetados 0 no con la forma a la que pertenecen. Estos objetos se muestran
+al sistema, y éste, mediante un proceso de induccién, debe inferir la
+descripcién de la forma acorde con el modelo de representacién e
+identificacién que esté empleando.
+
+12
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+Programado.
+Deductivo. Por memorizacion de reglas.
+Aprendizaje Por memorizacién de ejemplos +
+Automatico Funcion distancia.
+
+No Supervisado
+(No hay maestro).
+
+Inductivo. Pasivo o Textual. Ejemplos Positivos
+(s6lo ejemplos) y negativos.
+Supervisado
+(Hay maes tro). . , :
+ley Activo o Informante Solo ejemplos
+(ejemplos +hipétesis). positivos.
+
+Figura 1.7 Taxonomia del aprendizaje.
+
+Es evidente que la convergencia de este proceso (el sistema terminard
+por aprender al cabo de un numero suficiente de ejemplos?) esta lejos de ser
+obvia, y depende fuertemente del tipo de modelo de representacién e
+identificacién utilizado. Determinados resultados teéricos [Gold,67] afirman
+incluso que en el caso mds general la convergencia es indemostrable.
+
+En efecto, considerado formalmente, el aprendizaje o inferencia
+inductivos es un proceso de obtencién de reglas a partir de ejemplos. De la
+manera mas general posible, una regla es una funci6n recursiva parcial f y
+un ejemplo es un par (x,f(x)), donde x pertenece al dominio de f. Un
+algoritmo de inferencia sintetiza el algoritmo de f a partir de sus ejemplos.
+Gold afirma que el inferir una funcidén recursiva en general es un problema
+indecidible (!!). Afortunadamente el mismo Gold demuestra que si nos
+limitamos a las funciones recursivas primitivas si que se las puede
+identificar en el limite a partir de ejemplos.
+
+1.2 El Reconocimiento Automatico del Habla
+
+Como dice su nombre, el "Reconocimiento Automdatico del Habla"
+(RAH) pretende conseguir que las mdquinas (usualmente ordenadores) sean
+capaces, tanto de obedecer 6rdenes expresadas oralmente, como de dialogar
+interactivamente con seres humanos mediante el uso de la palabra hablada.
+
+El problema de la sintesis del habla, implicito en esta ultima y mayor
+pretensién, se puede dar hoy en dia como resuelto, aunque en la practica
+queden por pulir algunos "detalles" (calidad de la voz, entonacion, ...) para
+conseguir una voz indistinguible de la de un ser humano [Casacuberta,87].
+
+13
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+En RAH sin embargo, el panorama no es tan esperanzador. Las
+dificultades son debidas a una larga lista de factores, los cuales en su mayor
+parte dan cuenta de la mayor o menor variabilidad presente en los objetos a
+reconocer, y por lo tanto de la cantidad de informacién que necesitara el
+sistema para poder conseguir resultados aceptables. Entre estos factores cabe
+destacar:
+
+El vocabulario: numero de palabras y/o frases a reconocer.
+
+La cantidad de locutores, utilizdndose los términos: Monolocutor (el
+sistema reconoce con un tinico locutor), Multilocutor (s6lo funciona
+con los locutores que conoce) e Independiente del Locutor (reconoce
+con cualquier locutor).
+
+e El sexo de los locutores: como es de comtin conocimiento, la voz
+femenina es distinta de la masculina: no sdlo cambia el tono
+fundamental de un sexo a otro, sino que la variacién de formantes
+no es proporcional a la variacién de dicho fundamental.
+
+La calidad de la sefial vocal: la sefial esta afectada por ruido,
+procedente del ambiente (fadbrica, cabina de avi6n,...) o de una mala
+transmision (lineas telef6nicas).
+
+Los sistemas de RAH se pueden subdividir actualmente en dos grupos
+bien diferenciados por la complejidad del problema que intentan resolver:
+los que se dedican tinicamente al reconocimiento de palabras aisladas
+(separadas unas de otras por silencios) y los que se dedican al
+reconocimiento de la habla continua (frases mds o menos largas sin
+separaciOn entre palabras).
+
+En el habla continua, la cantidad de combinaciones de palabras (ntimero
+de frases) posibles es extremadamente elevada, y es infactible el disponer de
+muestras de todas las combinaciones para realizar un aprendizaje fiable de
+cada una. Algo similar ocurre con el aprendizaje de modelos de palabras
+aisladas cuando el vocabulario crece. Todo ello obliga a recurrir a la
+descomposicién en subunidades subléxicas (fonemas, palabras,...) y a utilizar
+algtin método de representacién estructural, que limite el numero de
+posibilidades (p.e.: el ntimero de palabras que pueden venir a continuaci6n
+de una dada: la perplejidad del lenguaje). Como anteriormente se ha
+mencionado, esto lleva inevitablemente a enfrentarse con el problema de la
+segmentaci6n, agravado en este caso por la coarticulacién que existe entre las
+distintas unidades, que altera a éstas fuertemente en los puntos de union.
+
+Es sin embargo en estos sistemas en los que se centra actualmente la
+
+investigacién, pues sdlo mediante ellos se podrda resolver el problema del
+RAH.
+
+14
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+1.2.1 Adquisicién, parametrizaci6n y etiquetado en RAH
+
+En reconocimiento del habla, los objetos son sefiales sonoras (ondas de
+presién en el aire) que representan palabras o frases. Es pues necesario
+utilizar una etapa de representacién, que transforme estas sefiales en algo
+mas conveniente para su utilizacién por el médulo de interpretacién. En la
+actualidad, la etapa de representacié6n de objetos en reconocimiento del
+habla est tipicamente compuesta por tres subniveles: el preproceso, la
+parametrizacién y el etiquetado (que puede considerarse un nivel superior
+de parametrizacién) (figura 1.8).
+
+e El primer subnivel, el del preproceso esté formado por el conjunto
+mecdnico - eléctrico - electrénico constituido por el micréfono (que
+transforma la onda sonora de presién en onda eléctrica), el filtro
+(que suprime componentes indeseables de la onda eléctrica) y el
+conversor analégico/ digital (AD) (que transforma la onda eléctrica
+en una serie de medidas de amplitud).
+
+e El segundo subnivel, el de parametrizacién, tiene como objetivo
+tipico el de reducir la enorme cantidad de informacién proveniente
+del nivel anterior (~120000 bits/sg.) en algo mds manejable (=5000
+bits/sg.) .
+
+La parametrizacién efectia usualmente un cambio de espacio de
+representacién, pasando de un espacio de una dimensi6n (tiempo) a
+otro de dos dimensiones (tipicamente tiempo/ frecuencia), siendo
+por lo tanto una transformaci6én de tipo estrictamente matematico,
+que transforma una serie de medidas de amplitud en una serie de
+vectores de pardmetros [Casacuberta,87].
+
+El tipo de parametrizacién varia de un sistema a otro, los mas
+utilizados son: el banco de filtros, los coeficientes de prediccién
+lineal, y los coeficientes cepstrales [Makhoul,75] [Rabiner,78]
+[Benedi,89]. El autor, en un trabajo anterior, propuso y estudié para
+este fin la los valores de la funcién de autocorrelacién de la sefial
+muestreada a un bit [Rulot,85].
+
+e El tercer subnivel, el etiquetado 0 cuantificacién vectorial, no
+siempre se halla presente, pero es muy utilizado en los sistemas que
+utilizan la aproximaci6n estructural en RAH, puesto que permite
+una reduccién atin mayor de la cantidad de informacién (=300
+bits/sg.) y proporciona una representacién extremadamente
+adecuada para aplicar los métodos estructurales (gramaticas, Modelos
+de markov,...).
+
+El etiquetado se lleva a cabo normalmente mediante algtin tipo de
+
+andlisis estadistico que permite clasificar los vectores de pardmetros
+del nivel anterior en una serie reducida de clases, cuyos nombres o
+
+15
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+simbolos son los que se utilizan en lugar del vector original
+[Duda,73] [Gray,84].
+
+bee .
+4
+Zs
+Hon | Zz
+re 2 EL,
+WiNe
+Wy WN \)
+iW
+eS,
+(can,
+| AN 5
+if E
+— < =
+2
+3
+ZZZZKKZZZKEEEEEEooTUnnnnIiIITEETTTUUUUUN =
+
+Figura 1.8 Adquisicién, parametrizacién y etiquetado en RAH.
+
+16
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+1.2.2 Estado del Arte
+
+Actualmente existen sistemas capaces de reconocer con porcentajes de
+aciertos superiores al 98% vocabularios sencillos (palabras bien distintas
+fonéticamente) y pequefios (del orden del centenar de palabras) de palabras
+aisladas, todo ello en entornos independientes del locutor y con locutores de
+ambos sexos. Estos resultados se obtienen incluso en ambientes ruidosos
+[Rabiner,87] [Loeb,87] [Watanabe,88], pero aunque son suficientes para
+determinadas aplicaciones puntuales, no permiten una comunicacién
+hombre-mdquina realmente fiable. En el estado actual de la técnica,
+conseguir mds del 99% de aciertos es posible tinicamente imponiendo
+condiciones mds restrictivas, por ejemplo suprimiendo el ruido (este
+trabajo) o restringiéndose a locutores de un tinico sexo [Lippmann,87].
+
+La mayoria de estos sistemas se basan en métodos globales, aunque la
+tendencia actual es utilizar un modelo estructural proveniente de la teoria
+de la informacién: los HMM ("Hidden Markov Models": Modelos Ocultos
+de Markov) [Rabiner,83]. Empleando estos modelos, con fonemas o
+unidades subfonéticas como subformas, es posible manejar grandes
+vocabularios y obtener resultados esperanzadores. Por ejemplo, [Jouvet,86]
+con 1000 palabras obtiene hasta un 95% de reconocimiento mientras que
+[D'Orta,87] con 3000 palabras consigue hasta un 84% pero con un sistema
+dependiente del locutor.
+
+Como se observa, la tasa de reconocimiento baja rdpidamente en funcién
+de la complejidad de la tarea y se halla atin muy lejos de la maxima
+alcanzable, dada por la obtenida por seres humanos. Por ejemplo,
+considérese un vocabulario especialmente dificil: el e-set, formado por las
+letras que se pronuncian con /e/ (/be/, /ce/, /de/, /ge/, /pe/,...). Con él, los
+seres humanos consiguen un 98% de palabras reconocidas [Bahl,87]. Los
+sistemas actuales, a pesar de ser sdlo 9 palabras, consiguen en el mejor de los
+casos, un 92% [Bahl,87] (multilocutor). Otro ejemplo, en el que la dificultad
+se debe a la enormidad del vocabulario, lo constituye el Tangora
+[Averbuch,87] [Cerf-Danon,91]. Este sistema, con un vocabulario de 20000
+palabras, reconoce en promedio un 97% de las mismas, eso si, es un sistema
+dependiente del locutor, considera solo palabras aisladas y restringe
+fuertemente la variabilidad del lenguaje mediante estadisticas lingtiisticas.
+Los resultados de Tangora no varian sensiblemente cuando se le aplica a
+distintas lenguas europeas (ha sido probado en inglés, francés, aleman,
+italiano y espajfiol).
+
+En el reconocimiento del habla continua, los resultados de
+reconocimiento a nivel de palabra se reducen drasticamente, haciéndose
+imposible obtener mds de un 80% de reconocimiento si no se imponen
+restricciones lingtifsticas. En este campo, los participantes en el proyecto
+SPICOS han desarrollado un sistema de reconocimiento que con un
+vocabulario de 1000 palabras reconoce un 75% de ellas a partir de frases, y
+ello independientemente del locutor [Ney,91]. El mismo sistema, cuando se
+
+17
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+le impone un modelo de lenguaje que limita la perplejidad media a 100
+obtiene incluso un 91% de tasa de reconocimiento de palabras. Por su parte,
+Dragon Systems, con un sistema que se adapta al locutor y con vocabularios
+de 5000 palabras de perplejidad media 140, obtiene un 94.2% de
+reconocimientos de palabras [Baker,91]; mientras que con otro vocabulario
+de 3400 palabras, pero de perplejidad mucho mayor (430), logra un mas de
+un 85%. La misma compafifa afirma que tras una adaptacién de con
+alrededor de 2000 palabras, se reconocen textos formados a partir de un
+vocabulario de 25000 palabras con un porcentaje de aciertos de palabras del
+orden de 87%. Experimentos multilengua con este sistema (se han probado
+las mismas del Tangora mas el holandés) han proporcionado resultados
+medios de 85%, con muy poca variacién de una lengua a otra, en un
+vocabulario de 2000 a 4000 palabras [Bamberg,91]. También de gran interés es
+el sistema SPHINX [Lee,88], que con un vocabulario de 1000 palabras obtiene
+un 70,6% de aciertos en palabras a partir de frases (independientemente del
+locutor), consiguiendo incluso hasta un 96% si, con el mismo vocabulario,
+se restrige la perplejidad (20) mediante un modelo de lenguaje.
+
+1.3 El Reconocimiento Automatico de
+Caracteres
+
+El reconocimiento de imagenes puede decirse que tuvo su comienzo en
+1870, cuando Carey inventé el Scanner Retina, un sistema de transmisién de
+imagenes que usaba un mosaico de fotocélulas. Sin embargo, el verdadero
+impulso se did con el invento del Scanner Secuencial por Nipkow, que mas
+tarde daria lugar a la television, y por la aparicién de los ordenadores al final
+de la década de los 40.
+
+De entre los mtiltiples sistemas que desde entonces han tratado imagenes
+para su reconocimiento (fotos de satélites, imagenes de entorno para los
+sistemas de visién, piezas a clasificar, etc...), pronto destacaron los
+reconocedores 6pticos de caracteres (OCR), por la cantidad de aplicaciones
+practicas inmediatas que permitian vislumbar (ayuda a ciegos,
+comprobacién de firmas, pero sobre todo ofimdtica y correo) y su relativa
+sencillez (imagenes planas, sin sombras, ntimero limitado de formas).
+
+No obstante los primeros logros en reconocimiento de caracteres los
+consiguiera Tyurin en 1900, y hubieran otros intentos memorables como el
+Opt6éfono de Fourier d'Albe (1912) y el sistema tactil de Thomas (1926), las
+aplicaciones comerciales del reconocimiento de caracteres sdlo tuvieron
+lugar a mediados de los 40, con el desarrollo de los primeros reconocedores
+de imagenes y la aparicién de pioneros como David Shepard, el fundador de
+"Intelligent Machine Research Co.” [Mantas,86].
+
+18
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+Las posibles tareas a las que se puede asignar un OCR se pueden clasificar
+[Mantas,86] (figura 1.9), por orden de dificultad, seguin el reconocimiento sea
+de caracteres...
+
+* Impresos (Fixed Font y Multi Font Character Recognition (CR)).
+
+¢ Trazados (en tableta grdfica o similar), en los que ademas de la
+imagen del cardcter se dispone de la informacién temporal de su
+trazado (On-Line CR).
+
+* Manuscritos, caracteres también escritos a mano, pero separados y no
+caligraficos (Handwritten CR).
+
+Por otra parte, si los caracteres no estan aislados, sino que se encadenan
+unos con otros para formar palabras, se habla de reconocimiento de Escritura
+(Script CR). Aqui la dificultad es maxima, al presentarse en toda su
+magnitud el problema de la segmentaci6n.
+
+CARACTERES Impresos de VARIOS ipos
+
+CARIACITERES! ENJAULADOS!
+Caracteres Aislados
+
+Cavcarlere’s Enlayades
+
+Figura 1.9 Distintos grados de dificultad en reconocimiento de caracteres
+
+Aparte de la manera como estan escritos, otras posibles fuentes de
+dificultad en el reconocimiento de caracteres, si nos restringimos a alfabetos
+occidentales (ni que decir tiene que el problema de los simbolos chinos,
+arabes, etc... presenta complicaciones adicionales), son debidas a lo parecido
+de ciertas letras y/o digitos (U-V, C-L, a-d, n-h, I-1, Z-2, S-5, G-6), que incluso
+en algunos casos pueden escribirse igual (O-0, 1-1) 0 casi indistinguiblemente
+de sus correspondientes en maytisculas (O-0, K-k, C-c), lo que a menudo
+obliga a recurrir al contexto 0 incluso a su posicién con respecto a la linea
+base (P-p, Y-y) para diferenciarlas.
+
+1.3.1 Adquisicién, reducci6n de ruido y parametrizaci6n en RAC
+
+Ya que trata directamente con objetos del mundo real, en RAC también
+es necesario obtener una representacién del objeto externo a reconocer, que
+sea adecuada para el médulo de interpretaciédn. En el caso de RAC, el
+médulo de representacién comporta usualmente 3 subniveles: preproceso,
+reduccion de ruido (que en realidad es un preproceso de nivel superior) y
+parametrizacion.
+
+¢ El nivel de preproceso consta normalmente (en reconocimiento
+
+dptico) de un dispositivo mecdnico-electrénico (una c4mara o un
+scanner 6ptico) que barre la imagen horizontal y verticalmente con
+
+19
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+el fin de transformarla en una serie de medidas de intensidad
+luminosa; y de un digitalizador, que transforma esas medidas
+(expresadas normalmente en voltajes eléctricos) en ntimeros
+binarios que transfiere al ordenador.
+
+Alternativamente (reconocimiento de caracteres trazados), lo que se
+obtiene y posteriormente se digitaliza son las coordenadas sucesivas
+de la posicién del lapiz, junto con informaci6én de si éste toca la
+superficie 0 no (tableta graéfica o pantalla sensible).
+
+Durante la etapa de reduccién de ruido, se procesa la matriz
+bidimensional obtenida en la etapa anterior mediante variados
+algoritmos de tratamiento de imagenes, con el fin de suprimir y/o
+realzar determinadas caracteristicas: suavizado, realze de bordes,
+realze de contrastes, supresid6n de grises mediante umbral,
+submuestreo, supresi6n de puntos aislados, normalizacién de
+tamafio, alineamiento con linea base, normalizaci6n de orientacién,
+esqueletizacién, etc... En todos los casos este proceso,
+fundamentalmente matemdtico, proporciona una matriz (imagen)
+similar a la inicial pero a menudo con mucha menos informacion.
+
+Muchos de estos tratamientos son innecesarios cuando se tiene la
+secuencia de posiciones obtenida de un cardcter trazado [Tappert,90],
+aunque de igual manera se aplican suavizados, filtrados
+normalizaciones, etc...
+
+La parametrizacion permite a continuacién obtener una descripcién
+adecuada de la imagen en funcién de lo que se quiere reconocer y
+reducir atin més la cantidad de informacién. En el caso de los
+caracteres puede prescindirse de este paso (se reconoce simplemente
+la imagen mediante procedimientos globales), o bien pueden
+utilizarse transformaciones globales (de Karnhunen-Loeve, de
+Fourier, cdlculo de momentos,...). También pueden extraerse
+propiedades locales (puntos extremos, dngulos, uniones en T y
+cruces,...) y/o geométricas (segmentos, curvaturas,...), 0 pueden
+buscarse representaciones estructurales (conversi6n a un grafo, a una
+secuencia de direcciones, descripcién topolégica, descripcién en base
+a un conjunto de figuras elementales,...).
+
+1.3.2 Estado del Arte
+
+Existen en la actualidad gran cantidad de programas de OCR
+comercializados. Estén principalmente destinados al reconocimiento de
+caracteres impresos (Multi-Font CR), y funcionan en su mayoria en
+ordenadores personales tipo PC-IBM Compatible 0 Macintosh. Su tasa de
+reconocimiento normalmente se halla entre 80% y 95%, obteniendo desde
+luego los mejores resultados cuando funcionan con tipos de letra para los
+
+20
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+¢ Un méddulo de representacién, que obtiene, a partir de cada objeto,
+(usualmente) captado del mundo real mediante una serie de
+sensores, una representacién conveniente para su utilizacién por el
+modulo de interpretacién.
+
+¢ Un médulo de interpretacién, que proporciona, a partir del conjunto
+de formas, también representado convenientemente, y de la
+representacién del objeto proporcionada por el médulo de
+representacién, la forma a la que pertenece el objeto. Lleva a cabo
+pues un proceso de comparaci6n ("pattern matching") entre el objeto
+y el conjunto de formas.
+
+|
+
+Espacio de Representacién |
+de Formas |
+
+Interpretacién
+
+N
+/ 7 P
+Representaci6n
+
+! O= (Preproceso y/o -
+
+\ Parametrizaci6n)
+
+/
+
+Modelizacién
+
+: '
+i O- - > | —O, a 0 Aprendizaje
+
+6 Qa Or
+
+\ Z
+1 \
+\ J J Espacio de Representacién
+\_/ de Formas como CONJUNTO
+
+de objetos (MODELOS)
+
+Espacio de
+Formas
+
+Espacio de Objetos Espacio de Representaci6n
+(p.e.: Mundo Real) de Objetos
+
+Figura 1.2 Composicién de un reconocedor de formas. El trazo grueso muestra las sucesivas etapas de
+un proceso de reconocimiento.
+
+El médulo de representacién puede no ser necesario, si se da la
+circunstancia de que los objetos ya vienen dados de manera conveniente
+para el médulo de interpretacién. En muchos otros casos (como los
+presentados en la parte experimental de este trabajo) el mddulo de
+representacién estd compuesto por varias etapas, algunas de las cuales
+efecttian un preproceso y otras una parametrizacion:
+
+¢ Las etapas de preproceso efectuan en general transformaciones que,
+o bien no cambian el dominio de representacién, o bien llevan a
+subconjuntos de éste (p.e.: filtrado de la sefial, supresién de grises por
+umbral...).
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+que han sido "afinados" 0 entrenados [Robinson,90]. Estos sistemas incluyen
+a menudo "reconocedores de composicién", siendo capaces de separar
+columnas y bloques de texto y de distinguir a éstos de las figuras.
+
+La literatura cientifica hoy en dia se halla mds centrada en el
+reconocimiento de caracteres manuscritos, que en cierta manera puede
+considerarse un "superconjunto" del de los caracteres impresos, y que desde
+luego involucra una mucho mayor dificultad dada la mucha mayor
+variabilidad (;quién no se ha tropezado con una letra "de médico"?). En este
+campo, y restringiéndose al reconocimiento de caracteres aislados, se
+obtienen actualmente unas tasas de reconocimiento de 98.3 a 99% en digitos
+aislados [Kurosawa,86] [Shridar,86] [Baptista,88].
+
+En condiciones poco favorables (enorme ntmero de escritores,
+condiciones de escritura incontroladas) como es el caso cuando se quieren
+reconocer los cédigos postales (ZIP codes), los resultados obviamente
+empeoran, lograndose un promedio de 92% de reconocimiento, variando
+entre 85% y 97% [Lam,88] [Nadal,90] [Kimura,91]. Lo mismo ocurre si se
+intenta reconocer un conjunto de formas mayor que el de los digitos, como
+las 26 letras inglesas: 88% [Brown,88] 0 el kanji: 86.7% (con simbolos dificiles)
+[Sekita,88].
+
+Cuando se intenta reconocer escritura enlazada, se puede, a pesar de todo,
+conseguir resultados muy buenos aprovechando la informacién contextual
+que supone la palabra: 92,5% de aciertos en palabras [Kundu,89], o limitando
+el reconocimiento a caracteres trazados: 89.9% en caracteres (letras inglesas
+maytisculas y minusculas) [Fuyisaki,90].
+
+21
+
+ NEW PAGE 
+22
+
+Capitulo 1: El Reconocimiento de Formas
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+¢ Las etapas de parametrizacién cambian el dominio de representacién
+y a menudo reducen drdsticamente la cantidad de informacién,
+suprimiendo aquella que resulta redundante y/o inttil. En este
+Ultimo caso, se puede considerar la operacién como equivalente a
+extraer las caracteristicas mds significativas del objeto, para
+representarlo por un conjunto de pardmetros o descriptores (p.e.:
+transformada discreta de Fourier, cadena de simbolos.,...).
+
+El conjunto de formas utilizado por el médulo de interpretacién
+representa el conocimiento que tiene el sistema de su entorno. Muy a
+menudo la representacién del mismo es simplemente un conjunto de
+representaciones de formas (p.e.: un conjunto de gramaticas), pero puede
+estar representado por una estructura tinica y compleja (p.e.: una tinica red o
+gramatica). El proceso de obtencidn de este conjunto de formas se conoce
+como modelizacion 0 aprendizaje del entorno (de sus objetos) a reconocer y
+es efectuado por el médulo de aprendizaje.
+
+1.1.2 Representacién de objetos y formas
+
+La representacién elegida para los objetos se deriva usualmente del
+método de interpretacidén escogido. Estas representaciones pueden
+clasificarse en dos grandes tipos:
+
+¢ No estructuradas: El objeto se representa por un conjunto de
+(sub)objetos sin relacién ellos (o con una relacién arbitraria).
+Ejemplo tipico es un vector 0 matriz en los que no importa cémo se
+distribuyen los componentes (p.e.: un punto en un espacio n-
+dimensional).
+
+Estructuradas: El objeto se representa mediante un conjunto de
+(sub)objetos mds un conjunto de relaciones entre ellos (una
+estructura). Normalmente las relaciones son de contigiiedad y/o
+sucesion: cadenas, Arboles, grafos ...
+
+A su vez, los subobjetos de que estén formados los objetos pueden estar
+representados de la misma manera que los objetos (es decir, estar formados
+de otros subobjetos de nivel inferiror), 0 ser simplemente un conjunto de
+pardmetros continuos (ntimeros reales) 0 cuantizados (numeros enteros).
+Cuando son pardmetros cuantizados con pocos niveles de cuantizacion (del
+orden de 100) se puede asignar a cada valor un nombre o simbolo.
+
+Las posibles representaciones de las formas son mucho més complejas:
+no deben representar un unico objeto sino un conjunto de ellos. Las
+representaciones de un conjunto de objetos se conocen también como
+modelos. Dos de los casos mds simples (y mds corrientes) se engloban en lo
+que se conoce como el reconocimiento geométrico 0 estadistico de formas y
+el reconocimiento sintdctico de formas (ver apartado 1.1.4).
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+Por otra parte, con el fin de comunicar el resultado del reconocimiento al
+experimentador o a otro posible médulo, es necesaria una representacién
+alternativa de la forma, pues la representacién como conjunto de objetos es
+solo util para el médulo de interpretacién. Esta segunda representacion de
+cada forma sera similar a las utilizadas para los objetos, puesto que la forma
+puede considerarse un objeto (punto) del universo semdéntico. Si el ntimero
+de formas (la talla del universo semdntico) es pequefio esta representacién
+puede consistir simplemente en un tinico valor cuantizado o etiqueta. El
+reconocedor de formas se podraé entonces considerar como un clasificador.
+En casos mds complejos, podra recurrirse a una representacién estructurada
+de las formas (p.e.: cadena). Se llamard traductor a un reconocedor en los
+que tanto los objetos como las formas en salida estén representados de
+manera estructurada.
+
+1.1.3 Composicién de reconocedores
+
+La posibilidad que tiene un reconocedor de comunicar la forma
+reconocida a otro médulo lleva inmediatamente a pensar en la composicién
+de reconocedores, es decir, a utilizar otro reconocedor para analizar
+(identificar 0 reconocer) con mds detalle lo que han reconocido otros
+reconocedores. Este procedimiento es de hecho muy utilizado siempre que
+los subobjetos de un objeto son estructurados: uno o varios reconocedores
+de nivel inferior se dedican a extraer los subobjetos. Otro caso mds complejo
+se da en los reconocedores multinivel, formados por varios reconocedores
+idénticos, cuyos objetos estén representados en el mismo dominio que sus
+formas en salida, y que estdn interconectados de manera mds 0 menos
+regular, a menudo organizados en capas (etapas 0 niveles). Tipico ejemplo
+de ello son los perceptrones multicapa [Lippmann,87].
+
+En un reconocedor compuesto, las formas intermedias, obtenidas por los
+reconocedores de las capas inferiores, constituyen los objetos de las capas
+superiores. Estos objetos son objetos abstractos, puesto que no tienen
+relacié6n directa con lo captado por los sensores, siendo su definicién
+arbitraria y particular a un reconocedor determinado. En determinadas
+situaciones, estos objetos abstractos corresponderan a abstracciones mds o
+menos intuitivas (fonemas, silabas, poligonos, etc...), pero éste no es el caso
+mas usual, principalmente debido a lo dificil que resulta definir estas
+abstracciones.
+
+1.1.4 Reconocimiento Geométrico y Reconocimiento Estructural
+
+Dos son actualmente las maneras mas usuales de representar las formas
+en su aspecto de conjunto de objetos: aquellas que recurren a una visién
+geométrica de lo que es un conjunto, considerdndolo como una (sub)regién
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+de un determinado espacio y aquellas que prefieren verlo como formado por
+elementos que cumplen ciertas reglas estructurales.
+
+1.1.4.1 Los modelos geometricos
+
+Estos modelos asumen que los objetos son "de una pieza" (estan
+representados de forma NO estructurada). Cada objeto se representa por una
+matriz (generalmente de una o dos dimensiones) de ntimeros o simbolos
+(los pardmetros) y la forma se representa mediante uno o varios objetos
+patron y una medida de disimilitud (que puede ser una distancia, métrica 0
+no) entre ellos y los objetos a reconocer [Duda,73]. Un ejemplo en
+reconocimiento del habla se puede encontrar en [Rulot,85].
+
+Cuando el espacio n-dimensional en el que se hallan representados los
+objetos es continuo, y se escogen adecuadamente los pardmetros, a menudo
+se puede conseguir que los puntos (objetos) pertenecientes a la misma forma
+se agrupen en regiones. Estas regiones definen entonces las formas, y sus
+fronteras con otras (fronteras de decisién) pueden entonces describirse
+mediante funciones discriminantes [Duda,73] (figura 1.3).
+
+Zax) (
+I
+
+Forma A ! Forma B ' Forma C ' Forma B
+
+ty [2] (3]
+
+Figura 1.3 Formas (unidimensionales), sus funciones discriminantes (g(X)) y fronteras de decisién
+({1][2][3] Jen un espacio unidimensional.
+
+Ejemplo tipico de funcién discriminante seria la inversa de la distancia a
+un centro (el patrén o prototipo). También lo seria la probabilida asociada a
+una distribucién normal alrededor del mismo centro. En este ultimo caso y
+en otros similares, se intenta aproximar una funcidn discriminante
+mediante una funcién bien conocida, de la cual sdélo resta determinar sus
+pardmetros definitorios (aqui serfan la media y desviacion tipica). Se habla
+entonces de reconocedor paramétrico. Muy a menudo estos modelos
+paramétricos son estadisticos, lo que justifica el nombre de reconocimiento
+estadistico de formas que también se le da al reconocimiento geométrico.
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+Otro ejemplo tipico, en el que las funciones discriminantes son planos (0
+combinaciones de ellos), se encuentra en los clasificadores basados en redes
+neuronales tipo perceptrén [Duda,73] [Lippmann,87].
+
+1.1.4.2 Los modelos estructurales
+
+En estos modelos, se asume una representacién estructurada de los
+objetos, estando usualmente los subobjetos representados de manera
+similar a la utilizada en los métodos globales. Las formas se representan
+mediante una serie de "reglas de composicién" que deben cumplir los
+subobjetos para pertenecer al conjunto, existiendo un amplio abanico de
+posibilidades (drboles de decisién , expresiones légicas, redes, modelos de
+Markov, reglas, gramdaticas... [Hunt,75] [Gonzalez,78] [Fu,82] [Rabiner,83]
+[Cohen,82] [Valiant,84] [Quinlan,86] [Miclet,86]).
+
+El reconocimiento debe basarse entonces, no sélo en identificar los
+subobjetos del objeto examinado aplicando para ello los métodos de
+reconocimiento geométrico de formas, sino también en analizar de alguna
+manera si la relacién entre ellos es la buscada. Todo reconocedor estructural
+es por lo tanto, y por definicidn, un reconocedor compuesto, de por lo
+menos dos etapas: interpretacién de subobjetos e interpretacién de
+estructura.
+
+Aqui el ejemplo serian los métodos gramaticales 0 sintdcticos, en los que
+cada objeto es representado por un conjunto de simbolos cuya concatenacién
+proporciona la estructura. Si esta estructura cumple una serie de reglas,
+especificadas mediante una gramdatica, es que pertenence a la forma
+representada por el lenguaje de esa gramatica [Gonzalez,78] [Fu,82].
+
+1.1.4.3 Métodos geometricos versus métodos estructurales
+
+Los métodos geométricos de reconocimiento de formas son muy ttiles
+para el reconocimiento de formas "simples", es decir, cuando se tiene un
+numero pequefio de formas separables mediante funciones discriminantes
+no demasiado complejas. Estos métodos se utilizan por lo tanto muy
+frecuentemente para realizar clasificadores, han sido profusamente
+estudiados, y existe una gran variedad de algoritmos bien documentados y
+analizados que los utilizan y que funcionan perfectamente si los objetos
+tienen una distribucién adecuada en el espacio de objetos [Duda,73]; lo cual
+desgraciadamente no es siempre cierto.
+
+Por su parte, la aproximacién estructural permite elaborar modelos mas
+complejos, pues se dispone de una gran flexibilidad tanto para escoger el tipo
+de estructura y su configuracién, como para elegir los subobjetos. Esta
+aproximacién también permite introducir c6modamente conocimiento "a
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+priori", simplemente imponiendo restricciones a la estructura o
+difiniéndola "ad-hoc". Mas importante atin, al contrario que en la
+aproximacién geométrica, en la aproximaci6n estructural es posible manejar
+espacios semdnticos grandes e incluso infinitos (p.e.: para realizar
+traductores), asi como obtener para cada objeto reconocido, no sdlo la
+informacién de pertenencia a la forma, sino también una descripcidn en
+términos de subobjetos (la estructura) (p.e.: la secuencia de fonemas que
+forman la palabra reconocida).
+
+En general pues, se emplea la aproximaci6n estructural en los casos en
+que la aproximacién geométrica es insuficiente, y en los que la informacién
+de estructura es de importancia relevante o facil de utilizar (figura 1.4).
+
+El que la aproximaci6n estructural sea comparativamente mds reciente
+que la geométrica, y el que su complejidad sea mayor, hacen que todavia
+quede mucho por hacer. En particular, una de las mayores dificultades, atin
+por resolver eficazmente, reside en la extraccién de los subobjetos y su
+estructura a partir de un objeto complejo, operacién que cae dentro del
+abierto problema de la segmentacién (ver apartado siguiente). A pesar de
+ello, la ambicién creciente de los disefiadores hace que la aproximacién
+estructural se emplee cada vez mas.
+
+1.1.5 Segmentacion
+
+Uno de los problemas que mas trabajos ha generado en el campo del
+reconocimiento de formas es el de la segmentacién: la separacién de los
+subobjetos de un objeto, o mds especificamente, del fondo que lo rodea (en
+cuyo caso el problema es el de deteccién de fronteras).
+
+La solucién puede ser sencilla, cuando el objeto se halla sobre un fondo
+tiene una caracteristica obvia que lo diferencia (mucha menor amplitud,
+color distinto, ...), o puede ser extremadamente dificil, cuando el objeto se
+mezcla con otros objetos, o forma parte integrante de un objeto mas
+complejo (la pata de una silla, un fonema en una palabra) (figura 1.5). Ello
+explica el que generalmente, y en aras de la simplicidad, los sistemas no muy
+ambiciosos de reconocimiento de formas procuren evitar la segmentacién.
+La mayoria de los experimentos que se encuentran en la literatura tratan de
+reconocer objetos aislados (en un fondo muy caracterizable), 0 como mucho
+objetos sumergidos en un ruido que aumenta su distorsién, pero no los
+mezcla con otros objetos. Incluso en el caso de reconocedores estructurales es
+posible obviar la segmentacién utilizando como subobjetos particiones
+"naturales" de los pardmetros que definen el objeto total (p.e., en
+reconocimiento de la palabra: un grupo de pardmetros corresponde a un
+intervalo de tiempo, el siguiente grupo al siguiente intervalo, la estructura
+global es la secuencia de dichos grupos).
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+Reconocimiento Global
+
+Formas
+Mucha Luz
+Objetos
+(cruz y Estrella)
+CRUZ
++ NO Frontera de decision
+
+Sensor
+
+* (Fotocélula)
+
+ESTRELLA
+
+aan discriminante
+
+(pr obabilidad dees  trellaen
+
+Poca Luz funcién delaluzr  eflejada)
+
+Clasificador por funcién discriminante
+
+Reconocimiento Estructural
+
+Imagen Subobjetos y
+Digitalizada Estructura YY For ma
+Reconocida
+\® _— (<9) | @®/ Comparacion E
+. de es tructuras
+se Ss
+~~ aac spore T
+@_) Analisis de Anilisis R
+_= Imagenes Sintactico E
+ao ie LL
+iS ;
++ 5 Extraccin de A
+Sensor mit
+, 8
+— (Camara) Estrella: \® /@1@ -
+Cruz: 1@-
+/ / etc...
+Conocimiento
+Se r econocen muchas “ neat
+etc... mds for mas Es tructura
+
+Figura 1.4 Comparaci6n entre un método de reconocimiento global y otro sintactico para la misma
+tarea. Obsérvese la diferencia de complejidad y potencia.
+
+ NEW PAGE 
+Capitulo 1: El Reconocimiento de Formas
+
+ii Mh AAA AAA Hn HN MA AW
+
+"
+
+|__| Objeto NO aislado (fonema)
+
+Objeto aistado (palabra)
+~- fondo (muy caracterizable)
+
+Objeto aistado (silla)
+
+fondo (muy caracterizable)
+
+Objeto aislado (letra H)
+
+Figura 1.5 Formas aisladas y no aisladas. Segmentaci6n.
+
+S6lo una vez superado (en primera aproximacién) el reconocimiento de
+objetos aislados, es cuando se aborda la segmentacién. Esta representa aun
+un escollo importante para el logro de sistemas que operen en el mundo
+real (p.e.: el reconocimiento de la palabra continua, de la escritura enlazada),
+y aunque se puede demostrar que una solucién automatica (6ptima o
+sub6dptima) es posible, los algoritmos conocidos hoy en dia los siguen siendo
+muy costosos [Vidal,90].
+
+En este trabajo sdlo se tratard con objetos aislados, aunque no se descarta
+una extensién a objetos compuestos.
+
+10
+
+ NEW PAGE

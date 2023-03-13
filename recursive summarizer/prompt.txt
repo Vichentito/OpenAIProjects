@@ -1,0 +1,5 @@
+Write a concise but detailed summary, in spanish, of the following:
+
+<<SUMMARY>>
+
+DETAILED SUMARRY IN SPANISH:

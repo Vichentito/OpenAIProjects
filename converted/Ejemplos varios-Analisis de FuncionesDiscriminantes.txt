@@ -1,0 +1,1494 @@
+—————_———————
+
+; TEMA 3:
+TECNICAS DE ANALISIS
+DISCRIMINANTE
+
+Clasificaci6n supervisada
+Reconocimiento de patrones
+
+Ana Justel
+
+1
+
+
+ NEW PAGE 
+——————————
+
+Técnicas de analisis discriminante
+
+@ Motivacion
+
+Funcion lineal discriminante de Fisher
+
+Formas de evaluar la clasificacion
+
+¢ Diagnostico de hipotesis con el test M de Box
+e Clasificacion incorporando informacion previa
+e Clasificaci6n con mas de dos grupos
+
+@ Otros métodos de clasificacidn supervisada
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Datos y notacion
+
+Nn, Numero de datos en el grupo n,
+
+Vector de medias calculado s
+solo con los datos del grupo
+
+‘\, Matriz de varianzas-
+1
+
+covarianzas calculada solo S,
+con los datos del grupo
+
+Xo
+
+es un nuevo dato que no sabemos a que
+grupo pertenece
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| REGLA DE FISHER para DOS GRUPOS con matrices de covarianzas IGUALES (2,=2,)
+
+Buscamos una buena funcion/combinacion lineal de las variables
+originales/direccién sobre la que proyectar los datos:
+f(x) =a 1X1 +...+a,Xp
+
+Queremos que al proyectar los datos
+Maxima la variabilidad ENTRE GRUPOS y —> (ax, —a'x,)”
+Minima la variabilidad DENTRO de los GRUPOS —> a’S a
+
+— — \2
+(aX, —a™,)
+
+Todo junto consiste en resolver el problema: max 5
+asa
+
+Este problema tiene infinitas soluciones, todas proporcionales a
+
+elegir el vector: 1 - 7
+a Olr> _ Direccion
+w=S\, (X,-X,) < discriminante
+
+SPSS proporciona la funci6n canonica discriminante
+
+c.d.f(x)=constante+ @: Xx. La relacion entre los dos es:
+w = (o'(x, —X,))@
+
+12
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| REGLA DE FISHER para DOS GRUPOS con matrices de covarianzas IGUALES (2,=2,)
+
+La PUNTUACION DISCRIMINANTE (0 SCORE) de Xo es la
+7 . 7 . - At
+proyeccion de x, en la direccion discriminante WX).
+
+La Regla de Fisher ; fs
+7 Go : . } G .
+graficamente G, / 25
+
+Puntuacion
+discriminante de x,
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+REGLA DE FISHER para DOS GRUPOS con matrices de covarianzas IGUALES (2,=2,)
+
+REGLA DE CLASIFICACION DE FISHER: Clasificar al nuevo
+individuo Xen el GRUPO 1 si:
+
+% Al Agusta
+W'x, < Ww 2]
+
+A olrs —
+donde w=S) (x, —X,)
+y S,, es el estimador de la matriz de covarianzas
+Aaa eal
+Sia SET eee
+
+SPSS llama matriz intra-grupos combinada aS
+
+2
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+Ejemplo: Esclerosis multiple
+
+Vectores de
+medias
+
+SANOS
+37, 99
+147, 29
+1. 56
+195. 6
+1.6
+
+Enfermo
+
+ENFERMOS
+
+OT
+ee
+
+2!
+
+UNIVERSIDAD AUTONOMA
+
+edad
+risuma
+ridif
+r2suma
+r2dif
+edad
+risuma
+ridif
+r2suma
+r2dif
+edad
+risuma
+ridif
+r2suma
+r2dif
+
+Estadisticos de grupo
+
+37,9855
+147,2899
+1,5623
+195,6029
+1,6203
+42,0690
+178,2690
+12,2759
+236,9310
+13,0828
+39,1939
+156,4571
+4,7327
+207,8327
+5,0122
+
+16,66230
+10,59692
+
+1,34351
+13,60988
+
+1,53475
+11,00627
+29,06339
+17,81191
+34,35160
+18,73625
+15,26782
+22,90336
+10,81701
+28,80996
+11,42985
+
+N valido (segun lista)
+
+No
+ponderados
+
+Ponderados
+
+
+ NEW PAGE 
+Ejemplo: Esclerosis multiple
+
+Matrices de covarianza
+
+UNIVERSIDAD AUTONOMA
+
+edad
+rlsuma
+dif
+r2suma
+r2dif
+Enfermo edad
+risuma
+ridif
+r2suma
+r2dif
+edad
+risuma
+ridif
+r2suma
+r2dif
+
+Matrices de covarianzas?
+
+277,632
+95,398
+5,361
+103,724
+3,241
+121,138
+52,795
+-20,220
+68,133
+-29,820
+233,106
+108,746
+7,131
+127,905
+3,517
+
+95,398
+112,295
+1,766
+106,785
+2,042
+52,795
+844,681
+244,463
+912,415
+106,764
+108,746
+524,564
+141,669
+607,740
+106,998
+
+-20,220
+244,463
+317,264
+232,365
+297,319
+
+7,131
+
+141,669
+117,008
+161,844
+112,026
+
+103,724
+106,785
+2,235
+185,229
+2,351
+68,133
+912,415
+232,365
+1180,032
+81,097
+127,905
+607,740
+161,844
+830,014
+124,776
+
+a. La matriz de covarianzas total presenta 97 grados de libertad.
+
+-29,820
+106,764
+297,319
+81,097
+351,047
+3,517
+106,998
+112,026
+124,776
+130,641
+
+
+ NEW PAGE 
+| Ejemplo: Esclerosis multiple
+
+Matriz intra-grupos combinada
+
+69-1
+“98 — 2°"
+
+Matrices intra-grupo combinadas?
+
+Pp C—™—~—CSsedacd | rtsuma | rtf | r2suma | r2uit_|
+Covarianza edad 82,972 93,343
+
+risuma 325,907 341,760
+
+ridif 72,553 69,356
+r2suma 341,760 475,380
+r2dif 32,586 25,319
+
+a. La matrizde covarianzas tiene 96 grados de libertad
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+Ejemplo: Esclerosis multiple
+
+0.0049 —0.0015 0.0031 -—0.0002 —0.0017 4.08
+—0.0015 0.0146 —0.0107 —0.0090 0.0065 30.98
+
+S,'=| 0.0031 —0.0107 0.0711 -—0.0003 —0.0559 xX, — xX, =| 10.72
+—0.0002 —0.0090 -—0.0003 0.0086 0.0010 41.33
+—0.0017 0.0065 —0.0559 00010 0.0540 11.46
+
+40.03
+162.78
+6.92
+216.26
+7.35
+
+Wf 28) =23,23
+
+Ky +X _
+
+Wwe Sy (%, —X,) =
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Ejemplo: Esclerosis multiple
+
+Regla de clasificacion: clasificamos al individuo Xg como sano si
+
+i'n, < af 2% | 93,93
+
+X\ X2 X3 X4
+18 152.0 1.6 198.4
+19 138.0 0.4 180.8
+20 144.0 0.0 186.4
+20 143.6 3.2 194.8
+20 148.8 0.0 217.6
+23 148.0 0.8 205.4
+25 195.2 3.2 262.8
+25 158.0 8.0 209.8
+28 1344 0.0 198.4
+29 190.2 14.2 243.8
+
+UNIVERSIDAD AUTONOMA
+
+X5
+0.0
+
+Paciente/ Control
+
+0
+
+FPrRrPrFrRIOOOCO
+
+w'x
+21.13
+19.80
+20.34
+20.15
+22.92
+23.50
+21.78
+27.62
+23.88
+21.44
+
+Clasificado
+
+oO
+
+OrFrOFOO OO
+
+Fallos de
+diagnostico
+
+19
+
+ NEW PAGE 
+| REGLA DE FISHER para DOS GRUPOS con matrices de covarianzas IGUALES (2,=2,)
+
+SPSS proporciona:
+w Funcion canonica discriminante: f(x)=constante+ w: X
+
+w Puntuacion canonica discriminante de X,: f(X,)=constantet+ W: Xp
+w Centroides: puntuaciones canonicas discriminantes de los vectores
+de medias.
+
+G, centroide -
+Puntuacién canénica
+
+discriminante de x, G, centroide
+20
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+EI problema de clasificaci6n/asignaci6n/agrupacion
+
+Se trata de clasificar en dos o mas grupos a individuos en los que
+
+hemos observado varias variables.
+
+CLASIFICACION SUPERVISADA: Clasificamos a un individuo en un
+grupo con la informacién de un conjunto de variables que se observan
+previamente en un conjunto de individuos de los que se sabe que
+estan bien clasificados en uno de los grupos. Es el caso en el que
+
+disponemos de una muestra de entrenamiento.
+
+Utilizaremos
+e La regla de discriminacidén lineal de Fisher
+
+Varios objetivos
+ Clasificaci6n de nuevos individuos
+
+CLASIFICACION
+
+NO SUPERVISADA:
+identificar grupos
+de individuos con
+caracteristicas
+comunes a partir de
+la observacion de
+varias variables en
+cada uno de ellos
+
+¢ Entender que diferencia a los individuos de distintos grupos
+¢ Entender qué tienen en comun los individuos de un grupo
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| REGLA DE FISHER para DOS GRUPOS con matrices de covarianzas IGUALES (2,=2,)
+
+Usando la salida de SPSS, el individuo xX, se puede clasificar
+calculando la puntuaci6n canonica discriminante y comparando el
+valor con los centroides. Se clasificara en el grupo del centroide
+mas proximo.
+
+G, centroide -
+Puntuacién canénica
+
+discriminante de x, G, centroide
+
+21
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Ejemplo: Esclerosis multiple
+
+Salida del SPSS: Funcion canonica discriminante
+
+Coeficientes de las funciones candonicas discriminantes
+
+IT
+EDAD 7, A pte
+R1SUMA | / w= (@(x,—X,))@
+R1DIF , = =
+R2SUMA ~25
+R2DIF
+
+(Constante)
+Coeficientes no tipificados
+
+Este término es una constante de centralizaci6n que
+incluye el SPSS y que hay que tener en cuenta para
+clasificar nuevos datos
+
+22
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Ejemplo: Esclerosis multiple
+
+Salida del SPSS: Puntuaciones canonicas discriminantes
+
+pF Runeton
+| i
+EDAD
+X Xo X3 X4 Xs Paciente/ Control % R1SUMA
+
+18 152.0 1.6 198.4 0.0 0 R1DIF
+
+R2SUMA
+
+R2DIF
+
+(Constante)
+
+-9.834 - 0.01 x 18 + 0.015 x 152 — 0.093 x
+
+1.6 + 0.037 x 198.4 + 0.112 x 0 = -0.542
+
+Puntuacion Discriminante
+
+-0.542)-(-0.668)|= 0.126
+ee 088) ee
+
+\(-0.542)-(1.589)|= 2.131
+
+| ifi | Funcivnes usunmimianies vanunivas nu upificadas
+Clasificamos en e primer evaluadas en las medias de los grupos
+grupo: PACIENTE=0 (SANO)
+
+UNIVERSIDAD AUTONOMA
+
+DE MADRID
+
+ NEW PAGE 
+Ejemplo: Esclerosis multiple
+
+Salida del SPSS: Puntuaciones canonicas discriminantes
+
+nalisis discriminante x|
+
+Analisis discriminante: Guardar
+
+-—— Variable de agrupacion:
+
+Estadisticos...
+
+i<!
+
+dill Grupo pronostica...._ | [paciente(a 1)
+Grupo de pertenencia pronosticada
+
+# Puntuaciones dis
+Definir rango — : —
+Clasificar... V)|Punfiaciones discriminantes
+
+Pecan Prodppidades de pertenencia al
+
+# edad Ee ater rou jades de pertenencia al grupo
+% | | risuma — Exportar }yformacién del modelo a un archivo XML.
+
+? ridif E
+
+© Introducir independientes juntas
+
+© Usar método de inclusién por pasos
+-— Variable de seleccion:
+
+» Valor
+
+| Pegar | Restablecer I Cancelar | Ayuda
+
+Aceptar
+
+Archivo Edicion Yer Datos Iransformar Analizar Graficos Utilidades Complementos Ventan
+
+204 § 6° BE & Ah SRE FO® 4
+1: dis_1 00
+
+LA)
+
+UNIVERSIDAD AUTONOMA
+
+DE MADRID
+
+paciente dis1_1 val
+1 18,0 152,00 1,60 198,40 0,00 0) 0 --0,47003
+2 19,0 138,00 040 180,80 1,60 0 0 -1,05733
+3 20,0 144,00 0,00 186,40 0,80 0 0 -0,82037
+4 20,0 143,60 3,20 194,80 0,00 0 0  -0,90207
+5 20,0 148,80 0,00 217,60 0,00 0 0 — 0,32343
+6 21,0 141,60 0,80 181,60 0,80 0 0 ~1,12045
+7 21,0 136,00 1,60 180,00 0,80 0 0 -1,34001
+
+ NEW PAGE 
+| REGLA DE FISHER para DOS GRUPOS con matrices de covarianzas IGUALES (2,=2,)
+
+SPSS proporciona:
+
+w Coeficientes de la funciOn canonica discriminante que
+nos informan de qué variables son mas importantes para
+discriminar. Hay que tener cuidado cuando se trabaja con
+variables que tienen magnitudes o unidades de medida
+distintas, los coeficientes no son comparables y lo unico
+“aprovechable” podria llegar a ser el signo.
+
+w Coeficientes estandarizados de la funcion canonica
+discriminante que si permiten comparar variables medidas
+en distintas escalas. Variables con coeficientes grandes en
+valor absoluto indican que tienen un alto poder discriminante.
+
+UNIVERSIDAD AUTONOMA
+
+25
+
+ NEW PAGE 
+| Ejemplo: Esclerosis multiple
+
+Salida del SPSS: Coeficientes de las funci6n canonica discriminante
+
+Coeficientes estandarizados de las
+funciones discriminantes canonicas
+
+| —
+
+edad
+risuma
+r1dif
+
+Pruebas de igualdad de las medias de los grupos
+
+Wilks FP gl1 gl2 Sig.
+edad 985 96 229
+risuma 615
+
+r2suma
+r2dif
+
+ridif 794
+r2suma 567
+r2dif ,788
+
+26
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+——————————
+
+Técnicas de analisis discriminante
+
+@ Motivacion
+@ Funcion lineal discriminante de Fisher
+
+@ Formas de evaluar la clasificaci6n
+
+27
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| éCOMO EVALUAMOS SI LA REGLA DE CLASIFICACION
+
+ES BUENA?
+
+La clasificaci6n sera buena si:
+1. Aplicamos una buena regla
+2. Las variables son buenas, separan claramente a los
+individuos de los distintos grupos
+
+24 individuos de la
+muestra de
+entrenamiento quedan
+mal clasificados
+
+28
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+——————————
+
+éCUANDO UNA REGLA ES OPTIMA?
+
+Diremos que una REGLA DE CLASIFICACION es OPTIMA
+cuando comete el menor numero de errores posibles en la
+clasificacion
+
+El método de clasificacién de FISHER es OPTIMO cuando:
+1. La distribucién de los datos es NORMAL
+
+2. Las matrices de covarianzas son iguales en los dos grupos
+El método de FISHER es ROBUSTO: Aunque los datos no
+
+cumplan las condiciones, el resultado de la clasificacién es proéximo
+al mejor resultado posible.
+
+29
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| éCOMO EVALUAMOS SI LA REGLA DE CLASIFICACION
+
+ES BUENA?
+
+Tasa de error aparente: Se aplica la regla para clasificar todos
+los datos de la muestra de entrenamiento y se cuentan los casos
+en los que la clasificacién es errénea.
+
+Datos mal clasificados
+Tasa de error aparente=—=_—@£ i—@ —_—_
+Tamano de la muestra
+
+Estima un error por debajo del real porque se usa el mismo
+conjunto de datos para construir la regla y para evaluarla. Es un
+criterio OPTIMISTA.
+
+30
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+Ejemplo: Esclerosis multiple (sclerosis.txt)
+En un estudio sobre esclerosis multiple se registran las respuestas
+de los ojos izquierdo (t) y derecho (r) a dos estimulos visuales
+diferentes. Se consideran dos grupos, 29 individuos que padecen
+la enfermedad y 69 sanos que no la padecen y son el grupo de
+control. Se registran 5 variables
+
+Edad RISUMA R1DIF R2SUMA R2DIF  Paciente/control
+
+la regla d
+Conocer g disefiar un test
+
+uede ser util para alsette
+Sencillo para el diagnostico de la
+esclerosis multiple
+
+1) Ay
+152.0 1.6 1 El test se Podra usar gj |
+
+(S)
+138.0 0.4 Suna buena regia de
+Clasificacién
+
+‘ .
+La regla sera buena SI
+la esclerosis multiple
+
+afecta a la vision
+
+R1SUMA=R1/+R1y, RIDIF=|R1/-Rir|, R2SUMA=R2{/+R2;7, R2DIF=|R2{-R2r|
+
+4
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Ejemplo: Esclerosis multiple
+
+Con la muestra de entrenamiento hemos construido la regla de
+clasificaci6n y ahora comprobamos cuantos datos de la muestra
+de entrenamiento se clasifican mal.
+
+Resultados de la clasificacion*
+
+Grupo de pertenencia
+a
+
+r | Sano | Enfermo _|
+Original Recuento Sano 66
+
+Enfermo 7 22 Se
+
+95,7 4,3 100,0
+Enfermo 24,1 75,9 100,0
+
+a. Clasificados correctamente el 89,8% de los casos agrupados
+originales.
+
+m El 95,7% de los SANOS (PACIENTE=0) se clasifica correctamente, 66 de 69
+
+m El 75,9% de los ENFERMOS (PACIENTE= 1) se clasifican correctamente, 22 de 29
+® Tasa de error aparente = (3+7) / 98 = 10,2%
+
+31
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| éCOMO EVALUAMOS SI LA REGLA DE CLASIFICACION
+
+ES BUENA?
+
+Tasa de frecuencia relativa de error: Se divide la muestra de
+entrenamiento en dos partes, con una se construye la regla y con la
+otra se calcula la tasa como la proporcion de estos datos que estan
+mal clasificados (no la calcula el SPSS).
+
+Se pierde mucha informacion en el calculo de la regla. Es INEFICIENTE
+
+Tasa de error por validaci6n cruzada (jackknife): Se lleva al
+extremo la idea de la tasa de frecuencia relativa de error.
+Dato a dato:
+
+1. Se excluye el dato
+
+2. Se construye la regla con los restantes
+
+3. Se clasifica el que hemos dejado fuera
+La probabilidad de error se estima como la proporcién de veces que
+al excluir un dato, éste se clasifica mal.
+
+Es menos optimista que la tasa de error aparente y mas eficiente que
+la tasa de frecuencia relativa de error.
+
+32
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+Ejemplo: Esclerosis multiple
+
+Resultados de la clasificacién”*
+
+Grupo de pertenencia
+a
+| sano | Enfermo _|
+
+Original Recuento 66
+Enfermo
+
+95,7 43 Lm 0
+Validacion cruzada* Recuento
+Sano 92,8 7,2 100,0
+
+a. La validacion cruzada sdlo se aplica a los casos del analisis. En la validacién cruzada, cada caso se
+clasifica mediante las funciones derivadas a partir del resto de los casos.
+
+b. Clasificados correctamente el 89,8% de los casos agrupados originales.
+
+c. Clasificados correctamente el 86,7% de los casos agrupados validados mediante validacién cruzada.
+
+® Tasa de error aparente = (3+7) / 98 = 10,2%
+
+= Tasa de error por validaciOn cruzada = (5+8) / 98 = 13,26%
+
+33
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+——————————
+
+Técnicas de analisis discriminante
+
+@ Motivacion
+@ Funcion lineal discriminante de Fisher
+@ Formas de evaluar la clasificaci6n
+
+¢ Diagnostico de hipotesis con el test M de Box
+
+34
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Ejemplo: Cancer mama
+
+Resultados del analisis discriminante lineal de Fisher para los datos
+de puncion en un estudio sobre el cancer de mama.
+
+Coeficientes estandarizados de las
+funciones discriminantes canonicas
+
+Puntuaciones Discriminantes
+
+Vv10 = Sana V10 = Enferma
+
+100 304
+
+2544
+80
+
+604
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+Ejemplo: Cancer mama
+
+Matrices de covanianza®
+vi0 pt ve ev ee
+ale V 7 Og 306 478 O04 32 ey x [? eae 5
+
+V2
+V3
+V4.
+¥b
+V6
+VF
+¥8
+ve
+Enferma ¥1
+v2
+V3
+v4
+vo
+V6
+VE
+v8
+ve
+Talal v1
+V2
+V3
+V4
+V6
+¥6
+VF
+v8
+ve
+
+UNIVERSIDAD AUTONOMA
+
+O34
+
+36
+
+ NEW PAGE 
+| TEST de BOX
+
+4Es aceptable la hipotesis 2, = 25?
+
+Se utiliza el test M de Box para contrastar:
+Ho: 2,4 = 25 frentea H,:2,#4 25
+
+Rechazamos H, cuando nos sale un p-valor (Sig. en SPSS) pequeno
+
+Ejemplo: Cancer mama
+Resultados de la prueba
+
+3556 ,503
+77,793
+45
+
+817173,6
+,000
+
+Contrasta la hipdtesis nula de que las matrices
+de covarianza poblacionales son iguales.
+
+Sig. pequefio
+
+Se rechaza la hipotesis nula
+
+UNIVERSIDAD AUTONOMA
+
+37
+
+ NEW PAGE 
+| TEST de BOX
+
+éQué podemos hacer cuando rechazamos la hipdtesis nula?
+1. Probar a transformar los datos
+
+2. Aplicar la regla de Fisher modificada:
+
+* Se calcula la direccién discriminante asumiendo 2, = 2,
+
+* Secalculan las puntuaciones discriminantes de todos los
+datos y el nuevo dato.
+
+* Se estima la varianza de las puntuaciones discriminantes
+en cada grupo.
+
+¢ Se clasifica el nuevo dato en el grupo que tenga el
+centroide mas proximo a la puntuaci6on discriminante, se
+utiliza la distancia euclidea estandarizada.
+
+3. Usar un método discriminante alternativo.
+
+38
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| TEST de BOX
+
+Cuando se rechaza la hipotesis nula Hj: 2, = 25, una alternativa es
+calcular la misma direccién discriminante asumiendo matrices
+iguales, pero calculando la distancia estandarizada de la
+puntuacion discriminante del dato que queremos clasificar a los
+centroides. En este caso se proyectan todos los datos y se estima
+la varianza de las puntuaciones discriminantes dentro de cada
+grupo.
+
+; ; EnSPSStenem legi
+eae, n enemos que elegir
+if ihe os Doo oD —
+« 7 ght % Bi aniilsis discriminante: Clasificacion
+ves Probabilidades previas. Usar matriz de covarianzas
+D . - -
+ste 7 ® [Todos Ios grupos iguales Otntra-grupos
+a) . t ° a
+eo . * ° J _ Calcular segun tamafos de grupos (@ Grupos separados
+oe
+& t ‘ ‘Visualizacién
+!
+be oy J eB / Fs * . / - (_] Resultados para cada caso (1) Grupos combinados
+’ Grupos separados
+\v| Tabla de resumen Mapa territorial
+Reemplazar los valores perdidos con la media
+Continuar Cancelar Ayuda
+
+39
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Ejemplo: Cancer mama
+
+UNIVERSIDAD AUTONOMA
+
+Clasificacion con SPSS usando matrices de
+covarianzas: INTRA-GRUPOS
+
+Resultados de la clasifleaclarr:*
+
+a
+pronosticado
+V10 Total
+igi Reeuento Sana 436 444
+crime | | __ 2a | 258
+7, 1 92, g 100, 0
+Validacién cruzacde? Recuento Sana S| a
+Enferma
+98,2 1,8 100,0
+a. La validacién cruzada sdlo se aplica alos casos dal andlisis. En la
+
+validacién cruzada, cada caso se clasifica mediante las funciones
+derivadas a partir del resto de los casos.
+
+2. Clasificades correctamente ¢l 96,3% de los casos agrupados originales.
+
+¢. Clasificados correctamente el 96,2% de los casos agrupados validados
+mediante validacién cruzada.
+
+40
+
+ NEW PAGE 
+| Ejemplo: Lirios (iris.txt)
+
+En un estudio del estadistico y genetista Sir Ronald A. Fisher se
+utilizaron cuatro caracteristicas de los sépalos y pétalos para
+identificar 150 lirios de las especies iris setosa, iris versicolor e
+iris virginica.
+
+Longitud.Sepalo
+
+45 55 65 7.5
+
+° o
+°
+o
+°
+Ancho.Sepalo ae of
+|
+88 F5
+Q
+09
+Longitud.Petalo r
+4 L
+°
+° Ancho.Petalo
+T1114
+
+En este problema encontramos que hay tres grupos, lo que dificulta
+la utilizacién del método de Fisher. Tendremos que combinar dos
+reglas para clasificar la especie de nuevos ejemplares de lirios
+
+1234567
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Ejemplo: Cancer mama
+
+Clasificacion con SPSS usando matrices de
+covarianzas: GRUPOS SEPARADOS
+
+Resultados de la clasiflcaclér?
+
+Grupo de pertenencla
+pranesticado
+v10 al
+
+Original Recuento Sana
+
+Enferma
+
+| no |_| |
+2,5 97,5 100,0
+
+4. Clasificados correctamente el 97,2% de los casos agrupados
+originales.
+
+41
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+——————————
+
+Técnicas de analisis discriminante
+
+@ Motivacion
+
+Funcion lineal discriminante de Fisher
+
+Formas de evaluar la clasificacion
+
+¢ Diagnostico de hipotesis con el test M de Box
+
+Clasificacion incorporando informacion previa
+
+42
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Clasificacién con INFORMACION PREVIA
+
+Cuando tenemos informacion previa sobre a qué grupo es mas
+probable que pertenezca un nuevo individuo que queremos clasificar,
+la podemos incorporar en la regla de decision.
+
+Probabilidad a priori: es la que creemos que tiene un
+individuo de pertenecer a un grupo
+
+1,: probabilidad a priori para el grupo 1
+11>: probabilidad a priori para el grupo 2
+
+REGLA DE FISHER para DOS GRUPOS con matrices de covarianzas IGUALES (2,=2,)
+y probabilidades A PRIORI 77, y 77>
+
+REGLA DE CLASIFICACION: Clasificar al nuevo individuo Xp en el
+
+grupo 1 si: _, 7
+
+iM Ie hs Mee Wh
+
+w'x) < w'| +— |- Ln
+Z
+
+1,
+
+43
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Clasificacién con INFORMACION PREVIA
+
+Graficamente:
+
+44
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Clasificacién con INFORMACION PREVIA
+
+Ejemplo:
+
+45
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Clasificacién con INFORMACION PREVIA
+
+Las probabilidades a priori que mas se usan son:
+v Misma probabilidad de pertenecer a cada grupo: 7, =7, = 0,5
+v¥ Mayor probabilidad de pertenecer al grupo mas numeroso:
+nN nN
+nN, + nN, nN, + nN,
+
+EnSPSStenemos qu
+
+e elegir
+
+fed Andlisis discrimit i Ex
+
+Probabilidades previas Usar matriz de covarianzas
+
+®{Todos los grupos iguales O Intra-grupos
+
+> Calcular seguin tamafios de grupos @ Grupos separados
+‘Visualizacion Graficos
+
+() Resultados para cada caso Grupos combinados
+
+(Grupos separados
+{V| Tabla de resumen (_| Mapa territorial
+(] Reemplazar las valores perdidos con la media
+Continuar Cancelar || Ayuda
+46
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+——————————
+
+Técnicas de analisis discriminante
+
+@ Motivacion
+
+¢ Funcion lineal discriminante de Fisher
+
+@ Formas de evaluar la clasificacion
+
+¢ Diagnostico de hipotesis con el test M de Box
+e Clasificacion incorporando informacion previa
+
+e Clasificaci6n con mas de dos grupos
+
+47
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+————____—_—
+
+La regla de FISHER con MAS DE DOS GRUPOS
+
+La regla de Fisher se extiende al caso en el que queramos clasificar
+un nuevo dato y haya tres grupos o mas.
+
+El resultado que se obtiene es:
+
+1. Tantas funciones discriminantes como grupos menos uno.
+
+2. Las puntuaciones discriminantes tienen tantas coordenadas
+como grupos menos una.
+
+3. Tantos centroides como grupos.
+
+4. Los centroides tienen tantas coordenadas como grupos
+menos una.
+
+5. Clasificamos en el grupo con el centroide mas proximo a la
+
+puntuacion discriminante del nuevo dato (usando distancia
+euclidea)
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+Ejemplo: Lirios
+
+En este problema hay tres grupos, asi que tendremos que combinar
+dos reglas discriminantes para clasificar por especies a los nuevos
+ejemplares de lirios
+
+Coeficientes de las funciones canonicas discriminantes
+
+ESPECIE a
+
+Funciones discriminantes canonicas no tipificadas evaluadas en las medias de los grupos
+
+49
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+Ejem plo: Lirios Coeficientes estandarizados de las
+funciones discriminantes canonicas
+
+Puntuaciones en las funciones discriminantes candonicas
+
+Funcion2
+o
+
+-1
+
+-2
+Setosa
+Versicolor
+-3 @3 Virginica
+Bicentroide de grupo
+-10 5 it} 5 TU
+Funcion 1
+
+LA 50
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Ejemplo: Cancer mama
+
+En este cuadro se resumen los resultados de puncidén en un estudio
+sobre el cancer de mama.
+
+No
+Vv10 Media Desv. tip. ponderados Ponderados
+Sana Vi 2,9640 | 1,67266 444 444,000
+: , v2 1,3063 85566 444 444,000
+éCuantos grupos hay? v3 1,4144 | 95703 444 444,000
+v4 1,3468 91709 444 444,000
+V5 2,1081 87711 444 444,000
+éComo es la muestra de V6 1,3468 1,17785 444 444,000
+. V7 2,0833 | 1,06230 444 444,000
+entrenamiento? V8 1,2613 95461 444 444,000
+v9 1,0653 50974 444 444,000
+Enferma V1 7,1883 | 2,43791 239 239,000
+éCuantas va riables se v2 6,5774 2,72424 239 239,000
+. V3 6,5607 | 2,56910 239 239,000
+ha n med | do? V4 5,5858 3,19663 239 239,000
+V5 5,3264 | 2,44309 239 239,000
+; . ; ; V6 7,6276 | 3,11668 239 239,000
+éQue diferencia a las mujeres v7 5,9749 | 2,28242 239 | 239,000
+V8 5,8577 | 3,34888 239 239,000
+sanas de las enfermas? ve 2.6025 | 2.56449 230 | 239,000
+Total Vi 4,4422 | 2,82076 683 683,000
+. . - v2 3,1508 | 3,06514 683 683,000
+éUsando esta informacion V3 3,2152 | 2,98858 683 683,000
+. V4 2,8302 | 2,86456 683 683,000
+corremos el riesgo de vs | 3.2043 | 222909 63 | 683.000
+equivoca rm Os en el V6 3,5447 3,64386 683 683,000
+. oo V7 3,4451 | 2,44970 683 683,000
+di agnostico? V8 2,8697 | 3,05267 683 683,000
+v9 1,6032 | 1,73267 683 683,000
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Ejemplo: Lirios
+
+Resultados de la clasificacién®*
+
+Grupo de pertenencia
+pronosticado
+ESPECIE Total
+50 0 0 50
+
+Recuento
+50
+
+Validacién cruzada# Recuento 1,00
+2,00
+3,00
+
+a. La validacion cruzada sdlo se aplica a los casos del analisis. En la validacién cruzada, cada caso se
+Cclasifica mediante las funciones derivadas a partir del resto de los casos.
+
+b. Clasificados correctamente el 98,0% de los casos agrupados originales.
+Cc. Clasificados correctamente el 98,0% de los casos agrupados validados mediante validacién cruzada.
+
+51
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+——————————
+
+Técnicas de analisis discriminante
+
+@ Motivacion
+
+Funcion lineal discriminante de Fisher
+
+Formas de evaluar la clasificacion
+
+¢ Diagnostico de hipotesis con el test M de Box
+e Clasificacion incorporando informacion previa
+e Clasificaci6n con mas de dos grupos
+
+@ Otros métodos de clasificacidn supervisada
+
+52
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+——————————
+
+Métodos alternativos de clasificacion supervisada
+
+« Clasificaci6n cuadratica utilizando la distancia de
+Mahalanobis
+
+¢ Clasificacién por vecinos mas cercanos
+« Discriminacion con regresion logistica
+« Arboles de clasificacion y regresion (CART)
+
+¢ Métodos bayesianos
+
+¢ Redes neuronales, Projection pursuit, Support
+Vector Machines, etc.
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Ejemplo: Cancer mama
+
+Pruebas de igualdad de las medias de los grupos
+
+pets | ef | ge |g
+
+de Wilks
+711,423
+1406,132
+1417,644
+677,878
+622,158
+1426,240
+921,010
+727,471
+148,788
+
+7
+4
+4
+4
+4
+4
+4
+4
+4
+
+En todos los casos se rechaza la igualdad de medias ya que el p-valor
+del test F (que es el test ANOVA) es bajo
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+| Aplicaciones
+
+Las técnicas de analisis discriminante tienen numerosas aplicaciones
+y se ha utilizan mucho para abordar problemas interesantes y
+complejos tanto en la biologia como en otras disciplinas
+
+Medicina: Detecci6n precoz del cancer
+Ingenieria: Reconocimiento de voz
+Informatica: Clasificacidn de correo spam
+
+Economia: Adjudicacion de créditos bancarios
+
+Literatura: Autoria de manuscritos de autores desconocidos
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+——————————
+
+Técnicas de analisis discriminante
+
+@ Motivacion
+
+@ Funcion lineal discriminante de Fisher
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE 
+ENFOQUE DE FISHER: Se trata de encontrar una buena funcion
+discriminante que sea una combinacion lineal de las variables
+originales. Cuando aplicamos la funcién a un dato nuevo nos dice a
+que grupo pertenece.
+
+Geométricamente: Se busca
+una buena direccié6n sobre la
+que proyectar los datos de los
+grupos conocidos y de los que
+queremos clasificar. Se
+clasifica en funcidn de qué
+grupo esta mas cerca en esa
+direccion
+
+Una buena direccién tiene que:
+— Separar bien las medias
+— Teniendo en cuenta la variabilidad
+
+El nuevo dato se clasifica dentro del grupo con la media mas proxima
+en la proyeccién
+
+UNIVERSIDAD AUTONOMA
+
+ NEW PAGE

@@ -1,0 +1,34 @@
+image: https://14509501.fs1.hubspotusercontent-na1.net/hubfs/14509501/Imported_Blog_Media/Pangeanic%20-%20Diferencia%20entre%20AA%20y%20AP.png
+paragraph: 3 minutos de lectura
+title: ¿Cuál es la diferencia entre el aprendizaje automático y el aprendizaje profundo? (Machine Learning vs Deep Learning)
+paragraph: Machine Learning y Deep Learning son los dos conceptos principales dentro de la ciencia de datos y subconjuntos del campo más amplio de la Inteligencia Artificial. Muchos neófitos emplean los términos aprendizaje automático, aprendizaje profundo e inteligencia artificial como si se tratase de las mismas palabras. Están de moda. Pero en realidad, todos estos términos son diferentes, aunque están relacionados entre sí.
+paragraph: Por ejemplo, en Pangeanic empleamos la “traducción automática con adaptación profunda” basada en procesos automatizados de aprendizaje profundo. En este artículo explicaremos cómo el aprendizaje automático es diferente del aprendizaje profundo. Pero antes de aprender las diferencias, repasemos primero ambos conceptos.
+image: https://14509501.fs1.hubspotusercontent-na1.net/hub/14509501/hubfs/Imported_Blog_Media/pangeanic-ta_cta_es2-2.png?width=699&name=pangeanic-ta_cta_es2-2.png
+title: ¿Qué es el aprendizaje automático?
+paragraph: El aprendizaje automático forma parte del campo de la inteligencia artificial y de la creciente tecnología que permite a las máquinas aprender de conjuntos de datos anteriores y realizar una determinada tarea automáticamente. De este modo, la cantidad y calidad de los datos, así como otros parámetros (lo variado que sea el conjunto de datos de entrenamiento, la “suciedad” o “ruido” en los datos, repeticiones, sesgos, el hecho de que lleven información adicional, es decir que hayan experimentado un proceso de anotación de datos, etc.) impactarán en el aprendizaje automático.
+paragraph: Mediante el aprendizaje automático, las computadoras (o mejor dicho, los algoritmos que utilizan grandes GPUs) aprenden de pasadas experiencias por sí mismas, usando métodos estadísticos para mejorar el rendimiento y predecir resultados sin ser explícitamente programadas para ello.
+paragraph: Las aplicaciones populares de ML (siglas de Machine Learning, en inglés) son, por ejemplo, el filtrado de correo electrónico no deseado, recomendaciones de productos (libros o música similar), detección de fraude en línea, etc.
+paragraph: Algunos algoritmos ML útiles son:
+title: ¿Cómo funciona el aprendizaje automático?
+paragraph: El trabajo de los modelos de aprendizaje automático se puede entender mediante el típico ejemplo de identificación de la imagen de un gato o perro. Para identificar esto, el modelo de ML toma como entradas numerosas imágenes de gatos y de perros. El propio modelo se encarga de reconocer, inferir y extraer las diferentes características de las imágenes como forma, altura, nariz, ojos, etc.. aplica el algoritmo de clasificación y finalmente predice la salida.
+paragraph: Lectura recomendada: La importancia de la limpieza de datos en la TA y el Aprendizaje Profundo
+title: ¿Qué es el aprendizaje profundo?
+paragraph: El aprendizaje profundo (o Deep Learning, DL por sus siglas en inglés) es un subconjunto especial del aprendizaje automático. Funciona técnicamente de la misma manera que el aprendizaje automático, pero con diferentes capacidades y enfoques. En el aprendizaje profundo, los modelos usan diferentes capas para aprender y descubrir ideas de los datos.
+paragraph: El deep learning se inspira en cómo funcionan las células del cerebro humano conocidas como neuronas, lo cual nos lleva al concepto de redes neuronales artificiales. También se llama red neuronal profunda o aprendizaje neuronal profundo.
+paragraph: Algunas aplicaciones populares del aprendizaje profundo son los automóviles autodidactas, la traducción automática, el procesamiento del lenguaje natural, etc.
+paragraph: Algunos modelos populares de aprendizaje profundo son:
+title: ¿Cómo funciona el aprendizaje profundo?
+paragraph: Podemos entender el trabajo del aprendizaje profundo con el mismo ejemplo de identificación de gato contra perro. El modelo de aprendizaje profundo toma las imágenes como entrada y las alimenta directamente a los algoritmos sin requerir ningún paso manual de extracción de características. Las imágenes pasan a las diferentes capas de la red neuronal artificial y predicen la salida final.
+title: Comparaciones clave entre el aprendizaje automático y el aprendizaje profundo
+paragraph: Comprendamos las diferencias clave entre estos dos términos en función de diferentes parámetros:
+paragraph: Conclusión: En conclusión, podemos decir que el aprendizaje profundo es un aprendizaje automático pero con mayores capacidades y un enfoque de trabajo diferente. Seleccionar cualquiera de ellos para resolver un problema en particular depende no solo de la complejidad del problema sino también de la cantidad de datos disponibles.
+paragraph: En la última década, la inteligencia artificial y ramas como el Procesamiento del Lenguaje Natural se han integrado en nuestra vida cotidiana: son las tecnologías que nos recomiendan libros, películas, que nos sugieren alimentos, que personalizan nuestras experiencias como usuarios de redes sociales, y que pueden predecir el comportamiento.
+paragraph: En el ámbito de las tecnologías de traducción automática estos modelos de aprendizaje se han convertido en algo esencial y en Pangeanic los hemos aplicado para el desarrollo de nuestra herramienta ECO. ¿Quiere saber más sobre ella? ¡Solicite una demo y descubra cómo funciona!
+image: https://14509501.fs1.hubspotusercontent-na1.net/hub/14509501/hubfs/Imported_Blog_Media/CTA_Pangeanic_Demo_ES-4.jpg?width=699&name=CTA_Pangeanic_Demo_ES-4.jpg
+title: Artículos relacionados
+title: Consideraciones finales sobre potenciales consecuencias de ChatGPT en el mundo hasta 2023
+paragraph: Me gustaría mostrar mi agradecimiento a todos aquellos que han demostrado un interés en mi análisis sobre cómo ChatGPT provocará cambios radicales en el mundo que conocemos, en público y en privado. Por supuesto deseaba provocar, pero más que...
+title: ¿Cómo puede ayudarle la traducción de documentos con IA?
+paragraph: En los últimos años la inteligencia artificial ha permitido el desarrollo de herramientas para latraducción de documentos. Estos sistemas permiten romper las barreras lingüísticas y proporcionan a la sociedad actual la oportunidad de simplificar...
+title: Entrevista a Emilio Soria sobre Inteligencia Artificial
+paragraph: “Soy experto en modelos más que experto en Inteligencia Artificial”

@@ -1,0 +1,555 @@
+(— ; _. .
+Estimacion de densidades basada
+en nucleos: algunos elementos
+
+basicos.
+
+Isabel Canette
+
+Seminario de Reconocimiento de Patrones.
+Seminario de Probabilidad y Estadistica.
+\ Diciembre, 2002
+
+
+ NEW PAGE 
+Introduccion.
+
+Decimos que una variable aleatoria X tiene den-
+sidad f, Si
+
+b
+Plax X <b}= | f(a) dx Va <b.
+
+Estimar una densidad es reconstruir dicha funcidn
+f a partir de un conjunto de variables Xj,...Xn
+con la misma distribucioOn que X.
+
+e Estimacion paramétrica: Si conocemos la dis-
+tribuci6n a la cual pertenece f, (por ejem-
+plo, gaussiana), entonces basta estimar los
+pardmetros para tener una estimacion de f.
+
+e Estimaci6n no paramétrica: Se usa cuando
+no queremos asumir hipotesis sobre la dis-
+tribucion de nuestra muestra.
+
+ NEW PAGE 
+Basta minimizar R(f), y un estimador insesgado
+de este valor es:
+
+ovin=[P-“TFM), ©
+
+Donde f_;(x) es la estimacion en x que se obtiene
+utilizando todos los datos menos el z—ésimo.
+Esto se debe a que, Si:
+
+Ky (0) = 5K (a/h)
+entonces:
+B/ ff =
+e| [= S> Ky, (a — X) f(x) dz] =
+Mj=1
+
+E(Ky(X —Y))
+
+donde X e Y son independientes, ambas con den-
+sidad f. Luego, un estimador de Eff sera un
+estimador de E(K,(X —Y)) , por ejemplo,
+
+1
+
+que es el término que restamos (multiplicado por
+2) en (5). Por otra parte, un estimador de E [{ f?
+es precisamente f f2.
+
+ NEW PAGE 
+Se busca h que minimice CV(h). Si el nucleo es
+simétrico, entonces:
+
+CV(h) =
+UKM — Xj) — 3 diige hn% — X;),
+tog
+(6)
+con
+
+2
+KP (@) = | Kye —y) Kyu) dy = (Ky * Kn)(2).
+El método de validacion cruzada por maxima vero-
+similitud maximiza
+12 ~
+CVa(h) = 7 S> log f_i( Xi)
+i=1
+
+(este método es muy sensible a la presencia de
+outliers).
+
+ NEW PAGE 
+Comparacion de la estimaci6n obtenida con la
+ventana referida a la distribuci6n normal, y la ven-
+tana obtenida por sustitucion.
+
+Comparacion de distintas ventanas: ref. a la normal y "plug in".
+
+Estimaciones de la densidad
+
+Duracion de las erupcioned del geyser
+
+ NEW PAGE 
+Comparacion de estimaciones obtenidas con dis-
+tintas ventanas para la distribucio6n normal, para
+n = 50 yn = 500.
+
+Comparacion de distintas ventanas en el caso gaussiano
+
+R:ref.normal , A:plug in, V:Validacion Cruzada
+
+Comparacion de distintas ventanas en el caso gaussiano
+
+es de la densidad
+
+R:ref.normal , A:plug in, V:Validacion Cruzada
+
+ NEW PAGE 
+Aplicacion del método para d>2.
+
+Veremos ahora el caso de datos multivariados.
+Sea d la dimension del espacio. Sea K : R¢ — R,
+CON Jpa K(x) dx = 1. Nuestros estimadores seran
+de la forma:
+
+AN 1 2 1
+
+fe) =—4 I K(-(@—- Xi).
+
+d
+rhe j=
+
+En general se utilizan funciones K radialmente
+simétricas, de la forma
+
+K(x) = k(a'x) = k((|2I); (7)
+por ejemplo, para el nucleo gaussiano, k(u) =
+(27) ~4/2exp((—1/2)u), y el estimador es:
+ny ie —d/2 il x — X;\b/x — X;
+Fa) = Tyg 2. Cn) exp | 3 h ( h )
+
+(8)
+
+Datos asimétricos.
+
+El problema de usar nucleos simétricos con una
+sola ventana, es que el nucleo tendra la misma
+escala en todas las dimensiones.
+
+ NEW PAGE 
+En el caso de datos asimétricos, podemos pro-
+ceder de la forma siguiente: Sea S un estimador
+de la matriz de covarianza de X, por ejemplo, la
+covarianza muestral. Tomamos el nucleo K(x) =
+(1/,/det(S))k(a'S—'x), en lugar de (7). Esto es
+equivalente a reescalar los datos. Por ejemplo, en
+el caso Gaussiano queda:
+
+f(x) =
+
+cee v2 a, Laos (58)
+nha <1 (27)4/2
+
+Sesgo, varianza y parametros de suavizado
+
+Podemos generalizar la mayoria de las técnicas
+desarrolladas para 1 dimension. Sea K una den-
+sidad simétrica, y sean:
+
+a= [exwae, B= [Rat.
+Entonces,
+
+B(2) & sh2a¥?f(e)
+
+ NEW PAGE 
+Var(fle)) © 58 f(a).
+
+Minimizando el ECMI en h, obtenemos:
+
+hope = (dsa-?( [(w?)?) nw (a0)
+A(f,K)
+
+Al igual que en dimension 1, podemos, dado un
+nucleo K, hallar A(f, kK) en el caso en que f= 4,
+siendo @¢ la distribucidn normal estandar en di-
+mension d. Utilizando que:
+
+[0v?6)? = evay4Ga+ 5) 1)
+
+Basta sustituir (11), y los a y B correspondientes
+al nucleo kK en (10) para obtener A(¢,k). En
+particular, si K = ¢, A(¢,¢) = 1.
+
+Si estamos utilizando el estimador (9), entonces
+podemos usar directamente la ventana (10). Si
+estamos utilizando el estimador (8) con el nucleo
+
+ NEW PAGE 
+simeétrico, en lugar de hopt utilizareMOs ohopt, donde
+
+o2 es un estimador de la varianza marginal prome-
+
+dio.
+
+Otras técnicas de estimacion de la ventana
+
+El método de validaciOn cruzada se traslada al
+caso en R¢: vale la formula (6), donde
+
+K,(x) = kK (e/h).
+
+El método de sustitucio6n también se traslada a
+R¢, Algunos paquetes utilizan este método para
+estimar por separado distintas ventanas para las
+distintas dimensiones.
+
+ NEW PAGE 
+El problema de la dimension.
+
+Si observamos las formulas de la varianza y la
+ventana Optima, tenemos que: Varf = a vhe
+1
+
+mn 444, de donde:
+
+Es decir, la varianza del estimador tiende a cero
+
+como —L, lo que hace necesario un n de orden ex-
+n
+
+Yn
+
+ponencial en d para mantener una varianza dada.
+
+
+ NEW PAGE 
+Estimacion de la densidad conjunta para los datos
+del geyser.
+
+Densidad estimada para datos del Old Faithful
+
+—
+
+oO
+
+oO
+
+a
+
+an
+
+2.
+
+o
+
+a
+
+oO
+
+2
+
+3 il
+
+o
+
+a LL}
+
+2 UI] Pall
+IL Jit
+
+ae
+serissesersstsserssts! Stee
+
+=~
+Tiempo entre erupciones
+
+ NEW PAGE 
+Antecedentes y motivacion.
+
+Histogramas.
+
+El estimador de densidades mas sencillo (y mas
+antiguo) es el histograma. Dado un punto zo y un
+ancho de intervalo h, consideramos los intervalos:
+{[zop + mh,xp + (m+ 1)h],m € Z}, y luego, dado
+un punto a,
+
+Estimador " naive’.
+Por definici6én de densidad, tenemos que:
+
+f(z) = lim 5, Pt —-h<a<ath}.
+
+Estimando P{a—-h<a<a-+h} con:
+No. de X; en [x —h,x+h]
+
+nr
+
+obtenemos:
+
+f(z) = + No. de X; en [x —h,x + hl}.
+2nh
+
+ NEW PAGE 
+Estimacion de la densidad conjunta para los datos
+del geyser.
+
+Densidad estimada para datos del Old Faithful
+
+Duracion de la Erupcion
+
+40 60 80 100
+
+Tiempo entre erupciones
+
+ NEW PAGE 
+Duracion de la Erupcion
+
+Estimacion de la densidad conjunta para los
+datos del geyser.
+
+Densidad estimada para datos del Old Faithful
+
+40 50 60 70 80
+
+Tiempo entre erupciones
+
+f—7 0.0012
+
+t—_ 0.0010
+
+t—_ 0.0008
+
+t—_ 0.0006
+
+0.0004
+
+0.0002
+
+0.0000
+90 100 110
+
+ NEW PAGE 
+Algunas referencias y sitios de interés.
+
+Libros:
+
+e Silverman, B.W. (1986) Density Estimation
+for Statistics and Data Analysis. Chapman
+and Hall, London.
+
+e Wand, M. P. and Jones, M. C. (1995). Kernel
+Smoothing. Chapman and Hall, London.
+
+e Bowman, A.W. and Azzalini, A. (1997). Ap-
+plied Smoothing Techniques for Data Analy-
+sis: the Kernel Approach with S-Plus IIlustra-
+tions. Oxford University Press, Oxford.
+
+ NEW PAGE 
+Sitios de interés:
+
+e CRAN.
+
+Sitio de desarrollo del lenguaje R, (version li-
+bre S-Plus) Tiene mddulos para estimacion
+de densidades en 1,2 y 3 dimensiones, se-
+lecciOn de ventanas, etc. Aparte de esto, hay
+muchisimos modulos para aplicar técnicas es-
+tadisticas.
+
+http: //www.r-project.org /
+
+e Octave home page.
+Sitio de desarrollo del lenguaje Octave (version
+libre de Matlab). (Si se obtiene algun mensaje
+de error en un codigo escrito para Matlab, lo
+mas probable es que se arregle transponiendo
+una matriz).
+http: //www.octave.org/
+
+
+ NEW PAGE 
+e Sitio Personal de Steve Marron.
+Tiene codigo escrito para hacer estimacion de
+densidades en Matlab. También tiene preprints
+de interés.
+
+http: //www.unc.edu/depts/
+statistics /faculty/marron.html
+
+e Wolfan Hadrdle. Applied Nonparametric Re-
+gression
+Libro completo que utiliza las técnicas de sua-
+vizado para el caso de regresion.
+
+http: //www.quantlet.de/mdstat/
+scripts/anr/html/
+
+ NEW PAGE 
+Histogramas de la duracion de las erupciones del
+geyser Old Faithful, con 10, 20 y 35 intervalos
+respectivamente.
+
+histograma para los datos del Old Faithful
+
+q —
+4
+z
+3
+£
+Duracion de ta erupcion
+histograma para los datos del Old Faithful
+g
+@
+§
+3
+= a
+1
+5
+Duracion de ta erupcion
+histograma para los datos del Old Faithful
+a
+g
+3
+£
+loa oH ool] te oo
+1 2 4 5
+
+Duracion de la erupcion
+
+ NEW PAGE 
+Estimaciones ‘naive’ para datos con distribucion
+normal tipica, para 50 y 500 datos respectiva-
+mente.
+
+Estimador naive para la normal tipica, n = 50, h = 0.66
+
+Estimador naive para la normal tipica, n = 500, h = 0.66
+
+
+ NEW PAGE 
+El estimador ”’ naive” se puede expresar de la forma
+siguiente: sea la funcio6n w definida como:
+
+vie) = {22 si |a| <1 a)
+
+O si no
+
+Entonces,
+
+~ 1 2 x— X;
+
+=1
+
+Estimadores basados en nucleos (Akaike (54), Rosen-
+blatt(56)).
+
+Podemos generalizar la definici6n anterior (del es-
+timador " naive’) sustituyendo w por una funcidn
+
+K tal que f kK =1, es decir:
+
+f es una funcion de densidad, y hereda la regu-
+laridad de Kk.
+
+ NEW PAGE 
+ECM, ECMI, sesgo y varianza.
+
+Para cada x, consideramos el error cuadratico
+medio de nuestro estimador en a.
+
+BCM(x) = E(fe) - f(@))° =
+Var(f(@)) + (EG@) - f@)))’.
+
+a ,
+BCF(2))
+
+Una medida global del error esta dada por el error
+Cuadratico medio integrado, es decir:
+ECMI = | Var(F(@)) de + | PF@) de.
+
+Si f tiene derivada segunda continua y acotada,
+y el nucleo K es simétrico y con 2do. momento
+finito, entonces:
+
+BF) = 5h? [v2 K(u) du F" (2),
+ee
+k2
+
+Var(f(a)) © = s(e) [ Ku) du.
+De donde:
+
+~ 1 2 14,2 fegn 2
+ECMI ~ —|[K (u) du + Zh m3 [CF (x))
+
+ NEW PAGE 
+Observacion: Hay un compromiso entre el sesgo
+y la varianza para h. Cuando h es muy pequena
+el sesgo disminuye, pero aumenta la varianza.
+
+Estimaciones de la densidad
+
+Comparacion de distintas ventanas
+
+Duracion de las erupcioned del geyser
+
+ NEW PAGE 
+La ventana Optima.
+
+Minimizando (2) en h, obtenemos:
+
+hopt = ky7/°([ Kt) at) ( [Cf (e))? ar) nV,
+(3)
+
+Observaciones:
+e Esta h depende de /”
+
+e De todos modos, (3) nos da elementos para
+buscar una h.
+
+Meétodos de seleccion de ventanas
+
+Referencia a una distribuci6n conocida (Silver-
+man’s "rule of thumb” ).
+
+Sea ¢ la densidad normal tipica. Si f fuese normal
+con varianza o, tendriamos:
+
+ne en ee ee
+[(f @) ae = 0° [(6" @)* dx = Sr N70,
+
+ NEW PAGE 
+Si ademas K es el nucleo gaussiano, entoces ky =
+1, y [K2 = (4n)~!/2, por lo que:
+
+Ropt =
+—2/5 1/5 " 2 —1/5 1/5 _
+ky!° (K2(t) dt) (/(t (x))° dx) nV =
+
+1 (4m) —1/10 (3n-1/2¢-5)-1/5
+4 i
+(5) Son 1/5. (4)
+
+Sustituyendo o por un estimador (por ejemplo el
+desvio estandar de la muestra), en (4), obtene-
+mos un estimador de hopt.
+
+Métodos de sustitucion. (’’ Plug-in” )
+
+Los métodos de sustitucidn de Park y Marron, y
+de Sheater y Jones, utilizan estimadores basados
+en nucleos para obtener una estimacion de ff”.
+
+Meétodos de validacion cruzada. El método de
+validacion cruzada basado en minimos cuadrados
+(Rudemo(82) y Bowman(84)) minimiza el ECMI:
+
+ECMI=E [(f-sP =e] P-28 | frt+] #.
+SS
+RG)
+
+ NEW PAGE

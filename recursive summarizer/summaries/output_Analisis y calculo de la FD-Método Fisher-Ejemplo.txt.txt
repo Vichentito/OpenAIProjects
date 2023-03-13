@@ -1,0 +1,20 @@
+El Análisis Discriminante es una técnica de clasificación en la que el objetivo es encontrar una función 
+capaz de clasificar a un nuevo individuo a partir del conocimiento de los valores de ciertas variables 
+discriminadoras. A diferencia del Análisis de Clustering, en esta técnica los grupos deben conocerse
+previamente y se conocen los valores de las variables discriminantes en cada grupo. Por ejemplo, se 
+puede tener una muestra de pacientes a los que se les mide previamente un conjunto de variables y el 
+investigador puede dividirlos en dos o más grupos de diagnóstico. Cuando un nuevo paciente se mide con 
+el mismo conjunto de variables, el Análisis Discriminante permite asignarlo al grupo con la mayor 
+probabilidad y cuantificar el valor de esta probabilidad. Esta técnica es útil para clasificar individuos
+ a través de un perfil observado en campos como las Ciencias de la Vida. El problema se plantea con una 
+ tabla de datos de N individuos en donde se han medido P variables, además de una variable cualitativa 
+ adicional (dependiente o clasificativa) con dos o más categorías que definen el grupo al que pertenece
+  cada individuo. El objetivo es obtener un modelo matemático discriminante para contrastar el perfil de
+   un nuevo individuo cuyo grupo desconoce y, en función del resultado numérico, asignarlo al grupo más 
+   probable. El Análisis Discriminante tiene dos finalidades: explicar la pertenencia a uno u otro grupo 
+   según las variables del perfil y predecir a qué grupo pertenecerá un nuevo individuo cuya información 
+   solamente se conoce por su perfil. Existen dos enfoques para el análisis: basado en la obtención de funciones discriminantes similares a las ecuaciones regresión lineal multiple y basado en la maximización del ratio entre varianzas.
+
+El Análisis Discriminante es un método para clasificar a los individuos en dos o más grupos a partir de un conjunto de variables discriminadoras. Para el caso de dos grupos, esto se hace mediante una función discriminante, la cual es una combinación lineal de las variables discriminadoras. La variabilidad de la función discriminante se expresa como la suma de cuadrados entre grupos y la suma de cuadrados intragrupos. Los ejes discriminantes son los vectores propios asociados a los valores propios de la matriz V-1F', ordenados de mayor a menor. La clasificación se realiza dependiendo si la diferencia entre la puntuación discriminante y el punto de corte es positiva o negativa. Para el análisis discriminante con más de dos grupos, el número máximo de ejes discriminantes es el número mínimo entre G-1 (número de categorías) y k (número de variables explicativas). Los contrastes de significación y la evaluación de bondad del ajuste se realizan para verificar si se cumplen las hipótesis del modelo.
+
+Las funciones discriminantes se obtienen como una función lineal de las k variables explicativas. El análisis discriminante determina los G-1 ejes definidos por los vectores uz, Ua, ... > UG-1- Ui1 U21 UG-1,1 U12 U22 UG-1,2 Us= : U= : pees, UG-1 = : U1k U2k UG-1,k. Los ejes discriminantes son las componentes de los vectores propios normalizados asociados a los valores propios de la matriz V~'F ordenados. Se plantean contrastes específicos para determinar si cada uno de los valores propios contribuye a la discriminación entre los diferentes grupos. Se utilizaron dos horas para realizar esta tarea.

@@ -1,0 +1,347 @@
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2019/10/cropped-logo.png
+title: Carrito
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2019/10/cropped-logo.png
+title: Inteligencia Artificial y Machine Learning para todos
+paragraph: Consultores estratégicos en Ciencia de Datos
+title: Inteligencia Artificial y Machine Learning para todos
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/03/Screen-Shot-2019-09-11-at-2.02.47-PM-1-1024x672.png
+title: Introducción
+paragraph: El aprendizaje automático o Machine Learning es una disciplina de la Inteligencia Artificial, aunque esto podría sonar muy complejo, en realidad NO lo es !   En realidad La Inteligencia Artificial y el Machine Learning es para todos, aunque a veces la gente lo hace parecer mas complejo de lo que es en realidad.  Si alguna vez usted ha leído algo sobre este tema,  lo más probable es que  haya escuchado alguno de estos mitos:
+paragraph: a.) Las historias  académicas ,  llenas de teoremas y matemática compleja  (Las que son  imposibles de  entender ) y
+paragraph: b.) Las historias conspiratorias  sobre inteligencia artificial , la ciencia de datos y donde se dice que todos los trabajos dependerán de estas disciplinas  en el futuro .
+paragraph: Pero qué es el aprendizaje automático ?. Para explicarlos vamos a utilizar problemas del mundo real, soluciones prácticas, y  un lenguaje simple.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7vu.jpg
+paragraph: ¿Por qué queremos que las máquinas aprendan?
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7vv.jpg
+paragraph: Este es Billy.  Billy quiere comprar un carro.  Billy quiere  calcular cuánto necesita ahorrar mensualmente para eso.  Revisó docenas de anuncios en Internet y se enteró de que los autos nuevos cuestan alrededor de $ 20,000, los usados ​​en años anteriores cuestan $ 19,000, los de 2 años cuestan $ 18,000 y así sucesivamente.
+paragraph: Billy,  que no es un  brillante analítico, pero empieza a descubrir que existe un patrón:   el precio del automóvil depende de su antigüedad y cae $ 1,000 cada año, pero no bajarán de los $ 10,000.
+paragraph: En términos de aprendizaje automático, Billy descubrió  lo que conocemos como la regresión : predijo un valor (precio) basado en datos históricos conocidos.    La gente lo hace todo el tiempo, cuando intenta estimar un costo razonable para un iPhone usado en eBay o cuando necesita averiguar cuántas costillas necesita comprar para una fiesta de barbacoa.  ( 200 gramos por persona?   ) 500 ?
+paragraph: Sí,  en realidad sería muy útil tener una fórmula simple para cada problema del mundo.  Especialmente, para una fiesta de barbacoa.  Pero desafortunadamente, esto no siempre se comporta así !.
+paragraph: Volvamos a los autos.  El problema es que tienen diferentes fechas de fabricación, docenas de opciones, condiciones técnicas, picos estacionales de la demanda y solo Dios sabe cuántos factores ocultos más.  Un Billy promedio no puede mantener toda esa cantidad de variables  en su cabeza mientras calcula el precio.
+paragraph: Posiblemente  necesitaríamos  un robot para hacer ese conjunto de cálculos matemáticos. Pero entonces, si decidimos pedir ayuda al robot tendremos que darle algunos datos, pero nos interesa que el robot identifique patrones ocultos detrás de un  precio.
+paragraph: Pues así funciona el Machine Learning.  Lo más emocionante es que la máquina hace esta tarea mucho mejor que una persona real , cuando analiza cuidadosamente todas las variables, y al final nuestra máquina será capaz de predecir, precios con o sion variables, etc, etc.
+title: Lo tres componentes del aprendizaje automático.
+paragraph: 1.) el objetivo principal del  aprendizaje automático es predecir los resultados en función de los datos entrantes.
+paragraph: 2. ) Cuantos mas datos tengamos más  fácil será encontrar patrones relevantes y mas alta será la calidad de esas predicciones.  Por lo tanto, necesitamos tres componentes para enseñar a “pensar” a nuestra máquina:
+title: A.)  los  Datos
+paragraph: ¿Quieres detectar spam? Obtén mas  muestras de mensajes de spam.  ¿Quieres pronosticar las existencias?  Encuentra el historial de precios.  ¿Quieres conocer las preferencias de los usuarios?  Analiza sus actividades en Facebook .  Cuanto más diversos sean los datos, mejor será el resultado.  Decenas de miles de filas es lo ideal para hacer buenas predicciones.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7sg.jpg
+paragraph: Hay dos formas principales de obtener los datos:  la forma manual y la automática.  Los datos recopilados manualmente contienen muchos menos errores pero requieren más tiempo para recopilarlos, lo que los hace más caros.
+paragraph: El enfoque automático es más barato, pero requiere que se recolecten todos los datos posibles.  Al final es mejor esperar a tener más datos y más completos .
+paragraph: Algunas empresas ”  inteligentes” como Google utilizan a sus propios clientes para etiquetar los datos de forma gratuita.  ¿Recuerda el Re-Captcha que le obliga a “Seleccionar todas las señales de tráfico”?  Eso es exactamente lo que están haciendo.
+paragraph: Es extremadamente difícil encontrar  una buena recopilación de datos con buena calidad.  Los buenos datos, son tan escasos y tan valiosos que las empresas prefieren revelar  sus algoritmos, antes que sus datos.
+title: B.) Las características variables ó atributos  : (en Inglés las: features)
+paragraph: Una variable puede ser el kilometraje del automóvil, el sexo del usuario, el precio de las acciones, la frecuencia de palabras en un texto.  En otras palabras, estos son los factores que queremos que analice la máquina.
+paragraph: Cuando los datos almacenados en tablas son simples, decios que esos atributos  son los nombres de nuestras columnas .  Pero, ¿qué pasa si tienes 100 Gb de fotos de gatos?  No podemos considerar cada pixel como un atributo.  Es por esto que la selección de las funciones correctas usualmente toma más tiempo que todas las otras partes, y esa es  también la principal fuente de errores.
+paragraph: Las grandes cantidades de datos  muchas veces son muy subjetivos.  Cuando se analizan datos, NO hay que poner el mayor énfasis en los atributos  que mas le  gusten o que usted considere que son   “más importantes”.  Por favor, evite ser humano.
+title: C.) Algoritmos
+paragraph: Cualquier problema puede ser resuelto de maneras diferentes.  El método que usted  elija afectará  la precisión, el rendimiento y el tamaño del modelo final.  Sin embargo, hay un matiz importante: si los datos son malos, incluso el mejor algoritmo no te ayudará.    Siempre se ha dicho  “si metes  basura, saldrá basura”.  Por lo tanto, no le preste mucha atención al porcentaje de precisión, y las otras variables que miden que tan bueno es un algoritmo,  intente PRIMERO adquirir más datos…
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7r8.jpg
+title: Aprendizaje vs Inteligencia
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/03/Deep-Learning-1.jpeg
+paragraph: Inteligencia artificial es el nombre de todo un campo de conocimiento, similar a la biología o la química.
+paragraph: El aprendizaje automático es una parte de la inteligencia artificial.  Una parte importante, pero no la única.
+paragraph: Las redes neuronales son uno de los tipos de aprendizaje automático.  Posiblemente el mas popular, pero hay otros algoritmos muy buenos en su tipo.
+paragraph: El aprendizaje profundo es un método moderno para construir, entrenar y usar redes neurales.  Básicamente, es una nueva arquitectura.  Hoy en día, en la práctica, nadie separa el aprendizaje profundo de las “redes ordinarias”.  Incluso usamos las mismas bibliotecas para ellos. Sin embargo  es mejor simplemente mencionar  el tipo de red que usaremos y así evitar las palabras “de moda”.
+paragraph: La regla general es comparar las cosas en el mismo nivel.  Es por eso,  que la frase “las redes neuronales reemplazarán el aprendizaje automático” suena como “las ruedas reemplazarán a los autos”
+table_row: Hacer Pronósticos, Crear algo nuevo
+table_row: Memorizar, Ayudarte a ser mas inteligente mas rápido
+table_row: Reproducir, Ir más allá de su tarea
+table_row: Elegir el mejor artículo, Matar  a todos los seres humanos
+title: El mapa del mundo del aprendizaje automático.
+paragraph: La imagen a continuación explica gráficamente los componentes de esta disciplina.   Esta clasificación es una clasificación con fines didácticos y posiblemente de un autor a otro hayas importantes variaciones
+paragraph: Siempre es importante recordar que no existe una única forma  de resolver un problema en el mundo del aprendizaje automático.  Siempre hay varios algoritmos que se ajustan, y la habilidad del científico de datos está en elegir cuál se adapta mejor.  Todo se puede resolver con una red neuronal, por supuesto, pero ¿quién pagará por todo el potencial que se podría requerir  ?
+paragraph: Empecemos  con una descripción básica.   Hoy en día hay cuatro tendencias  en el aprendizaje automático.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/03/Screen-Shot-2019-09-08-at-11.40.51-AM-1.png
+title: 1.) Aprendizaje automático clásico.
+paragraph: Los primeros métodos vinieron de estadísticas puras en los años 50.  Resolvieron tareas matemáticas formales: buscaban  patrones en los números, evaluaban  la proximidad de los puntos de datos y calculaban  direcciones de  vectores.
+paragraph: Hoy en día, la mitad de Internet está trabajando en estos algoritmos.  Cuando vea una lista de artículos para “leer a continuación” o su banco le bloquea  su tarjeta , lo más probable es que eso sea producto del trabajo de uno de estos algoritmos “clásicos”.
+paragraph: Las grandes empresas de tecnología son grandes fanáticos de las redes neuronales.  Obviamente.  Para ellos, el 2% de precisión es un ingreso adicional de 2 mil millones.  Pero cuando eres pequeño, el uso de este gran poder de computación  talvéz no tenga mucho sentido .  A cosas pequeñas algoritmos pequeños .
+paragraph: Hay referencias que mencionan que algunas veces los técnicos de las empresas pasan  hasta un año trabajando en un nuevo algoritmo para recomendar  su sitio web de comercio electrónico, antes de descubrir que el 99% del tráfico del sitio provenía de los motores de búsqueda.  Sus algoritmos por tanto resultarían poco útiles, ya que la mayoría de los usuarios ni siquiera abrieron su  página principal.
+paragraph: A pesar de la popularidad, los enfoques clásicos son tan naturales que hasta un niño pequeño podría  explicárnoslos.  Son como la aritmética básica: lo usamos todos los días, sin tan siquiera darnos cuenta.
+paragraph: Veamos ahora como clasificamos   el aprendizaje automático clásico:
+title: a.) Aprendizaje supervisado
+paragraph: Vamos a dividir el aprendizaje automático clásico para efectos didácticos en dos categorías: aprendizaje supervisado y no supervisado .
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/03/Screen-Shot-2019-09-08-at-11.54.43-AM.png
+paragraph: a.) En el aprendizaje supervisado,   la máquina tiene un “supervisor” o un “maestro” que le da a la máquina todas las respuestas.  Es como decir que el maestro ya ha clasificado  (etiquetado) los datos en gatos y perros, y la máquina está usando estos ejemplos para aprender y así clasificar con base en la predicción los casos futuros.
+paragraph: b.) En el aprendizaje no supervisado:  significa que la máquina se queda sola con un montón de fotos de animales y una tarea para averiguar quién es quién.  Los datos no están etiquetados, no hay profesor, la máquina está tratando de encontrar patrones por sí misma.   Hablare de estos métodos mas adelante.
+paragraph: Claramente, la máquina aprenderá más rápido con un maestro, por lo que el Aprendizaje Supervisado  se usa más comúnmente en tareas de la vida real.  En el aprendizaje no supervisado h Hay dos tipos de tareas de este tipo:
+paragraph: 1.) clasificación : cuando buscamos predecir una categoría, por ejemplo pacientes enfermos  y pacientes sanos
+paragraph: 2.) regresión: cuando buscamos predecir un valor numérico  .
+paragraph: En el mapa a continuación vamos a identificar los algoritmos mas comunes del aprendizaje automático clásico, divididos en Aprendizaje Supervisado y No supervisado :
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/03/clasical-learning-1.png
+paragraph: Veámoslos en detalle
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7qx.jpg
+paragraph: “Divide objetos basados ​​en uno de los atributos conocidos de antemano.  Calcetines separados por colores , documentos basados ​​en idiomas , música separada por género ”
+paragraph: Hoy en día  se utilizan por ejemplo  para:
+paragraph: – Clasificar los mensajes de spam en el  correo electrónico  – detección de lenguaje de una página web o de un documento – Una búsqueda de documentos similares. – Análisis de los sentimientos con respecto a una publicación de redes sociales – Reconocimiento de caracteres y números manuscritos. (OCR)  – Detección de fraudes
+paragraph: Los Algoritmos supervisados mas populares son : Naive Bayes  , Árbol de decisiones ó ID3 , Regresión logística , El vecino mas cercano , y la máquina de vectores de soporte (SVM)
+paragraph: El aprendizaje automático como dijimos:  consiste en clasificar cosas, principalmente.  La máquina aquí es como un bebé que aprende a ordenar juguetes: aquí hay un robot, aquí hay un automóvil, aquí hay un robot … etc, etc, y aparecen errores y se corrigen y cada vez clasificará mejor y de después de repetir el proceso miles de veces la clasificación es posible que llegue a ser casi perfecta.  El reto y para lo que se utiliza el Aprendizaje automático estará luego cuando:  aparezca un nuevo juguete el cual es diferente a todos los anteriores y que tendrá que ser clasificado de acuerdo a estas reglas previas. Ahí es donde está la “magia” del algoritmo, y en donde todas esa capacidad pasa a la deducción
+paragraph: En la clasificación, siempre se necesita un profesor.  Los datos deberán estar “etiquetados” con características que hagan posible que la máquina  pueda asignarles una  clase en función de esas características. La verdad es que todo es posible de clasificarse:  Ej.   usuarios basados ​​en intereses, artículos basados ​​en el idioma y el tema (que es importante para los motores de búsqueda), música basada en el género (listas de reproducción de Spotify) e incluso sus correos electrónicos.
+paragraph: En el filtrado de spam se utilizó ampliamente el algoritmo de Naive Bayes (Llamado algoritmo Ingenuo de Bayes)  .  La máquina cuenta la cantidad de menciones “viagra” en el correo no deseado y el correo normal, luego multiplica ambas probabilidades usando la ecuación de Bayes, suma los resultados y así, obtenemos el Aprendizaje automático que va clasificando cuando es SPAM y cuando no lo es…
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7w2.jpg
+paragraph: Más tarde, los “spammers” aprendieron a lidiar con los filtros bayesianos agregando muchas palabras “buenas” al final del correo electrónico.  Irónicamente, el método se llamaba envenenamiento bayesiano .  El algoritmo Naive  Bayes pasó a la historia como el más elegante y  por así decirlo  el  primer algoritmo  útil, pero ahora se utilizan otros algoritmos para el filtrado de correo no deseado. (SPAM)
+paragraph: Aquí hay otro ejemplo práctico de clasificación.  Digamos que necesitamos un préstamo .  ¿Cómo sabe el banco si usted devolverá  el dinero o no?  No hay manera de saberlo con seguridad.  Pero el banco posee información de  muchos perfiles de personas que pidieron préstamos antes. El Banco cuenta con datos sobre la edad, la educación, la ocupación, salario, etc. y lo  más importante, si devolvieron el dinero (etiqueta).  Usando estos datos, podemos enseñar a la máquina a encontrar  patrones y obtener respuestas. Al final es posible que se obtengan respuestas erróneas   El Banco de hecho no confía ciegamente en la respuesta de la máquina.  pero es un ejemplo en el cual los Bancos  utilizan los árboles de decisión .
+paragraph: Con este tipo de algoritmo los datos se dividen automáticamente en preguntas  tipo sí / no .  Incluso algunos datos podrían resultarnos extraño por ejemplo, utilizar un valor de $ 1281.2 dentro de uno de los niveles de decisión ?  La máquina descubrió que ese número es un punto de inflexión donde debe dividir las ramas de ese árbol .   Así se construye un  árbol.  Cuanto más alta es la rama, más amplias serán las preguntas.  Cualquier analista puede usarlo y aplicarlo a su trabajo. Incluso el analista de crédito podría pensar  que algunas preguntas no tienen sentido, pero lo importante es que se pueda aplicar fácilmente !
+paragraph: Los árboles de decisión se utilizan ampliamente en esferas de alta responsabilidad: como en diagnósticos médicos , en el uso de medicamentos y en el tema de las finanzas.
+paragraph: Los algoritmos más populares para formar los árboles son ID3 -CART y C4.5 .  Los árboles de decisión pura,  rara vez se usan en la actualidad.  Sin embargo, a menudo se utilizan como base para grandes sistemas, y sus conjuntos incluso funcionan mejor que las redes neuronales.
+paragraph: Cuando buscas algo en Google, ese es precisamente un  grupo de árboles los que buscan tu respuestas.  Los motores de búsqueda los utilizan con mucha frecuencia porque son muy rápidos.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7w3.jpg
+paragraph: El Support Vector Machines (SVM) es, con razón, el método más popular de clasificación clásica.  Se utilizaba para clasificar todo lo que existía: plantas por apariencia en fotos, documentos por categorías, etc.
+paragraph: La idea detrás de Support Vector Machines  es simple:  Trata de dibujar dos líneas entre los puntos de datos con el mayor margen entre ellos.  Mira a continuación
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7w4.jpg
+paragraph: Hay un lado muy útil de la clasificación: la detección de anomalías.  Cuando una característica no se ajusta a ninguna de las clases, la destacamos.  Ahora esa característica se usa en medicina, por ejemplo en las pruebas de Resonancia Magnética ya que el algoritmo  resalta todas las áreas que resultan sospechosas o las desviaciones de la prueba.  Los mercados de valores lo utilizan para detectar el comportamiento anormal de los comerciantes, y así obtener  información privilegiada.
+paragraph: Acá surge una conclusión interesante:   Cuando le enseñamos a la computadora las cosas correctas, automáticamente le estamos enseñando qué cosas están mal……
+paragraph: Talvéz me voy a adelantar un poco pero quisiera decir que  también,  para clasificar cosas hoy en día se utilizan  las redes neuronales. Pero ya hemos dicho que este tipo de algoritmos no son parte de lo que estamos llamando Aprendizaje automático clásico.
+paragraph: La regla de oro es que: cuanto más complejos son los datos, más complejo deberá ser el algoritmo.  Para texto, números y tablas, se debería elegir un enfoque clásico, ademas  cuando los  modelos de datos son más pequeños, los algoritmos  aprenden más rápido y trabajan más claramente.  Para las imágenes, el vídeo y todas las demás cosas complicadas del mundo  del BIG DATA, definitivamente habrá que pensar en la redes neuronales.
+paragraph: Hace solo cinco años, era posible encontrar un clasificador de caras construido en Support Vector Machine.   Hoy día es más fácil elegir entre cientos de redes pre-entrenadas.  Sin embargo, nada ha cambiado para los filtros de spam.  Todavía utilizan algoritmos de Support Vector Machines .  Y todavía no hay una buena razón para cambiarlos.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7qy.jpg
+paragraph: Si tenemos como Objetivo: “Dibujar una línea a través de estos puntos”  Esa es una máquina de aprendizaje  que utiliza Support Vector Machines
+paragraph: Hoy esto se usa para:
+paragraph: Otros Algoritmos populares de este tipo son las regresiones lineales y las polinomiales .
+paragraph: La regresión es básicamente un método de  clasificación donde pronosticamos un número en lugar de una categoría.   Algunos ejemplos son el precio del automóvil por su millaje, el tráfico según la hora del día, el volumen de la demanda por el crecimiento de la empresa, etc. La regresión es el metodo perfecto  cuando algo depende del tiempo.
+paragraph: Todos los que trabajan con finanzas y análisis prefieren el método de  regresión.  Incluso las funciones de regresión ahora ya las encontramos  integradas  en Excel.  Y son muy fáciles de implementar.
+paragraph: Pero cómo funciona por dentro ? :   la máquina intenta trazar una línea que indica una correlación promedio.  Aunque, a diferencia de una persona con un lápiz y una pizarra, la máquina lo hace con precisión matemática, calculando el intervalo promedio para cada punto.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/03/Screen-Shot-2019-08-27-at-9.54.35-AM.png
+paragraph: Cuando la línea es recta, es una regresión lineal, cuando es curva es un polinomio.  Estos son los dos tipos principales de regresión.   Sin embargo también hay otros métodos mas sofisticados.
+paragraph: Atención:  La regresión logística no pertenece  a este grupo .  La regresión logística  es un método de clasificación, no es un método de regresión, aunque su nombre engaña.
+paragraph: Sin embargo, está bien adentrarse  con la regresión y la clasificación, de hecho muchos clasificadores se convierten en regresión después de hacerles algunos ajustes.  No sólo podemos definir la clase del objeto, sino también memorizar qué tan cerca está.  Aquí es donde participa la  regresión.
+title: b.) Aprendizaje automático no supervisado
+paragraph: El aprendizaje sin supervisión se inventó en los años 90.  Se usa con menos frecuencia, pero a veces simplemente por el tipo de datos no tenemos otra opción.
+paragraph: Los datos etiquetados son un  lujo.  ¿Pero qué pasa si quiero crear, digamos, un clasificador de tipos de buses ?  ¿Debo tomar manualmente fotos de millones de autobuses en las calles y etiquetar cada uno de ellos?  De ninguna manera, eso nos tomaría  toda una vida.
+paragraph: Pero gracias a la estratificación social, tenemos millones de trabajadores y servicios baratos como Mechanical Turk que hacen estos trabajos por $ 0.05.  Y así es como se hacen las cosas en este tipo de modelos.
+paragraph: Usualmete lo que hacemos es que usamos los Algoritmos de  aprendizaje no supervisado para un análisis exploratorio de los de datos,  y no como el algoritmo principal.
+paragraph: Los tipos de algoritmos de este tipo son:
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7qz.jpg
+paragraph: Objetivo: “Divide objetos en función de características desconocidas.  La máquina clasifica a su mejor criterio ”
+paragraph: Hoy en día se utiliza:
+paragraph: Algoritmos Populares: K-means_clustering, Mean-Shift , DBSCAN
+paragraph: La agrupación en clúster es una clasificación sin clases predefinidas.  Es como dividir los calcetines por colores  cuando usted no sabe los colores tiene.   En días pasados utilice el algoritmo K-means para clasificar los países de acuerdo a su desempeño durante la Pandemia de Covid19, los resultados son un tanto desconcertantes. Porque ?   Porque la tendencias ser humano es a clasificar las cosas considerando una o dos categorías a la vez , por ejemplo pacientes enfermos y pacientes sanos, pacientes hombres y pacientes mujeres o bien pacientes enfermos y sanos de acuerdo a sexo, pero nuestra capacidad no va mas allá de considerar 3 o 4 variables de forma simultanea. Los algoritmos pueden hacer esto con grandes cantidades de variables.
+paragraph: Los algoritmos de agrupación ó en clúster intentarán  encontrar objetos similares (según algunas características) y fusionarlos en un grupo.   Los que tienen muchas características similares se unen en una clase.  Con algunos algoritmos, incluso puede especificar el número exacto de clúster que se desean como K-means después de aplicar algunas técnicas como la curva del hombro.
+paragraph: Un excelente ejemplo de agrupamiento – son los marcadores en mapas web.  Cuando estás buscando todos los restaurantes veganos alrededor, el motor de agrupación los agrupa para formar manchas con un número.  De lo contrario, los navegadores no podrían seleccionar  los muchos  restaurantes en una ciudad.
+paragraph: Las fotos de Apple y las de Google usan un agrupamiento más complejo.   Si está buscando caras en las fotos para crear álbumes de sus amigos, es posible  que su  aplicación no sepa cuántos amigos tienes y cómo se ven, pero está tratando de encontrar las características faciales comunes. A  esto le llamamos Agrupación típica.
+paragraph: Otro tema popular es la compresión de imágenes.  Al guardar la imagen en formatos .png, puede configurar la paleta, digamos, a 32 colores.  Significa que la agrupación encontrará todos los pixels “rojizos”, calculará el “rojo promedio” y lo configurará para todos los pixels aproximadamente rojos . Claro a menos colores – menor tamaño de archivo
+paragraph: Sin embargo, es posible que a veces se tenga  problemas con colores como los colores “pastel” o colores muy cerca en el espectro   ¿Ese color lo clasifico como  verde o como azul? Para  eso también se utiliza el algoritmo K-Means .
+paragraph: Este tipo de algoritmo establece aleatoriamente 32 puntos de color en la paleta. ( los llamados centroides).  Los puntos restantes se marcan como asignados al centroide más cercano.  Por lo tanto, obtenemos una especie de galaxias alrededor de estos 32 colores.  Luego movemos el centroide al centro de su galaxia y lo repetimos hasta que los centroides dejen de moverse.
+paragraph: Todo listo.  Grupos definidos, estables, y hay exactamente 32 de ellos.  Aquí hay una explicación de un caso real en donde estamos utilizando un algoritmo no supervisado como K-means para ubicar centroides de puntos geográficos y ubicar establecimientos sanitarios de forma eficiente :
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/06/infraestructura.png
+paragraph: Uso de algoritmo K-means en el campo de la salud
+paragraph: La búsqueda de los centroides es  muy conveniente.  Sin embargo, en la vida real las agrupaciones no siempre giran.  Imaginemos que usted es un geólogo.  Y necesita encontrar algunos minerales similares en el mapa.  En este caso, los grupos pueden tener una forma extraña e incluso estar anidados.  Además, ni siquiera usted sabe cuántos grupos esperar 10?  100?
+paragraph: K-means no encajaría aquí, pero talvéz otro algoritmo conocido como  DBSCAN podría serle útil.  Digamos, nuestros puntos son personas en la plaza del pueblo.   En el siguiente ejemplo vamos a encontrar  a tres personas que estén cerca una de la otra y pídales que se tomen de las manos.  Luego, deben  comenzar a agarrar las manos de aquellos vecinos a los que puedan alcanzar.  Y  así sucesivamente hasta que nadie más pueda tomar la mano de nadie.  Ese es nuestro primer grupo.  Ahora puede repetir el proceso hasta que todos estén agrupados.
+paragraph: Una buena ventaja: una persona que no tiene a nadie con quien tomarse las manos resultaría en una anomalía.
+paragraph: Todo se ve bien en movimiento:
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://cdn-images-1.medium.com/max/1600/1*tc8UF-h0nQqUfLC8-0uInQ.gif
+paragraph: Al igual que la clasificación, el agrupamiento tambien podría utilizarse para detectar anomalías.  ¿El usuario se comporta de forma anormal después de registrarse?   Podríamos talvéz dejar que la máquina lo prohíba temporalmente y luego ademas reportarlo  para que alguien  lo revise.  Tal vez sea un “bot”.  Ni siquiera se necesita  saber qué es el “comportamiento normal”, simplemente cargamos todas las acciones del usuario a nuestro modelo y dejamos que la máquina decida si es un usuario “típico” o no.
+paragraph: Este enfoque no funciona tan bien en comparación con el de clasificación, pero en ciertos casos funciona muy bien
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7r0.jpg
+paragraph: Objetivo:  “Ensamblar variables específicas en nuevas de mas  alto nivel”
+paragraph: Hoy en día se utiliza para:
+paragraph: Algoritmos populares de este tipo:  : Análisis de componentes principales (PCA), Descomposición de valor singular (SVD), Asignación  latente de Dirichlet (LDA), Análisis semántico latente (LSA, pLSA, GLSA), t-SNE (para visualización)
+paragraph: Anteriormente, todos estos métodos eran utilizados por científicos expertos en datos, que tenían que encontrar “algo interesante” en enormes cantidades de números.  Cuando los gráficos de Excel no ayudaron, forzaron a las máquinas a realizar búsqueda de patrones.  Así es como consiguieron los métodos de reducción de dimensión o aprendizaje de características.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.stack.imgur.com/Q7HIP.gif
+paragraph: Proyección de datos 2D a una línea (PCA)
+paragraph: Siempre es más conveniente para las personas usar abstracciones, y no un conjunto de características fragmentadas.  Por ejemplo, podemos combinar todos los perros con orejas de triángulos, narices largas y colas grandes en una abstracción agradable: “pastor”.
+paragraph: Sí, podríamos llegar a perder información sobre los pastores específicos, pero la nueva abstracción es mucho más útil para nombrar y explicar los propósitos.  Como beneficio adicional, estos modelos “abstractos” aprenden más rápido, se adaptan menos y usan un número menor de funciones.
+paragraph: Estos algoritmos se convirtieron en una herramienta increíble para el modelado de temas .  Podemos abstraer de palabras específicas  sus significados.  Esto es lo que hace el análisis semántico latente (LSA).  Se basa en la frecuencia con la que se ve una  palabra en un tema exacto.  Al igual, queencontramos términos de tecnología en los artículos de tecnología y los nombres de los políticos se encuentran principalmente en noticias políticas, etc.
+paragraph: Sí, solo podemos hacer grupos de  palabras en los artículos, pero perdemos todas las conexiones importantes (por ejemplo, el mismo significado de batería y acumulador en diferentes documentos).  LSA lo manejará correctamente, por eso se llama “semántica latente”.
+paragraph: Por lo tanto, debemos buscar opciones que conecten  palabras y  documentos en una sola función para mantener estas conexiones latentes. Resulta que la Descomposición Singular (SVD) anula esta tarea, revelando grupos de temas útiles a partir de palabras vistas juntas.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7w7.jpg
+paragraph: Los sistemas de recomendación y el filtrado colaborativo son otros usos populares para los algoritmos de  reducción de dimensionalidad.  Parece que si lo usas para resumir las calificaciones de los usuarios, obtienes un gran sistema para recomendar películas, música, juegos y lo que quieras.
+paragraph: Es casi imposible comprender completamente esta abstracción de una  máquina, pero es posible ver algunas correlaciones si lo vemos mas de ceca . Por ejemplo hay sistemas que  lo correlacionan con la edad del usuario: los niños juegan a Minecraft y ven más caricaturas;  otros se correlacionan con el género de películas o las aficiones de los usuarios.
+paragraph: Las máquinas obtienen estos conceptos de alto nivel incluso sin comprenderlos, basándose solo en el conocimiento de las calificaciones de los usuarios.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/06/REGLAS.png
+paragraph: “Busca patrones en el flujo de órdenes”
+paragraph: Hoy en día se utiliza:
+paragraph: Algoritmos populares: Apriori, Euclat, FP-growth
+paragraph: Estos algoritmo incluyen  métodos para analizar carritos de compra, automatizar la estrategia de marketing y otras tareas relacionadas con eventos.  Cuando tienes una secuencia de algo y quieres encontrar patrones en ella, puedes probarlos .
+paragraph: Digamos que un cliente toma un paquete de seis cervezas y va a la caja.  ¿Deberíamos colocar cacahuetes en el camino?  ¿Con qué frecuencia las personas los compran juntos?  Sí, probablemente funcione para la cerveza y los cacahuetes, pero ¿qué otras secuencias podemos predecir?  ¿Puede un pequeño cambio en la disposición de los bienes llevar a un aumento significativo en las ganancias?
+paragraph: Lo mismo ocurre con el comercio electrónico.  La tarea es aún más interesante allí: ¿qué va a comprar el cliente la próxima vez?
+paragraph: No se sabe  por qué el aprendizaje de reglas parece ser la menos elaborada categoría de aprendizaje automático.  Los métodos clásicos se basan en una mirada de frente a través de todos los bienes comprados utilizando árboles o conjuntos.  Los algoritmos solo pueden buscar patrones, pero no pueden generalizarlos o reproducirlos en nuevos ejemplos.
+paragraph: En el mundo real, cada gran minorista construye su propia solución , por lo que podría haber una gran oportunidad para usted acá.   Con un nivel alto de tecnología se pueden crear sistemas  de recomendación.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/810.jpg
+title: 2. ) Aprendizaje automático Moderno
+paragraph: Nuevamente y como hicimos para el Aprendizaje automático clásico, y con efecto  puramente didácticos,  dividiremos el Aprendizaje automático Moderno en tres grandes grupos:
+paragraph: En cada grupo se presentan además,  los algoritmos mas comúnmente utilizados.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/03/Screen-Shot-2019-09-11-at-2.02.47-PM-1.png
+paragraph: Veamos los tipos de algoritmo en detalle
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7r2.jpg
+paragraph: Objetivo “Lanzar un robot en un laberinto y dejar que encuentre la salida”
+paragraph: Hoy en día se utiliza para:
+paragraph: Dentro de los algoritmos mas populares de este tipo destacan : Q-Learning , SARSA , DQN, A3C, y los algoritmos genéticos
+paragraph: Empecemos diciendo que en muchos artículos, el aprendizaje por refuerzo se ubica en algún punto intermedio entre el aprendizaje supervisado y el no supervisado, pero lo cierto es que no tienen nada en común!
+paragraph: El aprendizaje de refuerzo se utiliza en los casos en que su problema no está relacionado con los datos en absoluto, pero tiene un entorno en el que convive. Como un mundo de videojuegos o el entorno de una ciudad para un vehículo autónomo.
+paragraph: El conocimiento de todas las reglas de circulación en el mundo no le enseñará al piloto automático cómo conducir en una carretera.  Independientemente de la cantidad de datos que recopilemos, todavía no podemos prever todas las situaciones posibles.  Por eso,  con estos algoritmos lo que queremos es  minimizar el error,  y no predecir todos los movimientos .
+paragraph: Sobrevivir en un entorno,  es una idea central del aprendizaje por refuerzo.  El principio se basa en poner el vehículo autónomo en movimiento en el mundo real, irlo castigándolo  por los errores, y recompensándolo por las acciones correctas.   Es algo similar a como enseñamos a nuestros mascotas.
+paragraph: Una forma más efectiva sería:  construir una ciudad virtual y dejar que el auto- utilice todos sus trucos allí primero.  Así es como se entrena un  piloto automáticos en este momento.  Creamos una ciudad virtual basada en un mapa real, la rellenamos con peatones y dejamos que el automóvil aprenda a esquivar los obstaculos  ( objetos y personas)  , cuando lo haga bien habrá adquirido las destrezas .  Cuando el robot tiene una confianza razonable en este GTA artificial, ya se podrá probar en las carreteras .
+paragraph: Hay  dos enfoques diferentes: basado en modelos y sin modelos .
+paragraph: Basado en el modelo significa que el automóvil necesita memorizar un mapa o sus partes.  Ese es un enfoque bastante anticuado, ya que es imposible para un vehículo memorizar todas las posibles opciones en cualquier sitio del planeta.
+paragraph: En el aprendizaje sin modelos, el automóvil no memoriza todos los movimientos, sino que trata de generalizar las situaciones y actúa  de manera racional  o sea mas “inteligente” y de ésta forma  logra obtener la máxima recompensa.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7w9.jpg
+paragraph: Parodia de lo que podría significar enfrentarse al fuego utilizando tres Paradigmas diferentes y como reaccionaría la máquina en cada caso..
+paragraph: ¿Recuerdas la noticia de que la un algoritmo le ganó  a un jugador de primer nivel en el conocido juego ” Go” ?  A pesar de que poco antes de esto, se demostró que la cantidad de combinaciones en este juego es mayor que la cantidad de átomos en el universo.
+paragraph: Esto significa que la máquina no podría recordar todas las combinaciones y  ganar en el juego GO , lo que hizo fue:  “pensó” y eligió el mejor movimiento para cada situación, y lo hizo lo suficientemente bien como para superar a un ser humano.
+paragraph: Este enfoque es un concepto central detrás de Q-learning y sus derivados (SARSA y DQN).  “Q” en el nombre significa “Calidad”, ya que un robot aprende a realizar la acción más “cualitativa” en cada situación y todas las situaciones se memorizan como un simple proceso “markoviano”.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7wa.jpg
+paragraph: Una  máquina puede probar miles de millones de situaciones en un entorno virtual, recordando qué soluciones condujeron a una mayor recompensa.  Pero, ¿cómo podemos  distinguir las situaciones previamente vistas de una completamente nueva?  Si un automóvil autónomo  se encuentra en un cruce de carreteras y el semáforo se pone verde, ¿significa que puede pasar ?  ¿Qué pasa si hay una ambulancia en sentido contrario ?
+paragraph: La respuesta de hoy es “nadie sabe”.  No hay una respuesta fácil.  Los investigadores lo están buscando constantemente, pero mientras tanto sólo encuentran soluciones.  Algunos codificarían manualmente todas las situaciones que les permiten resolver casos excepcionales, como el problema del tranvía en San Francisco.  Otros profundizarían y dejarían a las redes neuronales hacer el trabajo necesario de resolverlo. Ante todas estas disyuntivas aparece el  Q-learning llamado Deep Q-Network (DQN).    Pero en este caso tampoco serán la solución definitiva.
+paragraph: El aprendizaje por refuerzo para una persona promedio parecería una verdadera inteligencia artificial .  Porque se podría pensar que ésta máquina está tomando decisiones en situaciones de la vida real !  Este tema se está promocionando mucho  en este momento, y avanza a un ritmo increíble y es posible que a futuro haya un vínculo  entre este tipo de algoritmos y las redes neuronales.  De esta forma lograremos que los vehículos autónomos reduzcan sus errores a CERO o que nuestra  aspiradora inteligente limpie mejor nuestra casa ….!
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7r3.jpg
+paragraph: Objetivo:  Lograr que un grupo de árboles individuales “no tan inteligentes”  aprendan a corregir sus  errores entre sí”
+paragraph: Hoy en día se utiliza para:
+paragraph: Algoritmos populares: Dentro de los ma usados tenemos el bosque aleatorio (Random Forest)  , aumento de gradiente
+paragraph: Sin embargo, las redes neuronales ya están recibieron todo nuestra atención hoy en día, mientras que hubiésemos podio aprovechar un conjunto enorme de algoritmos importantes sin sacarles mayor provecho.
+paragraph: Pero qué hay detrás de los métodos de conjunto ?
+paragraph: A pesar de toda la efectividad, la idea detrás de estos métodos de trabajo es  simple.  Si tomamos  un grupo de algoritmos ineficientes y los obligamos a corregir los errores de los demás, la calidad general de un sistema será mayor que incluso los mejores algoritmos individuales.
+paragraph: Si tomamos  los algoritmos más inestables que predicen resultados completamente diferentes y que producen “ruido” en nuestros  datos de entrada, como regresión y árboles de decisión, con este método podríamos lograr mejores resultados. Estos algoritmos son tan sensibles a un solo valor atípico  que mal empleados provocan que los modelos “se vuelvan locos”.
+paragraph: Podemos usar cualquier algoritmo que conozcamos para crear un conjunto. Simplemente lanzamos varios  clasificadores, le agregamos “regresión”, y medimos la precisión. Desde mi experiencia: ni siquiera  aunque probemos algoritmos como  Naive Bayes o el vecino mas cercano (kNN) , aunque nos parezcan demasiado “tontos”  serán al final  realmente estables. Este comportamiento combinado ya es un tema  aburrido y predecible.
+paragraph: En su lugar, existen  tres métodos bien probados con anterioridad con mucho éxito de forma independiente que ahora podemos utilizar  para crear “conjuntos”.
+paragraph: Recordemos que la salida de un “stack” o una pila   de varios modelos paralelos se pasa como entrada al último, el cual es el que toma la decisión final.
+paragraph: El énfasis aquí está en  la palabra “diferente”. Mezclar los mismos algoritmos en los mismos datos no tendría sentido. La elección de los algoritmos depende completamente de usted. Sin embargo, para el modelo final de toma de decisiones, la regresión lineal parece ser la mejor opción.
+paragraph: El apilamiento es cada día  menos popular en la práctica, ya que otros dos métodos nos ofrecen una mayor precisión.
+paragraph: Acá  la clave está en usar el mismo algoritmo, pero entrenándolo con  diferentes subconjuntos de datos .  Al final –  se obtendrían   en promedio mejores respuestas.
+paragraph: Es sabido que los datos en subconjuntos aleatorios pueden repetirse. Por ejemplo, de un conjunto como “1-2-3” podemos obtener subconjuntos como “2-2-3”, “1-2-2”, “3-1-2” y así sucesivamente. Si usamos estos nuevos conjuntos de datos para enseñar el mismo algoritmo varias veces, al fina lo podremos predecir un resultado  a través de una  mayoría simple de votos.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/03/Screen-Shot-2019-09-08-at-12.10.14-PM.png
+paragraph: El ejemplo más famoso de empaquetamiento es el algoritmo de bosque aleatorio , que es simplemente empaquetar los árboles de decisión (que se ilustraron anteriormente).
+paragraph: Cuál es un buen ejemplo ?
+paragraph: Cuando usted abre la aplicación de la cámara de su teléfono móvil y la ve dibujando cuadros alrededor de las caras de las personas, es probable que sea el resultado del trabajo de Random Forest. Las redes neuronales serían demasiado lentas para ejecutarse en tiempo real, pero los algoritmos de empaquetamiento son ideales ya que pueden calcular “árboles” en todas las sombras de las imágenes que la tarjeta de vídeo del teléfono es capaz de procesar.
+paragraph: En algunas tareas, la capacidad de los Arboles aleatorios ( Random Forest)   para ejecutarse en paralelo es  notablemente eficiente,   sobre todo en aplicaciones de tiempo real.   En todo , siempre  hay una compensación.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7rq.jpg
+paragraph: Los algoritmos de impulso se entrenan uno por uno de forma secuencial. Cada uno de manera subsiguiente le presta su  atención a los datos que fueron predichos por el anterior.  Acá se busca repetir tantas veces el proceso como sea necesario hasta que el resultado sea el esperado…
+paragraph: Al igual que en el empaquetamiento, estos algoritmos utilizan subconjuntos de nuestros datos, pero esta vez no se generan de forma aleatoria. Ahora, en cada sub-muestra se toma  una parte de los datos que el algoritmo anterior no logró  procesar, y ahí  , utilizamos este nuevo tipo de algoritmo que aprender a corregir los errores del anterior.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://www.juanbarrios.com/wp-content/uploads/2020/03/Screen-Shot-2019-09-11-at-1.18.02-PM-1.png
+paragraph: La principal ventaja de este tipo de algoritmos es que tienen  una precisión de clasificación muy alta . Ademas son más rápidos  que las redes neuronales. Esto viene siendo como una carrera entre una vagoneta  y un auto de carreras. La vagoneta puede transportar mas y hacer más, pero si quiere ir mas rápido, sería mejor utilizar un auto de carreras.
+paragraph: Si desea un ejemplo real de BOOSTING , abra su Facebook o el Google y comience a escribir una consulta en el espacio de búsqueda.  En ese momento un ejercito de arboles estarán analizando los trillones de datos disponibles en los indices de estas empresas para  obtener los resultados mas relevantes ? Eso es porque estamos  usando el boosting.
+paragraph: Hoy en día hay tres herramientas populares para hace BOOSTING en el campo de la salud son:   CatBoost,   LightGBM, y . XGBoost
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7r4.jpg
+paragraph: Objetivo:  Identificar  un tipo de animal con una foto , o un tipo de deporte con una simple foto
+paragraph: Principalmente Utilizadas para:
+paragraph: Arquitecturas mas populares: el Perceptrón multicapa, Redes Neuronales convolucionales CNN,  Redes neuronales recurrentes RNN y los  Autoencoders
+paragraph: Siempre hay alguien intentado explicar  las redes neuronales utilizando analogías con el “cerebro humano”, Mejor trataremos de  explicarlo de otro modo…..
+paragraph: Cualquier red neuronal es básicamente una colección de”neuronas” y conexiones entre ellas. Vamos a definir neurona como una función que tiene muchas  entradas y una salida. Su tarea es tomar números a la   entrada, realizar una serie de operaciones entre  ellos y enviar un  resultado a la salida. ( Algo así como sumar  todos los números de las entradas y, si esa suma es mayor que N, obtenga 1 como resultado. De lo contrario – cero. )
+paragraph: Las conexiones son como canales entre las neuronas. Conectan las salidas de una neurona con las entradas de otra para que puedan enviarse dígitos entre sí. Cada conexión tiene un solo parámetro “el peso” . El peso es como una fuerza de conexión para una señal. Cuando el número 10 pasa a través de una conexión con un peso de 0.5, se convierte en 5.
+paragraph: Estos pesos le dicen a la neurona que responda más a una entrada y menos a otra. Los pesos se van reajustando  cuando la neurona se entrena, y a lo largo de miles o millones de replicaciones  (épocas)  es como aprende la red. Básicamente, eso es todo lo que hay que hacer.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7wf.jpg
+paragraph: Para evitar que la red caiga en la anarquía, las neuronas están vinculadas por capas, no aleatoriamente. Dentro de una capa, las neuronas no están interconectadas, sino que  están conectadas a las neuronas de las capas siguientes y anteriores y así sucesivamente . Los datos dentro de esta red de neuronas van estrictamente en una dirección, desde las entradas de la primera capa hasta las salidas de la última.
+paragraph: Si existe  un número suficiente de capas y se colocan los pesos correctamente, se obtendrá lo siguiente:
+paragraph: Al aplicar a la entrada, digamos, la imagen del dígito 4 en manuscrito, los pixels negros activan las neuronas asociadas, luego activan las siguientes capas, y así sucesivamente, hasta que finalmente se obtiene una salida que resulta común a las 4 entradas y así se se obtiene el  resultado de un número 4 . (ver gráfica abajo)
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7wg.jpg
+paragraph: Cuando se hace la programación en la vida real, nadie está escribiendo neuronas y conexiones. En su lugar, todo se representa como matrices y se todo se calcula en función de la multiplicación de las matrices en busca de un mejor rendimiento.
+paragraph: Una red que tiene múltiples capas, y que a su vez  que tienen conexiones entre cada neurona se llama Perceptrón multicapa (“MLP”) y se considera la arquitectura más básica de una red neuronal .
+paragraph: Un solo Perceptrón multicapa no está diseñado para resolver problemas muy grandes, por ello después de que construimos esta red de neuronas , nuestra tarea es asignar formas adecuadas para que las neuronas reaccionen correctamente a las señales entrantes. Ahora es el momento de recordar que tenemos datos que son muestras de “entradas” y “salidas” debidamente seleccionadas . Le mostraremos a nuestra red un dibujo de nuestro dígito 4 y le diremos que  ‘adapte sus pesos para que cada vez que vea esta entrada, a la salida emita un número 4’.
+paragraph: Al inicio la red neuronal asigna  los pesos,  al azar. Después de mostrarle un dígito, emite una respuesta aleatoria porque las ponderaciones al inicio no son correctas y posiblemente se alejan mucho de la realidad , as partir de ahí se procede a comparar en qué medida este resultado difiere del correcto. Luego, comenzamos a desplazar la red hacia atrás desde las salidas a las entradas y le decimos a cada neurona que calcule  la diferencia entre el valor esperado y el valor de salida , buscando que el mismo se  acerque a CERO, conforme la red vaya aprendiendo este valor irá ira mejorando y así sucesivamente ‘.
+paragraph: Después de cientos de miles de ÉPOCAS o ciclos de ‘inferir-verificar-castigar’, el error se aproximará mas a CERO . Ese ir adelante y atrás mejorando se conoce como  “Backpropagation” , o propagación hacia atrás , y utiliza un modelo matemático conocido como el calculo de gradiente.
+paragraph: Una red neuronal bien entrenada puede realizar el trabajo de cualquiera de los algoritmos descritos en este documento  (y con frecuencia funcionará de manera más precisa, pero también de manera mas lenta ).
+paragraph: Esta universalidad de adaptación es lo que las hizo,  ampliamente populares. Finalmente, se logró que una arquitectura similar al funcionamiento del cerebro humano en la  que  solo necesitamos ensamblar muchas capas y enseñarles , es lo que se necesitaba para predecir datos sobre cualquier tema .
+paragraph: Resultó que las redes con un gran número de capas requerían una potencia de cálculo inimaginable hasta no hace muchos años.   Hoy en día, cualquier “PC gamer” con un procesador tipo “Gforce” tiene mas poder computacional que cualquier tecnología poco reciente, por eso antes la gente no utilizaba las redes neuronales por falta de ese poder computacional, y por ello siempre se pensó que  las redes neuronales nunca lograrían su propósito.
+paragraph: Pero el mundo no se conformó con utilizar solamente las redes neuronales y cada día con mas y mejores capacidades de procesamiento  surge el llamado Aprendizaje Profundo ó deep learning.
+paragraph: Acá hay que tener en cuenta un elemento teórico:  Hoy en día, solo los teóricos intentan dividir lo que es el aprendizaje  profundo del no tan profundo. Hoy en día se pueden utilizar bibliotecas “profundas” populares como Keras , TensorFlow y PyTorch, incluso cuando construimos una mini red con cinco capas, por lo que esa clasificación de aprendizaje profundo o no tan profundo es mas bien académico y no tan práctico.
+paragraph: Las redes neuronales convolucionales están de moda en este  momentos. Se utilizan para buscar objetos en fotos y vídeos, reconocimiento facial, transferencia de estilo, generar y mejorar imágenes, crear efectos como cámara lenta y mejorar la calidad de las imágenes . Hoy en día las CNN se utilizan en todos los casos que involucran fotos y vídeos.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7rz.jpg
+paragraph: La imagen de arriba es un resultado producido por “Detectron” un algoritmo detector que recientemente Facebook liberó al publico como una librería de código abierto.
+paragraph: El problema con las imágenes siempre fue la dificultad de extraer características de ellas.   Usted puede dividir un texto en palabras, y hasta en letras para buscar los atributos de las palabras en vocabularios especializados, etc, pero en las imágenes esto no es posible y hasta hace algunos años se optaba por etiquetar manualmente las imágenes para enseñarle a la máquina dónde estaban las orejas o la cola  de un gato,  en una  imagen específica. Este enfoque obtuvo el nombre de “características de fabricación artesanal” y solía ser muy utilizado, pero su debilidad es que resultaba  muy laborioso .  Y la verdad es que al final termina teniendo un enfoque puramente “comparativo” y no de aprendizaje real de las características de las imágenes
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7wh.jpg
+paragraph: Hay un montón de problemas con este tipo de tecnología artesanal.
+paragraph: En primer lugar, si un gato tiene las orejas hacia abajo o se aleja de la cámara: estás en problemas, la red neuronal no logrará identificarlo.
+paragraph: En segundo lugar, si usted le pregunta a cualquier persona que diga 10 características diferentes que distinguen a los gatos de otros animales, le será muy difícil hacerlo .  Esto es debido a que las personas no solo miran la forma de la orejas o cuentan las patas , sino que hay  muchas otras características a las que nuestro cerebro  toma conciencia, y esto es lo que resulta altamente complejo de explicárselo a  una  máquina.
+paragraph: Entonces como lo hemos venido haciendo ?   El abordaje mas complejo buscaría que la máquina aprenda las características por sí misma, basándose en líneas básicas.   Cómo lo hacemos ?   Un abordaje puede ser dividir la imagen completa en bloques de 8 × 8 pixels y asignarle a cada uno un tipo de línea dominante, ya sea horizontal [-], vertical [|] o diagonal [/]. También puede ser que haya otras características  altamente visibles.
+paragraph: La salida serían varias tablas formadas por palitos  que son, de hecho, las características más simples que representan los bordes de los objetos en la imagen. Son solamente imágenes,  pero construidas de palitos . Así que, una vez más, podemos tomar un bloque de 8 × 8 y ver si coinciden. Y una y otra vez …
+paragraph: Esta operación se llama convolución, y este nombre le dió la denominación al algoritmo. La convolución se puede representar como una capa de una red neuronal, porque cada neurona puede actuar como cualquier función.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7wj.jpg
+paragraph: Cuando alimentamos nuestra red neuronal con muchas fotos de gatos, asigna automáticamente pesos más grandes a las combinaciones de palos que veían con más frecuencia. No importa si se trata de una línea recta de la espalda de un gato o un objeto geométricamente complicado como la cara de un gato.
+paragraph: Para obtener nuestra salida pondríamos un perceptrón simple que buscará las combinaciones más comunes ( Las que se activaron mas veces  y, en base a esto, podríamos diferenciar a los gatos de los perros.)
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/74s.jpg
+paragraph: Lo grandioso  de esta idea es que tenemos una red neuronal que busca las características más distintivas de los objetos por sí misma. No necesitamos recogerlos manualmente. Podemos alimentar cualquier cantidad de imágenes de cualquier objeto con solo buscar en él miles de millones de imágenes y nuestra red creará mapas de características a partir de palos y aprenderá a diferenciar cualquier objeto por sí solo.
+paragraph: En las redes de fabricaciones artesanal podemos tener un millón de fotos de gatos sobre las cuales nuestro sistema podría buscar características comunes o similares y cuando comparamos contra una nueva imagen podría ser que el sistema no la reconozca.  Con las redes neuronales modernas la magia la haría el sistema logrando establecer no sólo comparaciones sino “extrapolando la información” y tomando una decisión sobre si la nueva imagen se trata  o no de un gato ( ya no es una comparación sino una decisión )
+paragraph: Es la segunda arquitectura más popular entre la RN  hoy en día. Las redes recurrentes nos han dado  cosas útiles como la traducción automática neuronal, el reconocimiento de voz y la síntesis de voz en asistentes inteligentes. Los RNN son las mejores para datos secuenciales como voz, texto o música.
+paragraph: ¿Recuerdas Microsoft Sam, el sintetizador de voz de la vieja escuela de Windows XP? Esos sistemas construían  palabras letra por letra, tratando de juntarlas, lo que al final nos parecía algo muy “robotizado”. Si ahora escuchamos un “Amazon Alexa” o Asistente de Google. ¡No solo dicen las palabras con claridad, sino que incluso colocan los acentos de forma correcta !
+paragraph: La red neuronal está tratando de hablar
+paragraph: Los asistentes de voz modernos están entrenados para hablar no letra por letra, sino en frases completas a la vez. Esto se debe gracias a que se tomaron muchos textos con voz y poco a poco se fueron entrenando las redes de forma tal que se pudiesen  generar secuencias de audio cada vez más cercana al habla original.
+paragraph: En otras palabras, usamos el texto como entrada y su audio como la salida deseada. Le pedimos a una red neuronal que genere algo de audio para el texto dado, luego lo comparamos con el original, corregimos  los errores e intentemos acercarnos lo más posible al ideal, después de hacer el proceso miles o millones de veces .
+paragraph: Esto podria parecer un proceso de aprendizaje clásico. Incluso podríamos utilizar un perceptrón multicapa  para hacer esto. Pero, ¿cómo definimos  si el resultado es correcto ? Tener una salida particular para cada frase posible,  no es una opción, por lo que esto implica y vendría a ser igual al proceso de capturar fotos de gatos y etiquetarlas a mano.
+paragraph: Aquí nos ayudará el hecho de que el texto, el habla o la música son secuencias. Se componen de unidades consecutivas como sílabas. Todos ellos suenan únicos pero dependen de los anteriores. Pierde esta conexión y obtienes el fenómeno de “dubstep.”
+paragraph: Es posible entrenar un perceptrón para generar estos sonidos únicos, pero ¿cómo recordará las respuestas anteriores? Así que la idea es agregar memoria a cada neurona y usarla como una entrada adicional en la próxima ejecución. Una neurona podría hacer una nota por sí misma.   Este sistema podría ir descomponiendo las frases y decir por ej: , aquí teníamos una vocal, el siguiente sonido debería sonar más alto, etc .
+paragraph: Y así es como aparecieron las redes neuronales  recurrentes.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7wk.jpg
+paragraph: Este enfoque tiene  un gran problema: Si las neuronas tienen que recordar  sus resultados pasados, la cantidad de conexiones en la red sera tan grande que es   técnicamente imposible ajustar todos los pesos.
+paragraph: Cuando una red neuronal no puede olvidar, no puede aprender cosas nuevas.
+paragraph: La primera decisión fue simple: limitar la memoria neuronal.  Por Ej.  para memorizar no más de 5 resultados recientes. Sin embargo ésto rompió toda la idea original .
+paragraph: Un enfoque mucho mejor llegó más tarde: usar celdas especiales, similares a la memoria de la computadora. Cada celda puede registrar un número, leerlo o restablecerlo. Se les llamó células de memoria a largo y corto plazo (LSTM).
+paragraph: Ahora, cuando una neurona necesita establecer un recordatorio, coloca una bandera en esa célula. Como “era una consonante en una palabra, la próxima vez use diferentes reglas de pronunciación”. Cuando la bandera ya no es necesaria, las células se restablecen, dejando solo las conexiones “a largo plazo” del perceptrón clásico. En otras palabras, la red está capacitada no solo para aprender ponderaciones sino también para establecer estos recordatorios.
+paragraph: Simple, pero funciona!
+paragraph: CNN + RNN = falso Obama
+paragraph: Puedes tomar muestras del habla desde cualquier lugar. BuzzFeed, por ejemplo, tomó los discursos de Obama y entrenó una red neuronal para imitar su voz. Como ves, la síntesis de audio ya es una tarea simple. El vídeo todavía tiene problemas, pero es cuestión de tiempo para que llegue a ser perfecto o al menos casi .
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i1.wp.com/syncedreview.com/wp-content/uploads/2017/08/nmt-model-fast.gif?fit=640%2C326&ssl=1
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://i.vas3k.ru/7rx.png
+title: El fin: ¿cuándo será la guerra contra las máquinas?
+paragraph: El problema principal aquí es que la pregunta “¿cuándo las máquinas se vuelvan más inteligentes que nosotros , nos esclavizarán a todos?” Esto en principio es a incorrecto, ya que hay demasiadas condiciones ocultas en estas tecnologías
+paragraph: Cuando decimos “ser más inteligentes que nosotros” es como si quisiéramos decir que hay una cierta escala unificada de inteligencia . La parte superior de la cual es un humano, los perros están  más bajos y las palomas en la parte inferior… por decir algo
+paragraph: Sin embargo, esta concepción también está mal.
+paragraph: Si este fuera el caso, el ser  humano debería poder vencer  a los animales en todo, pero tampoco es cierto.  Una  ardilla promedio puede recordar mil lugares en donde logró esconder sus nueces, y un  ser humano no tiene esa capacidad.
+paragraph: ¿Entonces la inteligencia es un conjunto de habilidades diferentes, no es un único valor medible !  ¿O es que recordar los lugares donde se esconden las nueces no se incluye en la inteligencia?
+paragraph: Una pregunta aún más interesante: ¿por qué creemos que las posibilidades del cerebro humano son limitadas? Hay muchos gráficos populares en Internet, donde el progreso tecnológico se dibuja como un exponente y las posibilidades humanas son constantes. ¿Sera así ?
+paragraph: Si te pedimos que multipliques 1680 por 950 ahora mismo en tu mente, posiblemente ni siquiera lo intentes . Pero si te doy una calculadora,  harás el cálculo en pocos  segundos. ¿Esto significa que la calculadora acaba de expandir las capacidades de tu cerebro?
+paragraph: Si es así, ¿Se podrá continuar expandiéndolos con la ayuda de otras máquinas?  Esto es mas evidente  cuando usamos nuestros  teléfonos móviles  para recordar una gran cantidad de datos?   Según parece desde hace rato venimos  expandiendo las capacidades de nuestros cerebros con las máquinas.
+paragraph: Muchos de los elementos del presente  artículo fueron originalmente escritos  por Vasily Zubarev .   Con el paso del tiempo  juanbarrios.com  * lo ha venido traduciendo,  adaptando, ampliando y mejorando con una gran cantidad de fuentes y la experiencia práctica.
+paragraph: *   el Dr. Juan I. Barrios es médico especialista en Informática Médica., es máster en Business Intelligence y experto en BIG DATA y Ciencia de datos en el campo de la salud. Aplica algoritmos y modelos de Inteligencia artificial  a sus  investigaciones y en su campo docente.  Actualmente reside en Barcelona y es profesor Visitante de la Universidad de Barcelona.
+title: Navegación de entradas
+title: 3 Responses
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://secure.gravatar.com/avatar/720421a079fac5c63a60f4a19291a655?s=32&d=mm&r=g
+paragraph: Buenos días, cordial saludo.
+Solo quiero agradecer por esta excelente información, esta muy bien explicado todo.
+Muchas gracias por su tiempo y por su dedicación para personas que como yo queremos explorar y aprender mas este fascinante mundo de inteligencia artificial.
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://secure.gravatar.com/avatar/32a16b51882ab1e727ad755c711abf41?s=32&d=mm&r=g
+paragraph: Excelente!!
+image: data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+image: https://secure.gravatar.com/avatar/e7987341687e0d873981400b82ca1557?s=32&d=mm&r=g
+paragraph: Muy ilustrativo, muchísimas gracias por este gran trabajo!
+title: Deja una respuesta Cancelar la respuesta
+paragraph: Barcelona, 08029
+paragraph: juan@juanbarrios.com
+paragraph: alessandrocastegnaro.me

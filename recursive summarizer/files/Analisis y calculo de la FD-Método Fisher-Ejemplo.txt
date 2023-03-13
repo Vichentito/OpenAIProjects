@@ -1,0 +1,311 @@
+Capitulo 8
+
+Analisis Discriminante
+
+g@ Técnica de clasificacién donde el objetivo es obtener una funcién capaz de
+clasificar a un nuevo individuo a partir del conocimiento de los valores de
+ciertas variables discriminadoras.
+
+g A diferencia del A. Cluster, se deben conocer los grupos previamente y a
+qué grupo pertenecen ciertos individuos, de los que también se conoce sus
+valores en las variables discriminantes.
+
+EJEMPLO
+
+Se dispone de una muestra de pacientes a los que se les mide previamente
+un conjunto de variables. El investigador puede dividir la muestra en dos
+(o més) grupos de diagnéstico. Mads tarde se mide a un nuevo enfermo
+el mismo grupo de variables y, por los valores obtenidos, el Analisis Dis-
+criminante permite asignar dicho paciente al grupo de maxima probabili-
+dad, cuantificando a la vez el valor de ella.
+
+INTERES
+
+Extension a los campos de las Ciencias de la Vida en la que la clasificacién
+de individuos a través de un perfil observado constituye un frecuente pro-
+blema de investigacién.
+
+DEFINICION
+
+Técnica de Analisis Multivariante que permite asignar o clasificar nuevos
+individuos dentro de grupos previamente reconocidos o definidos.
+
+85
+
+ NEW PAGE 
+86 Analisis Discriminante
+
+PLANTEAMIENTO DEL PROBLEMA
+
+mg Punto de partida: Tabla de datos de N individuos en que se han medido
+p variables (caso habitual), una variable cualitativa adicional (dependiente
+o clasificativa) con dos o mas categorfas que define, por otros medios, el
+grupo a que cada individuo pertenece.
+
+m Dimensién de la matriz: N x (p+1).
+m@ Cada caso figura con un perfil y una asignacién de grupo.
+
+mg Ojetivo: Obtener un modelo matematico discriminante contra el cual sea
+contrastado el perfil de un nuevo individuo cuyo grupo se desconoce para,
+en funcién de un resultado numérico, ser asignado al grupo mas probable.
+
+mg Nota: Cuanto mejor sea el grupo de partida mas fiable sera el resultado
+de asignaciones posteriores.
+
+g Doble Finalidad:
+
+@ Por una parte explicar la pertenencia de cada caso del fichero de datos
+original a uno u otro grupo en funci6n de las variables de su perfil para
+comprobar su pertenencia o no al grupo preestablecido y cuantificar el
+peso de cada una de ellas en la discriminaci6én.
+
+@ Por otra parte predecir a qué grupo mas probable habra de pertenecer
+un nuevo individuo del que tinicamente se conoce su perfil de variables.
+
+En el primer caso se explica y
+
+en el segundo se predice la variable categ6érica 0 grupo
+
+
+ NEW PAGE 
+Analisis Discriminante 87
+
+EJEMPLO
+
+@ Dos grupos definidos.
+@ 3 variables explicativas: V1,V2 y V3
+
+m@ 10 individuos de los que se conoce su perfil y su asignacién
+
+V1 V2 V3 Grupo
+15 41 32 1
+17 40 56 1
+32 35 46 2
+16 42 50 1
+30 33 45 2
+32 32 33 2
+33 30 37 2
+21 39 35 1
+20 38 44 1
+30 31 45 2
+g@ Fl valor que toma el primer individuo en la primera variable es 15, el valor
+que toma este individuo en la segunda variable es 41 y el valor que toma
+
+en la tercera es 32. El grupo al que pertenece este individuo es el 1.
+
+@ Los individuos 1, 2, 4, 8 y 9 son del grupo 1 y los individuos 3, 5, 6, 7 y
+10 son del grupo 2.
+
+mg La pertenencia a cada grupo no viene determinada por el valor de las
+variables. (Nuestro objetivo es relacionar estas dos informaciones).
+
+@ Se conoce la pertenencia a cada grupo por otro medios.
+
+@ La variable que asigna los individuos a los grupos es cualitativa (se trans-
+forma en numérica para su tratamiento estadifstico).
+
+g@ Fl objetivo seraé, dado un nuevo individuo, obtener los valores de V1, V2 y
+V3 y utilizar esta informacién para clasificarlo en el grupo 1 6 2.
+
+gm También es de nuestro interés determinar qué variables tienen mas peso a
+la hora de asignar el individuo al grupo mas probable al que pertenece.
+
+ NEW PAGE 
+88 Analisis Discriminante
+
+ENFOQUES DE ANALISIS
+
+1) Basado en la obtencién de funciones discriminantes de calculo similar a las
+ecuaciones regresién lineal miiltiple. Consiste en conseguir, a partir de las
+variables explicativas, unas funciones lineales de éstas con capacidad para
+clasificar otros individuos. A cada nuevo caso se aplican dichas ecuaciones
+y la funci6n de mayor valor define el grupo al que pertenece.
+
+2) Basado en técnicas de correlacién canénica y de componentes principales
+(Andlisis Factorial) denominado Andlisis Discriminante Canonico.
+
+CLASIFICACION EN DOS GRUPOS
+
+@ FEstudiamos la aplicacién del Andlisis Discriminante a la clasificacién de
+individuos en el caso de que se puedan asignar solamente a dos grupos a
+partir de k& variables discriminadoras.
+
+g@ Problema resuelto por Fisher mediante su funcién discriminante:
+
+D = u,X1 + ugX2 + ugX3+...+ upXy
+
+gm Las puntuaciones discriminantes son los valores que se obtienen al dar
+valores a X1, X9,...,X, en la ecuacién anterior.
+
+m@ Se trata de obtener los coeficientes de ponderacién u;.
+
+ NEW PAGE 
+Analisis Discriminante 89
+
+m@ Si se considera N observaciones ==> La funcién discriminante
+
+Dj; = uy X4; + unXo; + ugXaj +... + UX EG: Vi=l,...,N
+
+Dj, es la puntuacién discriminante correspondiente a la observacién i—ésima.
+
+@ Funcion discriminate en forma matricial:
+
+dD, Xy Xq ... Xe U1
+Dy | — | X12 Xe ... Xv ug
+Dn Xin Xon wee XEN Uk
+
+mg Expresando el modelo en funcién de las desviaciones a la media
+
+D, — dy Xi, Xqy ... Xi ut
+Dy—dy | — | Xiz_ X22... Xko U2
+Dyn —_ dy Xin Xon eee XEN Uk
+Es decir:
+d=Xu
+
+@ La variabilidad de la funcién discriminante (suma de cuadrados de las
+desviaciones de las variables discriminantes con respecto a su media) se
+expresa:
+
+dd =wX'Xu
+
+# X'X es una matriz simétrica que expresa las desviaciones cuadraticas
+con respecto a la media de las variables (suma de cuadrados total). Se
+puede descomponer en suma de cuadrados entre grupos F’ y suma de
+cuadrados intragrupos V .
+
+
+ NEW PAGE 
+90 Analisis Discriminante
+
+X'X =F4V
+{
+
+dd=wX'Xuswu(F4+V)usuFutuVu
+
+@ Los ejes discriminantes vienen dados por los vectores propios asociados a
+los valores propios de la matriz V~!F' ordenados de mayor a menor.
+
+m@ Las puntuaciones discriminantes se corresponden con los valores obtenidos
+al proyectar cada punto del espacio k—dimensional de las variables origi-
+nales sobre el eje discriminante.
+
+EJEMPLO
+
+Consideremos las variables X; y X2 que se miden en un conjunto de 13
+individuos. La nube de puntos resultante es
+
+Xx
+
+%
+
+Los centros de gravedad o centroides (vector de medias) resumen la infor-
+macién sobre los grupos.
+
+ NEW PAGE 
+Analisis Discriminante 91
+
+CENTROIDES PARA CADA GRUPO (GRUPO I Y GRUPO II)
+
+Xi Xur
+_ Xo _ XorT
+c= . IT = :
+
+X xr Xqrr
+
+Los subindices J y IJ indican a qué grupo pertenece la variable.
+
+PARA CADA GRUPO SE OBTIENE
+
+Dr =uXip+u.Xer+...4 UpX kr
+
+Dry = wi Xi + UX t+... + UX er
+
+CRITERIO PARA CLASIFICAR A UN INDIVIDUO
+
+% Si D; < C se clasifica al individuo 7 en el grupo I .
+* Si D; > C se clasifica al individuo 7 en el grupo IT .
+
+4 C: punto de corte discriminante
+
+— Dr+ Di
+2
+
+C
+
+EN GENERAL
+
+D-C=uyX1 + upXo+...+upXp—C
+
+Se clasifica dependiendo de si D — C’ es positivo o negativo
+
+
+ NEW PAGE 
+92 Analisis Discriminante
+
+OBSERVACIONES
+
+@ Relacién entre el andlisis de regresién y el andlisis discriminante
+con dos grupos:
+
+Si se realiza una recta por minimos cuadrados, tomando como variable de-
+pendiente la variable que define la pertenencia a uno u otro grupo y como
+variables explicativas a las variables clasificadoras; los coeficientes que se
+obtienen guardan una estricta proporcionalidad con la funcién discrimi-
+nante de Fisher.
+
+@ Contrastes de significaci6n y evaluacién de la bondad del ajuste:
+
+Responden a las cuestiones
+
+* {Se cumple la hipétesis de homocedasticidad del modelo?
+* {Se cumple la hipdtesis de normalidad?
+
+* {Difieren significativamente las medias poblacionales de los dos gru-
+pos?
+
+CLASIFICACION EN MAS DE DOS GRUPOS
+
+ANALISIS DISCRIMINANTE MULTIPLE
+
+m@ Ntimero maximo de ejes discriminantes min (G — 1, k) (G=numero de ca-
+tegorias). Se obtienen G — 1 ejes discriminantes si el nimero de variables
+explicativas es mayor o igual que G — 1 (hecho que suele ser generalmente
+cierto).
+
+@ Cada una de las funciones discriminantes D; se obtiene como funcion lineal
+de las k variables explicativas.
+
+D; = wjyX1 + UjoXo +... + UipXy i=1,...,G-1
+
+
+ NEW PAGE 
+Analisis Discriminante 93
+
+m@ Los G — 1 ejes vienen definidos respectivamente por los vectores uz, Ua, ...
+> UG-1-
+
+Ui1 U21 UG-1,1
+U12 U22 UG-1,2
+Us= : » U= : pees, UG-1 = :
+U1k U2k UG-1,k
+CONCLUSION
+
+@ Los ejes discriminantes son las componentes de los vectores propios nor-
+malizados asociados a los valores propios de la matriz V~'F ordenados.
+
+CONTRASTES DE SIGNIFICACION
+
+@ Se plantean contrastes especfficos para determinar si cada uno de los valores
+propios obtenidos contribuye a la discriminacion entre los diferentes grupos.
+
+Bibliografia utilizada:
+
+* R. Gutiérrez, A. Gonzalez, F. Torres, J.A. Gallardo (1994). “Técnicas de Andlisis
+de datos Multivariable. Tratamiento computacional”. Universidad de Granada.
+
+* B. Visauta Vinacua (1998). “Andlisis estadtstico con SPSS para Windows, volumen
+II: Estadtsitca multivariante”. McGraw Hill .
+
+@ Temporalizaci6n: Dos horas
+
+ NEW PAGE
