@@ -1,5 +1,5 @@
-Write a concise but detailed summary, in spanish, of the following:
+Write a concise but detailed summary, use examples if its necessary, in spanish, of the following:
 
 <<SUMMARY>>
 
-DETAILED SUMARRY IN SPANISH:
+DETAILED SUMARRY WITH EXAMPLES, IN SPANISH:

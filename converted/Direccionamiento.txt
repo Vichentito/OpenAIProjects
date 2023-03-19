@@ -1,0 +1,263 @@
+42 TRANSMISION DE DATOS Y REDES DE COMUNICACIONES
+
+Nivel de aplicacién
+
+EI nivel de aplicacion en TCP/IP es equivalente a una combinacion de los niveles de sesién, presentacién y
+aplicacién del modelo OSI. En este nivel se definen muchos protocolos. En los ultimos capitulos se cubren
+muchos de estos protocolos estandar.
+
+2.5 DIRECCIONAMIENTO
+
+En una red que utiliza protocolos TCP/IP se utilizan cuatro niveles de direcciones: direeciones fisicas (enla-
+ce), direcciones légicas (IP), direcciones de puertos y direcciones especificas (véase la Figura 2.17).
+
+Cada direccion esta relacionada con un nivel especifico de la arquitectura de TCP/IP, como se muestra en
+la Figura 2.18.
+
+Direcciones fisicas
+
+La direccion fisica, también conocida como direccién de enlace, es la direccién de un nodo tal y como viene
+definida por su LAN 0 WAN. Se incluye en la trama utilizada por el nivel de enlace de datos. Es la direccion
+de mas bajo nivel.
+
+La direcci6n fisica tiene autoridad sobre la red (LAN 0 WAN). El tamaiio y formato de estas direcciones
+varian dependiendo de la red. Por ejemplo, Ethernet utiliza una direccion fisica de 6 bytes (48 bits) que se
+imprimen en la tarjeta interfaz de red (NIC). LocalTalk (Apple), sin embargo, tiene una direccién dinamica
+de 1 byte que cambia cada vez que la estacién arranca.
+
+Ejemplo 2.1
+
+En la Figura 2.19 un nodo con direccion fisica 10 envia una trama a un nodo con direccin fisica 87. Los dos nodos estan
+conectados por un enlace (LAN con topologia en bus). En el nivel de enlace de datos, esta trama contiene en la cabecera
+la direccién fisica (de enlace). Estas son las Gnicas direcciones necesarias. E] resto de la cabecera contiene otra informa-
+cin necesaria para este nivel. La cola normalmente contiene bits extra necesarios para la deteccién de errores. Como se
+muestra en la figura, la computadora con direccién fisica 10 es la emisora y la computadora con direccién fisica 87 es la
+receptora. El nivel de enlace de datos en la emisora recibe datos del nivel superior. Encapsula estos datos en una trama
+y afiade una cabecera y una cola. La cabecera, entre otras cosas, transporta las direcciones fisicas del emisor y del recep-
+tor. Observe que en la mayoria de los protocolos de nivel de enlace de datos, la direccién destino 87 en este caso, se pone
+antes que la direccién origen (10 en este caso).
+
+Se ha mostrado una topologia en bus para una LAN aislada. En una topologia en bus, la trama se propaga a todas
+las direcciones (derecha e izquierda). La trama propagada hacia la izquierda muere cuando alcanza el final del cable, si
+el cable finaliza apropiadamente. La trama propagada a la derecha se envia a cada estacion de la red. Cada estacién con
+
+Figura 2.17 Direcciones en TCP/IP.
+
+Direcciones Direcciones Direcciones Direcciones
+fisicas légicas de puerto especificas
+
+
+ NEW PAGE 
+CAPITULO 2. MODELOS DE REDES 43
+
+2.18 Relaciones entre los niveles y las direcciones en TCP/IP.
+
+_ Direcciones
+
+especificas
+
+Direcciones
+de puerto
+
+Nivel de aplicacién Procesos
+
+Nivel de transporte
+
+Nivel de red IP y otros Direcciones
+: protocolos ——> légicas
+
+Nivel de enlace de datos
+
+Redes Direcciones
+Pe fisicas -_o : °
+fisicas
+subyacentes
+
+Nivel fisico
+
+Figura 2.19 Direcciones fisicas.
+
+Emisor Receptor
+
+Direccién ~ Ser teed
+
+de destino La direccidn destino
+| no coincide; se descarta [nar creres, Ta
+87 10 |[_ Datos elpaquete Jf 8710 372;
+
+; eee
+Direccion
+origen
+
+una direccion fisica distinta a la 87 descarta la trama debido a que la direccién de destino no coincide con su propia
+direccion fisica. La computadora destino correcta, sin embargo, encuentra una trama con una direccion fisica igual a la
+suya. Se comprueba la trama, se descarta la cabecera y la cola y se recuperan los datos encapsulados y se entregan al
+nivel superior.
+
+Ejemplo 2.2
+
+Como se vera en el Capitulo 12, la mayoria de las redes de area local utilizan una direccién fisica de 48 bits (6 bytes)
+escritas con 12 digitos hexadecimales; cada byte (2 digitos hexadecimales) se separa por dos puntos, como se muestra a
+continuacion:
+
+07:01:02:01;2C:4B
+Una direccion fisica de 6 bytes (12 digitos hexadecimales)
+
+ NEW PAGE 
+44 TRANSMISION DE DATOS Y REDES DE COMUNICACIONES
+
+Direcciones légicas
+
+Las direcciones logicas son necesarias para comunicaciones universales que son independientes de las redes
+fisicas subyacentes. Las direcciones fisicas no son adecuadas en un entorno de interconexion donde diferentes
+redes pueden tener diferentes formatos de direccion. Se necesita un sistema de direccionamiento universal en
+el que cada host pueda ser identificado de forma unica, sin tener en cuenta la red fisica a la que pertenece.
+
+Con este objetivo se han disefiado las direcciones logicas. Una direccion !6gica en Internet es actualmen-
+te una direccién de 32 bits que define de forma unica a un host conectado a Internet. No hay dos hosts visibles
+y con direcciones ptiblicas que puedan tener la misma direccién IP.
+
+Ejemplo 2.3
+
+La Figura 2.20 muestra una parte de una Internet con dos encaminadores que conectan tres LAN. Cada dispositivo (com-
+putadora o encaminador) tiene un par de direcciones (légica y fisica) para cada conexion. En este caso, cada computa-
+dora se conecta a solo un enlace y por tanto sdlo tiene un par de direcciones, Cada encaminador, sin embargo, se conec-
+ta a tres redes (sdlo se muestran dos en la figura). De esta forma, cada encaminador tiene tres pares de direcciones, una
+para cada conexidn. Aunque puede parecer obvio que cada encaminador tenga una direccion fisica distinta para cada
+conexion, puede no ser tan obvio por qué necesita una direccion logica para cada conexiOn. En el Capitulo 22 se trataran
+estos aspectos al presentar el encaminamiento.
+
+La computadora con direccion légica A y direccién fisica 10 necesita enviar un paquete a la computadora
+con direccion légica P y direccién fisica 95, Se utilizan letras para mostrar las direcciones logicas y numeros
+
+A otra red | X/44
+
+Nivel de enlace de datos Q
+
+—— de direveiones
+Tisieas
+
+Nivel de enlace de datos
+
+A[P [Datos] Nivel de red
+
+_s
+Niveles superiores oy
+jae) Receptor
+—,.
+
+PINS
+
+fisicus
+
+ NEW PAGE 
+CAPITULO 2. MODELOS DE REDES 45
+
+para las direcciones fisicas. Tanga en cuenta, sin embargo, que ambas son en realidad nimeros, como se vera
+mas tarde en este capitulo.
+
+E] emisor encapsula sus datos en un paquete en el nivel de red y afade dos direcciones légicas (A y P).
+Observe que en la mayoria de los protocolos, la direccién logica origen se pone antes que la direccion logica
+del destino (al contrario de lo que ocurre con las direcciones fisicas). El nivel de red, sin embargo, necesita
+encontrar la direccion fisica del siguiente salto antes de que el paquete pueda ser entregado. El nivel de red
+consulta su tabla de encaminamiento (véase el Capitulo 22) y encuentra que la direccién légica del siguiente
+salto (encaminador 1) es F. El protocolo ARP presentado anteriormente encuentra la direcciOn fisica del en-
+caminador | que se corresponde con la direccién légica 20. Ahora el nivel de red pasa esta direcci6n al nivel
+de enlace de datos, que a su vez, encapsula el paquete con la direccion fisica del destino 20 y su direccién
+fisica origen 10.
+
+La trama es recibida por cada dispositivo en la LAN 1, pero es descartada en todos excepto por el enca-
+minador |, que observa que la direccion fisica del destinatario incluida en la trama coincide con su propia
+direccion fisica. El encaminador extrae el paquete de la trama para leer la direccion logica del destinatario P.
+Puesto que la direccion logica no coincide con la direccion logica del encaminador, éste se da cuenta de que
+el paquete debe ser reencaminado. El encaminador consulta su tabla de encaminamiento y utiliza el protoco-
+lo ARP para encontrar la direcci6n fisica del destinatario del siguiente salto (encaminador 2), crea una nueva
+trama, la encapsula en un paquete y la envia al encaminador 2.
+
+Observe la direcci6n fisica de la trama. La direcci6n fisica del origen cambia de 10 a 99. La direccién
+fisica del destinatario cambia de 20 (direcci6n fisica del encaminador 1) a 33 (direcci6n fisica del encamina-
+dor 2). Las direcciones légicas del emisor y del destinatario siguen siendo las mismas, en caso contrario el
+paquete se perderia.
+
+En el encaminador 2 se produce un escenario similar. Se cambian las direcciones fisicas y se envia una
+nueva trama a la computadora destino. Cuando la trama alcanza el destino, se extrae el paquete de Ja trama.
+La direccidn logica del destinatario P coincide con la direccion légica de la computadora. Se extraen los datos
+del paquete y se entregan al nivel superior. Observe que aunque las direcciones fisicas cambian de nodo a
+nodo, las direcciones logicas permanecen sin cambios. Hay algunas excepciones a esta regla que se descubri-
+ran mas tarde en el libro.
+
+Las direcciones fisicas cambiaran de nodo a nodo,
+pero las direcciones légicas normalmente permanecen sin cambios.
+
+Direcciones de puertos
+
+La direccion IP y la direcciOn fisica son necesarias para que los datos viajen del Aost origen al destino. Sin
+embargo, llegar al nodo destino no es el objetivo final de la comunicacién de datos en Internet. Hoy en dia,
+las computadoras son dispositivos que pueden ejecutar multiples procesos al mismo tiempo. El objetivo final
+de la comunicacién en Internet es que un proceso se comunique con otro proceso. Por ejemplo, la computa-
+dora A puede comunicarse con la computadora C utilizando TELNET. Al mismo tiempo, la computadora A
+puede comunicarse con la computadora B utilizando el protocolo de transferencia de ficheros (FTP). Para que
+estos procesos puedan recibir datos simultaneamente, se necesita un método que etiquete a los diferentes
+procesos. En otras palabras, se necesitan direcciones. En la arquitectura de TCP/IP, la etiqueta asignada a un
+proceso se denomina puerto. Un puerto en TCP/IP tiene 16 bits.
+
+Ejemplo 2.4
+
+La Figura 2.21 muestra dos computadoras que se comunican mediante Internet. La computadora cmisora esta ejecutando
+tres procesos al mismo tiempo con direcciones de puertos a, b y c. La computadora destino esta cjccutando dos procesos
+
+ NEW PAGE 
+46 TRANSMISION DE DATOS Y REDES DE COMUNICACIONES
+
+al mismo tiempo en los puertos j y k. El proceso a en la computadora origen necesita comunicarse con el proceso j en la
+computadora destino. Observe que aunque ambas computadoras estan utilizando la misma aplicacion, FTP, por ejemplo,
+los puertos son diferentes debido a que uno es un programa cliente y el otro es un programa servidor, como se vera en el
+Capitulo 23. Para indicar que los datos del proceso a necesitan entregarse al proceso j y no al k, el nivel de transporte
+encapsula los datos del nivel de aplicacion en un paquete y afiade dos direcciones de puertos (a y j), origen y destino. El
+paquete del nivel de transporte es encapsulado en otro paquete en el nivel de red con las direcciones logicas del emisor
+y del receptor (A y P). Finalmente, el paquete se encapsula en una trama con la direccion fisica del origen y la direccion
+fisica del siguiente nodo. No se muestran las direcciones fisicas debido a que cambian de nodo a nodo dentro de la nube
+designada como Internet. Observe que aunque las direcciones fisicas cambian de nodo a nodo, las direcciones logicas y
+direcciones de puertos permanecen sin cambios desde el origen al destino. Hay algunas excepciones a esta regla que se
+trataran mas tarde en cl libro,
+
+Las direcciones fisicas cambian de nodo a nodo, pero las direcciones légicas
+y los puertos normalmente permanecen sin cambios.
+
+Ejemplo 2.5
+Como se vera en cl Capitulo 23, un puerto es una direccién de 16 bits representada por un numero decimal como se
+
+muestra a continuacion.
+
+7153
+Un puerto es un numero de 16 bits representado como un unico numero.
+
+Figura 2.21 9 Direcciones de puertos.
+
+ACL hh
+a... a,
+a.
+
+Datos | ------—- Nivel de aplicacién -—————~——
+a} j Datos |} --~--- Nivel de transporte — —-—-—--
+A/P | a] j [Datos |] ------ Nivel de red. —-----
+AIP) ali [Datos | — — Nivel de enlace de datos
+
+—-v\Y——a /
+
+Internet
+
+
+ NEW PAGE 
+CAPITULO 2. MODELOS DE REDES— 47
+
+Direcciones especificas
+
+Algunas aplicaciones tienen direcciones amigables para el usuario que se designan para esas direcciones es-
+pecificas. Ejemplos incluyen las direcciones de correo electronico (por ejemplo, forouzan@fhda.edu) y el
+localizador de recursos universal (URL) (por ejemplo, www.mhhe.com). La primera define el receptor de un
+correo electrdnico (véase el Capitulo 26); la segunda se utiliza para encontrar un documento en la World Wide
+Web (véase el Capitulo 27). Estas direcciones, sin embargo, se cambian a sus direcciones de puertos y direc-
+ciones ldgicas correspondientes en la computadora origen, como se vera en el Capitulo 25.
+
+ NEW PAGE

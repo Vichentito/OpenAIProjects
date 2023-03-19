@@ -1,0 +1,2 @@
+Transcripcion: nos da un flujo de datos hacia nosotros.
+Completion: GPT3 error: This is a chat model and not supported in the v1/completions endpoint. Did you mean to use v1/chat/completions?
