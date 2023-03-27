@@ -1,0 +1,486 @@
+23.3 PROTOCOLO DE CONTROL DE TRANSMISION (TCP)
+
+El segundo protocolo de nivel de transporte que veremos cn este capitulo se denomina protocolo de control
+de transmisién (Transmission Control Protocol, TCP). TCP, a diferencia de UDP, es un protocolo proce-
+s0 a proceso (programa a programa). Por tanto, TCP, como UDP, usa numeros de puertos. A diferencia de
+UDP, TCP es un protocolo orientado conexidn; crea una conexi6n virtual entre dos TCP para enviar datos.
+Ademas, TCP usa mecanismos de control de flujo y error a nivel de transporte.
+
+Resumiendo, se dice que TCP es un protocolo de transporte orientado a conexién y fiable. Aftade a IP las
+caracteristicas de orientacién a conexi6n y fiabilidad. :
+
+Servicios TCP
+
+Antes de tratar TCP en detalle, vamos a explicar los servicios ofrecidos por TCP a los procesos en el nivel de
+aplicacion.
+
+ NEW PAGE 
+Comunicacién proceso a proceso
+
+Al igual que UDP, TCP proporciona comunicacién entre procesos usando numeros de puerto. La Tabla 23.2
+Todos muestra algunos puertos bien conocidos usados por TCP.
+
+Tabla 23.2 Puertos bien conocidos usados por TCP
+
+Puerto	|	Protocolo	|	Descripcion	|
+7	|	Echo	|	Devuelve el datagrama recibido al emisor
+9	|	Discard	|	Descarta cualquier datagrama recibido
+11	|	Users	|	
+13	|	Daytime	|	
+17	|	Quote	|	
+19	|	Chargen	|	
+20	|	FTP, Datos	|	
+21	|	FTP,Control	|	
+23	|	TELNET	|	
+25	|	SMTP	|	
+53	|	DNS	|	
+67	|	BOOTP	|	
+79	|	Finger	|	
+80	|	HTTP	|	
+111	|	RCP	|	
+
+
+Servicio de transmisién de flujos
+
+TCP, a diferencia de UDP, es un protocolo orientado a flujo. En UDP, un proceso (un programa de aplicacién)
+envia mensajes con fronteras presididas a UDP para que los envie. UDP afiade su propia cabecera a cada uno
+de estos mensajes y los entrega a IP para su transmisién. Cada mensaje del proceso se denomina un datagra-
+ma de usuario y habitualmente se convierte en un datagrama IP. Ni IP ni UDP reconocen ninguna relacién
+entre los datagramas.
+
+TCP, por otro lado, permite al proceso emisor enviar datos como un flujo de bytes y permite al proceso
+receptor obtener los datos como un flujo de bytes. TCP crea un entorno en el cual ambos procesos parecen
+estar conectados por un “tubo” imaginario que transporta sus datos a través de Internet. Este entorno imagi-
+nario se muestra en la Figura 23.11. El proceso emisor produce (escribe a) el flujo de bytes y el proceso re-
+ceptor consume (lee de) el flujo. *
+
+Envio y recepcién de buffers Debido a que los procesos emisor y receptor pueden no escribir o leer datos
+a la misma velocidad, TCP necesita buffers para almacenamiento. Hay dos almacenes, el del emisor y el del
+
+ NEW PAGE 
+filtran los que vienen de direcciones desconocidas. Una estrategia mas actual es retrasar-la asignacién de
+recursos hasta que toda la conexién est completa, usando lo que se denomina una cookie. SCTP, el nuevo
+transporte de protocolo que veremos en la seccién siguiente, usa esta estrategia.
+
+Transferencia de datos
+
+Después del establecimiento de la conexién, se puede efectuar transmisién de datos bidireccional. Tanto el
+cliente como el servidor pueden enviar datos y confirmaciones. Estudiaremos las reglas de confirmacién
+posteriormente en este capitulo; por el momento, es suficiente saber que los datos que viajan en la misma
+direccién que una confirmacién se transporta el mismo segmento. La confirmacion se incluye con los datos.
+La Figura 23.17 muestra un ejemplo. En este ejemplo, después del establecimiento de conexién (que no
+muestra la figura), el cliente envia 2000 bytes de datos en dos segmentos. Entonces el servidor envia 2000
+bytes en un segmento. El cliente envia un segmento mas. Los tres primeros segmentos transportan tanto datos
+como confirmaciones, pero el tiltimo segmento sélo lleva una confirmacién porque no. hay mas datos para
+enviar. Observe los valores de los ntimeros de secuencia y de confirmacién. Los segmentos de datos enviados
+por el cliente tienen el flag PSH (push) activo de forma que el servidor TCP sepa que debe entregar los datos
+al proceso servidor tan pronto como Ileguen. Veremos el uso de este flag con mas detalle posteriormente. La
+mayoria de las implementaciones TCP tiene la opcién de activar o no este flag.
+
+Entrega inmediata de datos (pushing) Ya hemos visto que el TCP emisor usa un almacén para guardar el
+flujo de datos que vienen desde el programa de aplicacién emisor. El TCP emisor puede seleccionar el tama-
+
+Figura 23.17 Transferencia de datos.
+
+
+ NEW PAGE 
+fio de segmento. El TCP receptor también almacena los datos cuando llegan y se los entrega al programa de
+la aplicacién cuando el programa de aplicacié6n esta listo o cuando es conveniente para el TCP receptor. Este
+tipo de flexibilidad aumenta la eficacia de TCP. }
+
+Sin embargo, en algunas ocasiones el programa de aplicacién no necesita esta flexibilidad. Por ejemplo, —
+considere un programa de aplicacién que comunica interactivamente con otro programa de aplicacién en el
+extremo contrario. El programa de aplicacién de un extremo quiere enviar una pulsacién de tecla a la aplica~
+cién en el extremo contrario y recibir una respuesta inmediata. La transmisi6n y la entrega diferida puede no ©
+ser aceptable para este programa de aplicacién. ;
+
+operacién de entrega inmediata (push). Esto significa que el TCP emisor no debe esperar a rellenar su ven~
+tana. Debe crear un segmento y enviarlo inmediatamente. El TCP emisor también debe activar el bit push
+(PSH) para permitir que el TCP receptor sepa que el segmento incluye datos que deben ser entregados lo
+antes posible al programa de aplicacién receptor y que no debe esperar a que Ileguen mas datos.
+
+Aunque la operacién inmediata puede ser pedida por el programa de aplicacién, la mayoria de las
+implementaciones actuales de TCP ignoran estas peticiones. TCP puede elegir usar 0 no esta caracteris- —
+tica.
+
+embargo, en algunas ocasiones, un programa de aplicacién necesita enviar bytes de datos urgentes. Esto
+significa que el programa de aplicacién emisor quiere que una pieza de datos se lea fuera de orden por el
+programa de aplicacién receptor. Por ejemplo, suponga que el programa de aplicacién emisor esta enviando
+datos que deben ser procesados por el programa de aplicacién receptor. Cuando el resultado del procesamien-
+to vuelve, el programa emisor ve que esta equivocado. Quiere parar el proceso, pero ha enviado ya una gran
+cantidad de datos. Si envia un comando normal para terminar (Control+C), estos dos caracteres seran alma-
+cenados al final del buffer de recepcién de TCP. Se entregaran a la aplicacién receptora después de haber
+procesado todos los datos.
+
+La solucion es enviar un segmento con el bit URG activado. La aplicacién emisora le dice a TCP que esta
+pieza de datos es urgente. EI TCP emisor crea un segmento ¢ inserta los datos urgentes al principio del seg-
+mento, El resto del segmento puede contener datos normales del almacén. El campo de puntero urgente de la
+cabecera define el final de los datos urgentes y el comienzo de los datos normales.
+
+Cuando el TCP receptor recibe un segmento con el bit URG activado, extrae los datos urgentes del seg-
+mento, usando el valor del puntero urgente, y los entrega fuera de orden al programa de aplicacién receptor.
+
+Fin de la conexién
+
+Cualquiera de las dos partes involucradas en un intercambio de datos (cliente 0 servidor) puede cerrar la co-
+nexién, aunque normalmente suele ser el cliente. La mayoria de las implementaciones actuales tienen dos
+opciones para terminar la cone: i6n: negociacion en tres pasos y negociacién en cuatro pasos con una opcién
+de semicierre.
+
+Negociacién en tres pasos La mayoria de las implementaciones actuales permiten la negociacién en tres
+pasos para cerrar una conexién, como se muestra la Figura 23.18.
+
+1. En una situacién normal, el TCP cliente después de recibir un comando de cierre desde el proceso
+cliente, envia el primer segmento, un segmento FIN con el flag FIN activo. Observe que un segmento
+FIN puede incluir la ultima porcién de datos enviados por el cliente o puede ser tnicamente un seg-
+mento de control, como se muestra la Figura 23.18. Si solo es un segmento de control, consume solo
+un numero de secuencia.
+
+ NEW PAGE 
+2. El servidor TCP, después de recibir el segmento FIN, informa a su proceso de la situacién y envia el
+segundo segmento, un segmento FIN + ACK, para confirmar la recepcién del segmento FIN desde el
+cliente y al mismo tiempo para anunciar el cierre de la conexién en la direccién contraria. Este seg-
+mento también puede contener la ultima porcién de datos del servidor. Sino lleva datos, consume sélo
+un numero de secuencia.
+
+3. El cliente TCP envia el ultimo segmento, un segmento ACK, para confirmar la recepcién del segmen-
+to FIN desde el servidor TCP. Este segmento contiene el mimero de confirmacién, que es uno mas el
+niimero de secuencia recibido en el segmento FIN desde el servidor. Este segmento no puede llevar
+datos y no consume numero de secuencia.
+
+Semicierre En TCP, un extremo puede dejar de enviar datos mientras sigue recibiendo. A esto se le deno-
+mina un semicierre. Aunque cualquier extremo puede enviar un semicierre, normalmente lo inicia el cliente.
+Puede ocurrir cuando el servidor necesita todos los datos antes de poder empezar a procesar. Un buen ejemplo
+es un algoritmo de ordenacién. Cuando el cliente envia los datos a ordenar al servidor, el servidor necesita
+recibir todos los datos antes de poder ordenarlos. Esto significa que el cliente, después de enviar todos los
+datos, puede cerrar la conexién en la direccién de salida. Sin embargo, la direccién de entrada debe perma-
+necer abierta hasta recibir los datos ordenados. El servidor, después de recibir los datos, sigue necesitando
+tiempo para ordenar; su direccién de salida debe permanecer abierta.
+
+La Figura 23.19 muestra un ejemplo de semicierre. El cliente efectiia un semicierre de la conexién enviando
+un segmento FIN. El servidor acepta el semicierre enviando un segmento ACK. La transferencia de datos desde
+
+ NEW PAGE 
+el cliente al servidor termina. Sin embargo, el servidor todavia puede enviar datos. Cuando el servidor ha
+do todos los datos procesados, envia un segmento FIN, que es confirmado por el cliente con un ACK. ;
+Después de efectuar un semicierre de la conexién, los datos pueden viajar del servidor al cliente y
+
+cia del servidor sigue siendo y — 1. Cuando la conexién finalmente cierra, el niimero de secuencia del ultimo
+segmento ACK sigue siendo x, porque no sera consumido ningun numero de secuencia durante la transferen-
+cia de datos en esa direccién.
+
+Control de flujo
+
+TCP acusa una ventana deslizante para gestionar el control de flujo, como la que vimos en el Capitulo 11. Sin —
+embargo, el protocolo de ventana deslizante usado por TCP esté entre la ventana deslizante compuesta atras
+Ny la ventana deslizante con repeticién selectiva. El protocolo de ventana deslizante de TCP se parece al —
+Protocolo de compuesta atras NV Porque no usa NAK; se parece al protocolo con repeticién selectiva porque
+el receptor mantiene los segmentos fuera de orden hasta que Ilegan los que se han perdido. Hay dos grandes
+
+Figura 23.19 Semicierres.
+
+
+ NEW PAGE 
+a ee
+
+Figura 23.20 Ventana deslizante.
+
+diferencias entre esta ventana deslizante y la que se usa en el nivel de enlace. Primero, la ventana deslizante
+de TCP es orientada a byte; la que vimos en el nivel de enlace es orientada a trama. Segundo, la ventana
+deslizante de TCP es de tamaiio variable; la que vimos en el nivel de enlace era de tamaiio fijo.
+
+La Figura 23.20 muestra la ventana deslizante de TCP. La ventana se extiende a una parte del almacén
+que contiene los bytes recibidos del proceso. Los bytes dentro de la ventana son los bytes que pueden estar
+en transito; se puede enviar sin preocuparse de la confirmaci6n. La ventana imaginaria tiene dos paredes: una
+izquierda y una derecha.
+
+La ventana puede estar abierta, cerrada o reducida. Estas tres actividades, como veremos, estan bajo el
+control del receptor (y dependen de la congestién de Ia red), no del emisor. El emisor debe obedecer los co-
+mandos del receptor en este aspecto.
+
+Abrir una ventana significa mover la pared derecha a la derecha. Esto permite tener nuevos bytes listos
+para enviar en el almacén. Cerrar la ventana significa mover la pared izquierda a la derecha. Esto significa
+que algunos bytes han sido confirmados y el emisor no tiene que preocuparse de ellos nunca mas. Reducir la
+ventana significa mover la pared derecha hacia la izquierda. Esto se desaconseja fuertemente y no se permite
+en algunas implementaciones porque significa revocar la elegibilidad de algunos bytes para ser enviados. Es
+un problema si el emisor ya ha enviado estos bytes. Observe que la pared izquierda no se puede mover de la
+izquierda porque revocaria algunas de las confirmaciones ya enviadas.
+
+El tamajio de la ventana en un lado es determinado por el menor de estos dos valores: ventana de recep-
+cién (rwnd) 0 ventana de congestion (cwnd). La ventana de recepcién es el valor notificado por el extremo
+opuesto en un segmento que contiene una confirmaci6n. Es el numero de bytes que el otro extremo puede
+aceptar antes de que su almacén se desborde y tenga que descartar datos. La ventana de congestién es un
+valor determinado por la red para evitar la congestion. Estudiaremos este valor posteriormente en este ca-
+pitulo.”
+
+Ejemplo 23.3
+
+{Cudl es el valor dela ventana de recepcién(rwnd) para la computadora A siel receptor, computadora B, tiene un tama-
+fio de almacén de 5000 bytes y 1000 bytes de datos recibidos y no procesados?
+
+ NEW PAGE 
+receptor, uno para cada direccién. (Veremos mas adelante que estos almacenes también son necesarios para
+los mecanismos de control de flujo y error usados por TCP.) Una forma de implementar un buffer es usar un
+vector circular con entradas de un byte, como se muestra la Figura 23.12. Por sencillez, se han mostrado
+finicamente dos almacenes de 20 bytes cada uno, normalmente los almacenes tienen cientos 0 miles de bytes,
+dependiendo de la implementacién. También se muestran buffers del mismo tamafio, caso que no siempre
+ocurre.
+La Figura 23.12 muestra movimientos de datos en una direccién. En el emisor, el almacén tiene tres tipos
+de elementos, La seccién blanca contiene elementos vacios que pueden ser rellenados por el proceso emisor
+(productor). El 4rea gris mas oscura mantiene bytes que han sido enviados pero no estan todavia confirmados.
+TCP mantiene estos bytes en el base hasta que recibe una confirmacién. El area gris clara contiene los bytes
+a ser enviados por el TCP emisor. Sin embargo, como veremos posteriormente en este capitulo, TCP puede
+ger capaz de enviar s6lo parte de esta seccién gris clara. Esto podria deberse a la lentitud del proceso receptor
+© quizé a congestién en la red. Observe también que después de que los bytes en los elementos negros son
+Jos elementos’son reciclados y quedan disponibles para el proceso emisor. Por eso se muestra
+un almacén circular.
+
+Figura 23.11 Envio de flujos.
+
+Proceso Proceso -
+emisor
+
+Figura 23.12 Buffers de envio y recepci6n.
+
+
+ NEW PAGE 
+Segmentos Aunque el uso de almacenes gestionada disparidades entre la velocidad del proceso produ
+tor y consumidor, €s necesario un paso mas antes de poder enviar los datos. La capa IP, como provee
+de servicios para TCP, necesita enviar datos €n paquetes, no como un flujo de bytes. En el nivel de tr,
+porte, TCP agrupa un numero de bytes en un paquete denominado segmento. TCP afiade una cabecer:
+cada segmento (con finalidad de control) y entrega el segmento a nivel IP para su transmisién. Los
+mentos son encapsulados en datagrama IP y transmitidos. Toda la operacién es transparente al p
+emisor. Posteriormente veremos que los segmentos se pueden recibir fuera de orden, perderse o esta
+
+Servicio orientado a conexién
+
+A diferencia de UDP, TCP es un protocolo orientado a conexién. Cuando un proceso A quiere enviar y reci-
+bir datos de otro proceso en el sitio B, ocurre lo siguiente:
+
+Figura 23.13 Segmentos TCP.
+
+
+ NEW PAGE 
+1. Ambos TCP establecen una conexién entre ellos.
+2. Se intercambian datos en ambas direcciones.
+3. Se cierra la conexién.
+
+Observe que es una conexi6n virtual, no una conexién fisica. El segmento TCP es encapsulado en un
+datagrama IP y se puede enviar fuera de orden, perderse o corromperse, en cuyo caso es reenviado. Cada
+segmento puede usar una ruta distinta hasta el destino. No hay conexidn fisica. TCP crea‘un entorno orienta-
+do a flujo en el cual acepta la responsabilidad de entregar los bytes en orden al lugar contrario. La situacién
+ts similar a crear un puente que conecta muchas islas y a pasar todos los bytes de una isla a otra con una
+tanica conexi6n. Trataremos esta caracteristica posteriormente en este capitulo.
+
+Servicio fiable
+
+TCP es un protocolo de transporte fiable. Usa un mecanismo de confirmacién para comprobar que los datos «
+han Ilegado completamente y seguros. Trataremos esta caracteristica posteriormente en la seccién de control
+de error.
+
+Caracteristicas de TCP
+
+Para proporcionar los servicios mencionados en la seccién anterior, TCP tiene varias caracteristicas que se
+resumen brevemente en esta seccidn y se tratan posteriormente con mas detalle.
+
+Sistema de numeracion
+
+Aunque puede que TCP siga la pista de los segmentos que estin siendo transmitidos 0 recibidos, no hay un
+campo para el mimero de segmento en la cabecera de segmento. El lugar de esto, hay dos campos denomina-
+“ios nimero de secuencia y mimero de confirmacién. Estos dos campos se refieren al mimero de byte y no
+al namero de segmento.
+
+Numero de byte TCP numera todos los bytes de datos que se transmiten en una conexién. La numeracién
+es independiente en cada direccién. Cuando TCP recibe bytes de datos de un proceso, los almacena en el
+almacén de envio y los numera. La numeracién no comienza necesariamente desde cero. En lugar de eso, TCP
+genera un numero aleatorio entre cero y 252+! para el niimero del primer byte. Por ejemplo, si el nimero alea-
+torio es 1057 y el total de datos a enviar es 6000 bytes, los bytes se enumeran desde 1057 hasta 7056. Veremos
+que la numeracién de bytes se usa para control de flujo y error. :
+
+Numero de secuencia Después de numerat los bytes, TCP asigna un niimero de secuencia a cada segmento
+que envvia, El mimero de secuencia para cada segmento es el nimero del primer byte que transporta este S°8-
+mento.
+
+Ejemplo 23.2
+
+Suponga que una conexién TCP transfiere un fichero de 5000 bytes. El primer byte tiene el nlimero 10.001. ,Cudles son
+Joo némeros de secuencia para cada segmento si los datos se envian en cinco segmentos, cada uno de los cuales lleva
+1000 bytes?
+
+ NEW PAGE 
+Solucién
+A continuacién se muestran los mimeros de secuencia para cada segmento:
+
+zar en 0.
+
+Control de flujo
+
+TCP, a diferencia de UDP, proporciona control de flujo. El receptor de los datos controla la cantidad de datos
+que deben ser enviados por el emisor. Esto se hace para evitar que el receptor sea desbordado con datos. El
+sistema de numeracién permite a TCP usar un control de flujo orientado a byte.
+
+ NEW PAGE 
+Control de error
+
+Para proporcionar un servicio fiable, TCP implementa mecanismos de control de error. Aunque el control de
+error considera el segmento como la unidad de datos para la deteccién de error (segmentos perdidos 0 corrup-
+tos), el control error es orientado a byte, como veremos mds tarde.
+
+Control de congestién
+
+TCP, a diferencia de UDP, tiene en cuenta la congestién en la red. La cantidad de datos enviados por el emi-
+sor no s6lo es controlado por el receptor (control de flujo), sino que también se determina por el nivel de
+congestién de la red.
+
+Segmento
+
+Antes tratar TCP con mayor detalle, vamos a ver los paquetes TCP en sf mismos. Un paquete en TCP se
+denomina un segmento.
+
+Formato
+
+El formato de un segmento se muestra en la Figura 23.14.
+
+El segmento esta formado por una cabecera de entre 20 y 60 bytes, seguida por los datos del programa de
+aplicacion. La cabecera tiene veinte bytes sino hay opciones y hasta 60 bytes si contiene opciones. Vamos a
+cetudiar algunos de estos campos de la cabecera en esta seccién. El significado y objetivo de estos se clarifi-
+cara a lo largo del capitulo.
+
+- Q Direccién puerto origen. Es un campo de 16 bits que define el ntimero de puerto del programa de
+aplicacién en la computadora que esté enviando el segmento. Tiene el mismo propésito que el direccién
+puerto origen en la cabecera UDP.
+
+Figura 23.14 Formato de un segmento SGP:
+
+
+ NEW PAGE 
+Q Direccién puerto destino. Es un campo de 16 bits que define el numero de puerto del program
+aplicacién en la computadora que va a recibir el segmento. Tiene el mismo objetivo que la dit
+de puerto destino en la cabecera UDP.
+
+Q Numero de secuencia. Este campo de 32 bits define el numero asignado al primer byte datos
+contiene el segmento. Como dijimos antes, TCP es un protocolo de transporte de flujos. Para aseg
+la conectividad, cada byte a transmitir se numera. El numero de secuencia le dice al destino qué
+en esta secuencia lleva el primer byte del segmento. Durante el establecimiento de conexién
+parte usa un generador de numero aleatorio para crear un nimero de secuencia inicial tial
+quence Number, ISN), que habitualmente es distinto en cada direccién. oy
+
+Q Numero de confirmacién. Este campo de 32 bits define el ntimero de byte que el receptor del seg .
+espera recibir de la otra parte. Si el receptor del segmento ha recibido correctamente el byte nime
+define x + 1 como numero de confirmacién. La confirmacién y los datos se pueden enviar juntos.
+
+Q Longitud de cabecera. Este campo de cuatro bits indica el nimero de palabras de cuatro bytes
+cabecera TCP. La longitud de la cabecera puede variar entre 20 y 60 bytes. Por tanto, el valor de
+campo puede estar entre 5 (5 x 4 = 20) y 15 (15 x 4 = 60).
+
+Q Reservado. Este es un campo de seis bits reservado para uso futuro. |
+
+Q Control. Este campo define 6 bits o flags de control distintos que se muestran en la Figura 23.15. Jr
+0 mas de estos bits pueden activarse al mismo tiempo.
+
+i
+Estos bits permiten el control de flujo, establecer y terminar la conexién, abortar la conexién y recibir el
+modo de transferencia de datos en TCP. Posteriormente se estudiaran con mas detalle. ;
+
+OQ Tamaiio de ventana. Este campo define el tamaiio de la ventana en bytes que la otra parte debe man- |
+tener. Observe que la longitud de este campo es de 16 bits, lo que significa que el tamafio maximo de
+la ventana es 65.535 bytes. Este valor se define normalmente como ventana de recepcién (rwnd) y es
+determinado por el receptor. El emisor debe obedecer la recomendacién del receptor en este caso.
+
+Q Suma de comprobacién. Este campo de 16.000 contiene la suma de comprobacién. Se calcula tenien-
+do en cuenta todos los elementos de la cabecera. Sin embargo, mientras la inclusion de la suma de
+comprobacién en la cabecera UDP es opcional, es obligatoria en TCP. En TCP se afiade la misma
+pseudocabecera y sirve para los mismos objetivos. Para la pseudocabecera TCP, el valor del campo de —
+protocolo es 6. )
+
+Q Puntero urgente. Este campo de 16 bits, que sélo es valido cuando el campo urgente esta activo, se
+usa cuando segmento contiene datos urgentes. Puerto define el numero que se debe afiadir al numero
+de secuencia para obtener el ntimero del ultimo byte urgente en la seccién de datos del segmento. Lo
+veremos posteriormente en este capitulo.
+
+Q Opciones. Puede haber hasta 40 bytes de informacién opcional en la cabecera TCP. No vamos a ver
+estas opciones; por favor consulte la lista de referencias para tener mds informacién.
+
+Figura 23.15 Campos de control.
+
+
+ NEW PAGE 
+Una conexién TCP
+TCP es orientado a conexién. Un protocolo de transporte orientado a conexién establece un camino virtual
+entre el origen y el destino. Todos los segmentos que pertenecen a un mensaje se envian por este camino
+virtual. Usar un unico camino virtual para todo el mensaje facilita el proceso de confirmacién asi como la
+retransmision de tramas dafiadas o perdidas. Uno se puede preguntar cémo TCP, que usa los servicios de IP,
+un protocolo sin conexi6n, puede ser orientado a conexién. La cuestin es que la conexién de TCP es virtual,
+no fisica. TCP opera a alto nivel. TCP usa los servicios de IP para enviar los segmentos individuales al recep-
+tor, pero controla la conexién por si mismo. Si se pierde 0 corrompe un segmento, se retransmite. A diferen-
+cia de TCP, IP no es consciente de la retransmisién. Si el segmento llega fuera de orden, TCP lo mantiene
+hasta que llegan los segmentos perdidos; IP no es consciente del reordenamiento.
+
+En TCP, la transmisi6n orientada a conexién necesita tres fases: establecimiento de conexién, transferen-
+cia de datos y cierre de la conexi6n.
+
+Establecimiento de conexién
+
+TCP transmite los datos en modo full duplex. Cuando dos o mas maquinas con TCP se conectan son capaces
+de enviarse segmentos entre si simultaneamente. Esto implica que cada parte debe inicializar la comunicacion
+y obtener la aprobacién desde la parte contraria antes de transferir datos.
+
+Negociacién en tres pasos El establecimiento de una conexién en TCP se denomina negociacién en tres
+pasos (three-way handshaking). En este ejemplo, y programa de aplicacién, denominado el cliente, quiere
+establecer una conexién con otro programa de aplicacién, denominado el servidor, usando TCP como proto-
+colo de nivel de transporte.
+
+El proceso comienza en el servidor. El programa servidor le dice a su TCP que esta listo para aceptar una
+conexién. A esto se llama una apertura pasiva. Aunque el servidor TCP est listo para aceptar una conexién
+de cualquier maquina del mundo, no puede hacer la conexi6n por si mismo.
+
+El programa cliente emite una peticion para una apertura activa. Un cliente que quiere conectarse a un
+servidor abierto le dice a su TCP que necesita conectarse a ese servidor en particular. Ahora TCP puede em-
+pezar la negociacién en tres pasos como se muestra en la Figura 23.16.
+
+Para mostrar el proceso se usan dos lineas temporales: una en cada sitio. Cada segmento tiene valores para
+todos sus campos de cabecera y quiz4 también para algunos campos opcionales. Sin embargo, mostramos
+solamente los pocos campos necesarios para comprender cada fase: mimero de secuencia, niimero de confir-
+maci6n, campos de control (sélo aquellos que estan activos) y el tamaiio de ventana, si no esta vacia. Los tres
+pasos en esta fase son los siguientes:
+
+1. Elcliente envia el primer segmento, con segmento SYN, en el cual s6lo el campo SYN esta activo.
+Este segmento es para sincronizar los numeros de secuencia. Consume un numero de secuencia. Cuan-
+do comienza la transferencia de datos, el niimero de secuencia se incrementa en uno. Se puede decir
+que el segmento SYN no lleva datos reales, pero se puede pensar que lleva 1 byte imaginario.
+
+2. Elservidor envia un segundo segmento, un segmento SYN + ACK, con 2 bits de flags activos: SYN
+y ACK. Este segmento tiene un doble objetivo. Es un segmento SYN para comunicacién en la direcci6én
+contraria y sirve para confirmar el segmento SYN anterior. Consume el numero de secuencia.
+
+ NEW PAGE 
+Figura 23.16 Establecimiento de conexién usando una negociacién completa en tres pasos.
+
+Servidor
+
+3. El cliente envia el tercer segmento. Es s6lo un segmento ACK. Confirma la recepcién del segundo
+segmento con el flag ACK y el campo del niimero de confirmacion. Observe que el ntimero de secuen-
+cia de este segmento es el mismo que el del segmento SYN; el segmento ACK no consume ningén
+numero de secuencia.
+
+A es mca
+
+Apertura simultanea Puede ocurrir una situacién rara, denominada apertura simulténea, cuando ambos
+_procesos emiten una apertura activa. En este caso, ambos TCP se envian un segmento SYN+ACK enue s1y
+se establece una tinica conexién entre ellos.
+
+Ataque por SYN masivo (SYN flooging attack) El procedimiento de establecimiento de conexién en TCP
+ec eacceptible de suftir un ataque de seguridad peligroso denominado ataque por SYN masivo. Fete Sadie
+oS Svoghee cuando ‘un atacante malicioso envia un nimero muy grande de SYN a un servidor, prtendiendo
+Sue cada uno de ellos viene de un cliente distinto mediante el enmascaramiento de Ia direccion JP orieen &
+Wf datagramas. El servidor, asumiendo que los clientes estén enviando una apertura activa, asigna reekeee z
+
+mont6n de recursos ocupados y sin utilizar. Si durante este corto espacio de tiempo el numero de segmentos
+SYN es muy grande, el servidor se queda sin recursos y puede falar. Bsteataque por SYN masive Peli
+a un tipo de ataque de seguridad denominado ataque por denegacién de servicio, en el cual un ata
+monopoliza un sistema con tantas peticiones de servicio que el sistema se colapsa y niega servicio a cualquier
+peticion. :
+Algunas implementaciones de TCP tienen estrategias para aliviar los efectos de un ataque por SYN. AL
+gunas han impuesto un limite en las peticiones de conexién durante un determinado periodo de tiempo. Oras
+
+ NEW PAGE

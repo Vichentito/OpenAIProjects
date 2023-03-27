@@ -1,0 +1,85 @@
+Tarea 2. Multiplicacion de matrices distribuida utilizando paso de
+mensajes
+En esta tarea se debera desarrollar un solo programa en Java el cual calculara el producto de dos matrices cuadradas en
+forma distribuida utilizando tres maquinas virtuales de Azure.
+Se debera escribir el programa en su totalidad utilizando ChatGPT, 0 bien, se podra escribir partes del programa utilizando
+ChatGPT y después integrar las partes manualmente.
+Sean A, B y C matrices cuadradas con elementos de tipo double, la dimension de las matrices es N. C=AxB
+Se debera ejecutar dos casos:
+1. N=12, desplegar las matrices A, B y C y el checksum de la matriz C.
+2. N=3000, desplegar el checksum de la matriz C.
+El checksum de la matriz C se calculara como la suma de todos elementos de la matriz. El checksum debera ser de tipo
+double.
+Se debera inicializar las matrices de la siguiente manera:
+A[i][j]= 2*i+j
+B[i][j] = 3*i-j
+Donde A[i][j] y B[i][j] son los elementos Ai,j y Bi,j; respectivamente.
+El programa debera ejecutar en una computadora local (nodo 0) con Windows, Linux o MacOS y en tres maquinas
+virtuales con Ubuntu (nodos 1, 2 y 3).
+El nombre de cada maquina virtual debera ser: "T2-" concatenando el numero de boleta del alumno o alumna, un guion y
+el numero de nodo, por ejemplo, si el numero de boleta es 12345678, entonces el nodo 1 debera Ilamarse: T2-12345678-1,
+el nodo 2 debera llamarse T2-12345678-2, y el nodo 3 debera llamarse T2-12345678-3. No se admitira la tarea si los
+nodos no se nombran como se indicoé anteriormente.
+Como realizar la multiplicacidn de matrices en forma distribuida?
+Sea BT la transpuesta de la matriz B. Se debera dividir las matrices A y BT en tres partes de igual tamafo, por tanto la matriz
+C estara dividida en 9 partes tal como se muestra en la siguiente figura:
+A1      B1      C1|C2|C3
+A2  x   B2  =   C4|C5|C6
+A3      B3      C7|C8|C9
+Debido a que las matrices se guardan por renglones en la memoria, para aprovechar la localidad espacial el producto se
+realizara renglon por renglon tal como vimos en clase. Entonces las matrices C; se obtienen de la siguiente manera:
+C1=A1xBT1
+C2=A1xBT2
+C3=A1xBT3
+C4=A2xBT1
+C5=A2xBT2
+C6=A2xBT3
+C7=A3xBT1
+C8=A3xBT2
+C9=A3xBT3
+El nodo 0 sera la computadora local. El nodo 0 inicializara las matrices A y B, obtendra la transpuesta de la matriz B y
+enviara las matrices Aiy BTJ, a los nodos 1, 2 y 3.
+El nodo 1 calculara los productos C1, C2 y C3; el nodo 2 calculara los productos C4, C5 y C6; el nodo 3 calculara los
+productos C7, C8 y C9.
+Se debera pasar como parametro al programa el numero de nodo.
+Se debera implementar los siguientes algoritmos:
+Nodo 0:
+1. Inicializar las matrices A y B.
+2. Transponer la matriz B. Dejar la transpuesta en la misma matriz B.
+3. Enviara la matriz A1 al nodo 1.
+4. Enviara las matrices BT1, BT2 y BT3 al nodo 1.
+5. Enviara la matriz A2 al nodo 2.
+6. Enviar las matrices B'1, B'2 y B'3 al nodo 2.
+7. Enviara la matriz A3 al nodo 3.
+8. Enviara las matrices B'1, B'2 y B'3 al nodo 3.
+9. Recibira las matrices C1, C2 y C3 del nodo 1.
+10. Recibira las matrices C4, C5 y C6 del nodo 2.
+11. Recibira las matrices C7, C8 y C9 del nodo 3.
+12. Calcular el checksum de la matriz C.
+13. Desplegar el checksum de la matriz C.
+14. Si N=12 entonces desplegar las matrices A, B y C.
+Nodo 1:
+1. Recibira la matriz A1 del nodo 0.
+2. Recibird las matrices B"1, B'2 y B'3 del nodo 0.
+3. Calcular las matrices C1, C2 y C3.
+4. Enviara las matrices C1, C2 y C3 al nodo 0.
+Nodo 2:
+1. Recibira la matriz A2 del nodo 0.
+2. Recibird las matrices B"1, B'2 y B'3 del nodo 0.
+3. Calcular las matrices C4, C5 y C6.
+4. Enviara las matrices C4, C5 y C6 al nodo 0.
+Nodo 3:
+1. Recibira la matriz A3 del nodo 0.
+2. Recibird las matrices B"1, B'2 y B'3 del nodo 0.
+3. Calcular las matrices C7, C8 y C9.
+4. Enviara las matrices C7, C8 y C9 al nodo 0
+Se debera subir a la plataforma el codigo fuente del programa desarrollado en formato texto y un documento PDF con
+portada, las capturas de pantalla de la compilacion y ejecucién del programa. El archivo PDF debera incluir una descripcion
+de cada captura de pantalla y conclusiones.
+El reporte debera incluir captura de pantalla de cada paso correspondiente a la creacion de la primera maquina
+virtual (nodo 1).
+El reporte debera incluir la conversacidn sostenida con ChatGPT.
+No se admitira la tarea si no incluye todas las capturas de pantalla correspondientes a la creacion de la primera maquina
+virtual (nodo 1).
+La tarea solo se admitira si el programa obtiene los checksums correctos para N=12 y para N=3000.
+Valor de la tarea: 25% (2 puntos de la primera evaluacion parcial)
