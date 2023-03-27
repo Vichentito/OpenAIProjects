@@ -22,23 +22,58 @@ Todos muestra algunos puertos bien conocidos usados por TCP.
 
 Tabla 23.2 Puertos bien conocidos usados por TCP
 
-Puerto	|	Protocolo	|	Descripcion	|
-7	|	Echo	|	Devuelve el datagrama recibido al emisor
-9	|	Discard	|	Descarta cualquier datagrama recibido
-11	|	Users	|	
-13	|	Daytime	|	
-17	|	Quote	|	
-19	|	Chargen	|	
-20	|	FTP, Datos	|	
-21	|	FTP,Control	|	
-23	|	TELNET	|	
-25	|	SMTP	|	
-53	|	DNS	|	
-67	|	BOOTP	|	
-79	|	Finger	|	
-80	|	HTTP	|	
-111	|	RCP	|	
+Devuelve el datagrama recibido al emisor
 
+Descarta cualquier datagrama recibido
+
+i
+
+Users Usuarios activos
+
+Devuelve la fecha y hora
+
+Devuelve una cita del dia
+
+Devuelve una tira de caracteres
+
+File Transfer Protocol (conexién de datos)
+File Transfer Protocol (conexién de control)
+Terminal en red
+
+Simple Mail Transder Protocol
+
+DNS Domain Name Server
+
+Protocolo Bootstra
+Hypertext Transfer Protocol
+
+8 eT)
+9
+5
+
+?
+
+FTP, Control
+
+4|2|e
+S|E |
+eB 1e
+inet
+
+:
+|e
+g
+
+N
+wa
+
+ele
+x
+
+a
+x
+
+SS
 
 Servicio de transmisién de flujos
 

@@ -1,0 +1,227 @@
+23.2 PROTOCOLO DE DATAGRAMA DE USUARIO (UDP)
+
+fable Ne enng Sataerama de usuario (User Datagram Protocol, UDP) cs un protocolo sin conexién y no
+dan: afiade nada a los servicios de IP excepto proporcionar comunicacién proceso a proceso en less de
+coat caciones computadora a computadora. También leva a cabo comprobacion de error muy limited
+
+Si son iene ‘an poca potencia, .por qué queria usarlo? Junto a las desventajs tiene algunas ventajas,
+
+Figura 23.7 Control de error.
+
+—— Elerror se compruca en estos caminos del nivel de enlace
+—— Elezror no se comprueba en estos caminos por el nivel de enlace
+
+Red
+Enlace
+Fisico
+
+a  Y
+
+
+ NEW PAGE 
+Figura 23.8 Posicién de UDP, TCP y SCTP en la suite TCPAP.
+
+Puertos bien conocidos en UDP
+
+La Tabla 23.1 muestra algunos puertos bien conocidos para UDP. Algunos nimeros de puertos se pueden usar
+tanto en UDP como en TCP. Hablaremos de ellos cuando hablemos de TCP posteriormente en este capitulo.
+
+incluye el nombre del servidor y el mimero de puerto bien conocido. Se puede usar la utilidad grep para extraer la linea
+correspondiente a la aplicacién deseada. A continuacién se muestra el puerto para FTP. Observe que FTP puede usar el
+puerto 21 con UDP o TCP.
+
+SNMP usa dos niimeros de puerto (161 y 162), cada uno con un propésito distinto, como veremos en el Capitulo 25.
+
+
+ NEW PAGE 
+Tabla 23.1 Puertos bien conocidos usados en UDP
+
+Devuelve el datagrama recibido al emisor
+
+cualquier datagrama que recibe
+
+iv]
+
+ELLE
+Hhiaaili
+
+‘iscard
+
+,
+|
+
+Usuarios activos
+Devuelve fecha y hora
+Devuelve una cita del dia
+
+_
+
+Servicio de nombres del dominio
+
+Puerto del servidor para localizar informacién de arranque
+Puerto del cliente para cargar informacién de arranque
+Trivial File Transfer Protocol
+
+Remote Procedure Call
+
+123 Network Time Protocol
+
+| 161 |SNMP ——_| Simple Network Management Protocol
+| 162 |SNMP | Simple Network Management Protocol (trap)
+
+Datagramas de usuario
+
+Los paquetes UDP, denominados datagrama de usuario, tienen una cabecera de tamajio fijo de ocho bytes.
+La Figura 23.9 muestra el formato de un datagrama de usuario.
+A continuacién se describen los campos:
+
+Q Numero de puerto origen. Este es el niimero de puerto usado por el proceso que ejecuta en la com-
+putadora origen. Tiene 16 bits de longitud, lo que significa que el ntimero de puertos puede variar
+
+Figura 23.9 Formato de datagrama de usuario.
+
+8 bytes
+
+
+ NEW PAGE 
+entre 0 y 65.535 puerto si la computadora origen es el cliente (un cliente que hace una peticién), el
+numero de puerto en la mayoria de los casos es un niimero de puerto efimero pedido por el proceso y
+elegido por el software UDP que se ejecuta en la computadora origen. Si el conmutador origen es el
+servidor (un servidor envia una respuesta), el mimero de puerto es en la mayoria de los casos un nu-
+mero de puerto bien conocido.
+
+QO Numero de puerto destino. Este es el numero de puerto usado por el proceso que se ejecuta en la
+computadora destino. Su longitud es también de 16 bits. Si la computadora destino es el servidor (un
+cliente enviando una respuesta), el ntimero de puerto es en la mayoria de los casos un puerto bien co-
+nocido. Si la computadora destino es el cliente (un servidor envia una respuesta), el nimero de puerto
+es en la mayoria de los casos un puerto efimero. En este caso, el servidor copia el nimero de puerto
+efimero que ha recibido en el paquete de respuesta.
+
+Q Longitud. Campo de 16 bits que define la longitud total del datagrama de usuario, cabecera y datos.
+Los 16 bits pueden definir una longitud total de 0 a 65.535 bytes. Sin embargo, la longitud total debe
+ser mucho menor porque un datagrama UDP se almacena en un datagrama IP con una longitud total
+de 65.535 bytes.
+
+El campo de longitud de un datagrama UDP no es realmente necesario. Un datagrama de usuario es
+encapsulado en un datagrama IP. Hay un campo de longitud total en el datagrama IP. Hay otro campo
+en el datagrama IP que define la longitud de la cabecera. Por tanto, si restamos el valor del segundo
+campo del primero, se puede deducir la longitud del datagrama UDP que esta encapsulado en un da-
+tagrama IP.
+
+Sin embargo, los disefiadores del protocolo UDP sintieron que era més eficiente para el UDP del
+destino calcular la longitud de los datos a partir de la informacién proporcionada en el datagrama de
+usuario UDP, en lugar de preguntar al software IP para que proporcione esta informacién. Deberiamos
+recordar que cuando el software IP entrega el datagrama de usuario UDP a nivel UDP ya ha retirado
+la cabecera IP.
+
+Q Suma de comprobacién. Este campo se usa para detectar los errores en el datagrama de usuario (ca-
+becera y datos).
+
+Funcionamiento de UDP
+
+UDP usa conceptos comunes para el nivel de transporte. Estos conceptos se verdn aqui brevemente y se ex-
+pandirdn en la seccién siguiente cuando hablemos del protocolo TCP.
+
+Servicios sin conexién
+
+Como ya hemos dicho, UDP proporciona un servicio sin conexién. Esto significa que cada datagrama
+de usuario enviado por UDP es un datagrama independiente. No hay relacién entre los distintos datagra-
+mas de usuario incluso si vienen desde el mismo proceso origen y van al mismo destino. Los datagramas
+de usuario no estan numerados. Igualmente, no hay establecimiento de conexién ni terminacién de co-
+nexién, como ocurre en TCP. Esto significa que cada datagrama de usuario puede viajar por una ruta
+distinta.
+
+Una de las ramificaciones de ser un protocolo sin conexién es que el proceso que usa UDP no puede ol-
+vidar un flujo de datos a UDP y esperar que UDP los parta en varios datagramas de usuario relacionados. El
+lugar de eso, cada peticién debe ser lo suficientemente pequefios para caber dentro de un datagrama de usua-
+rio. Sélo aquellos procesos que envian mensajes cortos deberian usar UDP.
+
+ NEW PAGE 
+Control de flujo y error
+UDP es un protocolo de transporte muy sencillo y poco fiable. No hay control de flujo y no hay mecanismo
+de ventana. El receptor puede desbordarse con los mensajes que llegan.
+
+En UDP no hay otro mecanismo de control de error mas que la suma de comprobacién. Esto significa que
+el emisor no sabe si existen mensajes perdidos o duplicados. Cuando el receptor detecta un error mediante la
+suma de comprobaci6n, el datagrama de usuario se descarta silenciosamente.
+
+La falta de control de flujo y control de error significa que el proceso que use UDP deberia proporcionar
+estos mecanismos.
+
+Encapsulamiento y desencapsulamiento
+
+Para enviar un mensaje de un proceso a otro, el protocolo UDP encapsula y desencapsula los mensajes en un
+datagrama IP.
+
+Encolamiento
+
+Ya hemos hablado sobre los puertos sin tratar su implementaci6n real. En UDP, existen colas asociadas con
+puertos (véase la Figura 23.10).
+
+Cuando un proceso arranca, en el lado del cliente, pide un numero de puerto al sistema operativo. Algunas
+implementaciones crean colas asociadas a los datos de entrada y a los datos de salida de cada proceso. Otras
+implementaciones crean sélo una cola de entrada asociada con cada proceso.
+
+Observe que, incluso si un proceso quiere comunicarse con muchos procesos, obtiene sélo un nimero de
+puerto y eventualmente una cola de entrada y una cola de salida. Las colas abiertas por el cliente son, en la
+mayoria de los casos, identificadas con nimeros de puerto efimeros. Las colas funcionan mientras se ejecute
+el proceso. Cuando termina el proceso, las colas son destruidas.
+
+El proceso cliente puede enviar mensajes a la cola de salida usando el numero de puerto origen especifi-
+cado en la peticién. UDP extrae los mensajes uno por uno y, después de afiadir la cabecera UDP, los entrega
+a IP. Una cola de salida puede tener desbordamiento. Si esto ocurre, el sistema operativo puede pedir al pro-
+ceso cliente que espere antes de enviar mds mensajes.
+
+Cuando llega un mensaje para un cliente, UDP comprueba si existe una cola de entrada para el nimero de
+puerto especificado en el campo de numero de puerto destino del datagrama de usuario. Si la cola existe, UDP
+envia el datagrama de usuario recibido al final de la cola. Si no existe dicha cola, UDP descarta el datagrama
+y le pide al protocolo ICMP que envie un mensaje de puerto no alcanzable al servidor. Todos los mensajes
+
+Figura 23.10 Colas en UDP.
+
+Cliente Servidor
+
+
+ NEW PAGE 
+que llegan para un programa cliente particular, tanto si vienen del mismo o de varios servidores, se envian a
+Ja misma cola. La cola de entrada se puede Ilenar. Si ocurre esto, UDP tira los datagramas de usuario y pide
+que se envie un mensaje de puerto no alcanzable al servidor.
+
+En el lado del servidor, el mecanismo para crear las colas es distinto. En su forma més simple, un servidor
+pide colas de entrada y de salida, usando nuimeros de puerto bien conocidos, cuando arranca. Las colas per-
+manecen abiertas mientras que el servidor esta en ejecucién.
+
+Cuando llega un mensaje para un servidor, UDP comprueba que existe una cola de entrada para el nime-
+ro de puerto especificado en el campo mimero de puerto destino del datagrama de usuario. Si dicha cola
+existe, UDP envia el datagrama de usuario recibido al final de la cola. Si la cola existe, UDP envia el datagra-
+ma de usuario recibido al final de la cola. Si no existe dicha cola, UDP descarta el datagrama y le pide al
+protocolo ICMP que envie un mensaje de puerto no alcanzable al cliente. Todos los mensajes que llegan para
+tun programa servidor particular, tanto si vienen del mismo o de varios clientes, se envian a la misma cola. Fa
+cola de entrada se puede Ilenar. Si ocurre esto, UDP tira los datagramas de usuario y pide que se envie un
+mensaje de puerto no alcanzable al cliente. 4
+
+Cuando un servidor quiere responder a un cliente, envia los mensajes a la cola de salida, usando el nime-
+ro de puerto origen especificado en la peticién. UDP extrae los mensajes uno por uno y, después de afiadir la
+cabecera UDP, se los envia a IP. La cola de salida también puede Ilenarse. Si ocurre esto, el sistema operati-
+vo pide al servidor que espere antes de enviar mas mensajes.
+
+Uso de UDP
+A continuacién se enumeran algunos usos del protocolo UDP:,
+
+Q UDP es adecuado para un proceso que necesita comunicacién peticién-respuesta sencilla y al cual le
+preocupa'poco el control de flujo y error. Habitualmente no se usa para un proceso como FTP que
+necesita usar datos masivos (véase el Capitulo 25).
+
+Q UDP es adecuado para procesos con mecanismos intemnos de control de flujo y error. Por ejemplo, el
+Trivial File Transfer Protocol (TFTP) incluye control de flujo y error. Puede usar facilmente UDP.
+Q UDP es un protocolo de transporte adecuado para multienvio. La capacidad de multienvio esté empo-
+
+trada en el software UDP, pero no en el TCP.
+
+Q UDP se usa para procesos de gestién como SNMP (véase el Capitulo 25).
+
+Q UDP se usa para algunos protocolos de actualizacién de ruta, como el Routing Information Protocol
+(RIP) (véase el Capitulo 22).
+
+
+ NEW PAGE
