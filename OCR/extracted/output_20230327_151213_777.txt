@@ -1,0 +1,71 @@
+Tarea 3. Chat multicast
+
+Utilizando ChatGPT desarrollar un solo programa en Java en modo consola que implemente un chat utilizando comunicacion multicast mediante datagramas.
+Se debera ejecutar el programa en una maquina virtual con Windows Server 2012 en Azure.
+Se debera pasar como parametro al programa el nombre del usuario que va escribir en el chat.
+
+El programa debera hacer lo siguiente:
+
+e El programa creara un thread el cual recibira los mensajes del resto de los nodos. Cada mensaje recibido sera desplegado en la pantalla. El thread desplegara el
+mensaje que envia el mismo nodo.
+
+e En el método main(), dentro de un ciclo infinito:
+° Se desplegara el siguiente prompt: "Escribe tu mensaje: " (sin las comillas), entonces se leera del teclado el mensaje.
+
+° Se debera enviar el mensaje a los nodos que pertenecen al grupo identificado por la IP 239.0.0.0 a través del puerto 50000. El mensaje a enviar en el
+datagrama debera tener la siguiente forma:
+
+nombre_usuario--->mensaje_ingresado
+
+Donde nombre_usuario es el nombre del usuario que paso como parametro al programa, "--->" es un separador y mensaje_ingresado es el mensaje que el usuario
+ingreso por el teclado.
+
+
+Debido a que el protocolo UDP no garantiza el orden en que se reciben los mensajes, no se debera enviar la longitud del mensaje y luego el mensaje; se debera
+utilizar una longitud de mensaje fija. Al desplegar el mensaje recibido se deberan eliminar los espacios adicionales a la derecha (si los hay).
+
+Para demostrar el programa se debera utilizar los siguientes usuarios: Hugo, Paco y Luis.
+
+Se debera ejecutar la siguiente conversacion (la cual aparece en negritas) en tres ventanas de comandos (cmd) en la maquina virtual con Windows Server 2012. En
+la primera ventana escribira Hugo, en la segunda ventana escribira Paco y en la tercera ventana escribira Luis:
+
+Hugo escribira:
+hola a todos
+
+Paco escribira:
+hola Hugo
+
+Luis escribira:
+hola Paco
+hola Hugo
+
+Paco escribira:
+¿alguien sabe donde sera el concierto?
+
+
+Hugo escribira:
+sera en la plaza central
+
+Paco escribira:
+¿a qué hora?
+
+Luis escribira:
+alas 8 PM
+
+Paco escribira:
+gracias, adids
+
+Luis debe escribir:
+adios Paco
+
+Los signos de interrogacion y las letras acentuadas deberan desplegarse correctamente en la ventana de comandos de Windows.
+
+Se debera subir a la plataforma:
+
+1. Un archivo texto con el codigo fuente del programa desarrollado
+
+2. Un reporte de la tarea en formato PDF con portada, desarrollo y conclusiones. El reporte debera incluir el texto (no capturas de pantalla) de la conversacién
+sostenida con ChatGPT.
+
+3. El reporte debera incluir las capturas de pantalla de la ejecucidn del programa, se debera incluir la captura de pantalla correspondiente a cada paso del
+procedimiento de creacion de la maquina virtual.

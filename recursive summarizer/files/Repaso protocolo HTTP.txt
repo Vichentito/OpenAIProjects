@@ -1,0 +1,661 @@
+2.1. ¢ PRINCIPIOS DE LAS APLICACIONES DE RED
+
+Servicios UDP
+
+UDP es un protocolo de transporte ligero y simple que proporciona unos servicios minimos. No esta
+orientado a la conexion, por lo que no tiene lugar un procedimiento de negociacion antes de que los
+dos procesos comiencen a comunicarse. UDP proporciona un servicio de transferencia de datos no
+fiable; es decir, cuando un proceso envia un mensaje a un socket UDP, el protocolo UDP no ofrece
+ninguna garantia de que el mensaje vaya a llegar al proceso receptor. Ademas, los mensajes que si
+llegan al proceso receptor pueden hacerlo de manera desordenada.
+
+UDP no incluye tampoco un mecanismo de control de congestion, por lo que el lado emisor de
+UDP puede introducir datos en la capa inferior (la capa de red) a la velocidad que le parezca. (Sin
+embargo, tenga en cuenta que la tasa de transferencia extremo a extremo real puede ser menor que
+esta velocidad, a causa de la capacidad de transmision limitada de los enlaces intervinientes 0 a
+causa de la congestion.)
+
+Servicios no proporcionados por los protocolos de transporte de Internet
+
+Hemos organizado los posibles servicios del protocolo de transporte segtin cuatro pardmetros:
+transferencia de datos fiable, tasa de transferencia, temporizacion y seguridad. ;Cuales de estos
+servicios proporcionan TCP y UDP? Ya hemos mencionado que TCP proporciona transferencia de
+datos fiable extremo a extremo. Y también sabemos que TCP se puede mejorar facilmente en la capa
+de aplicacion, con SSL, para proporcionar servicios de seguridad. Pero en esta breve descripcion
+de TCP y UDP hemos omitido notoriamente hacer mencion de las garantias relativas a la tasa de
+transferencia o la temporizacion, servicios que no proporcionan los protocolos de transporte de
+Internet de hoy dia. ;Significa esto que las aplicaciones sensibles al tiempo, como la telefonia por
+Internet, no se pueden ejecutar actualmente en Internet? Evidentemente, la respuesta es no: Internet
+lleva muchos afios albergando aplicaciones sensibles al tiempo. Estas aplicaciones suelen funcionar
+bastante bien, porque han sido disefiadas para hacer frente a esta falta de garantias de la mejor
+forma posible. En el Capitulo 9 veremos algunos de estos trucos de disefio. No obstante, un disefio
+inteligente tiene sus limitaciones cuando el retardo es excesivo, o cuando la tasa de transferencia
+extremo a extremo es limitada. En resumen, actualmente Internet puede ofrecer servicios
+satisfactorios a las aplicaciones sensibles al tiempo, pero no puede proporcionar ninguna garantia de
+tasa de transferencia ni de temporizacion.
+
+La Figura 2.5 enumera los protocolos de transporte utilizados por algunas aplicaciones
+populares de Internet. Podemos ver que aplicaciones como el correo electronico, el acceso remoto a
+terminales, la Web y la transferencia de archivos utilizan TCP. Estas aplicaciones han elegido TCP
+principalmente porque este protocolo ofrece un servicio de transferencia de datos fiable, garan-
+tizando que todos los datos llegaran finalmente a su destino. Como las aplicaciones de telefonia
+por Internet (como Skype) suelen tolerar cierto grado de pérdidas, pero requieren una tasa de
+transferencia minima para ser efectivas, los desarrolladores de aplicaciones de telefonia por Internet
+suelen preferir ejecutarlas sobre UDP, evitando asi el mecanismo de control de congestién de TCP
+y la mayor sobrecarga (bits que no forman parte de la carga util) que los paquetes de datos tienen en
+TCP. Pero como muchos cortafuegos estan configurados para bloquear el trafico UDP (0 la mayor
+parte del mismo), las aplicaciones de telefonia por Internet suelen disefarse para usar TCP como
+solucion alternativa, cuando falla la comunicacion a través de UDP.
+
+2.1.5 Protocolos de la capa de aplicacién
+
+Acabamos de aprender que los procesos de red se comunican entre si enviando mensajes a sus sockets.
+Pero, ,como estan estructurados estos mensajes? ;Cual es el significado de cada uno de los campos
+de estos mensajes? ,Cuando envian los procesos estos mensajes? Estas preguntas nos llevan al ambito
+de los protocolos de la capa de aplicacion. Un protocolo de la capa de aplicacién define como los
+procesos de una aplicacion, que se ejecutan en distintos sistemas terminales, se pasan los mensajes
+entre si. En particular, un protocolo de la capa de aplicacion define:
+
+79
+
+ NEW PAGE 
+80
+
+CAPITULO 2
+
+e LA CAPA DE APLICACION
+
+Aplicacion Protocolo de la capa de aplicacion Protocolo de transporte subyacente
+Correo electronico SMTP [RFC 5321 TCP
+
+Acceso remoto a terminal Telnet [RFC 854] TCP
+
+Web HTTP [RFC 2616 TCP
+
+Transferencia de archivos FTP [RFC 959] TCP
+
+Flujos multimedia HTTP (p. ej. YouTube) TCP
+
+Telefonia por Internet SIP [rfc 3261], RTP [RFC 3550] 0 UDP o TCP
+
+propietario (p. ej. Skype)
+Figura 2.5 ¢ Aplicaciones populares de Internet, sus protocolos de la capa de
+aplicacién y sus protocolos de transporte subyacentes.
+
+* Los tipos de mensajes intercambiados; por ejemplo, mensajes de solicitud y mensajes de
+respuesta.
+
+* La sintaxis de los diversos tipos de mensajes, es decir, los campos de los que consta el mensaje y
+como se delimitan esos campos.
+
+* La semantica de los campos, es decir, el significado de la informacion contenida en los cam-
+pos.
+
+* Las reglas para determinar cuando y como un proceso envia mensajes y responde a los
+mismos.
+
+Algunos protocolos de la capa de aplicacién estan especificados en documentos RFC y, por tanto,
+son de dominio publico. Por ejemplo, el protocolo de la capa de aplicacion para la Web, HTTP
+(HyperText Transfer Protocol [RFC 2616]), esta disponible como un RFC. Si quien desarrolla
+un navegador web sigue las reglas dadas en el RFC que se ocupa de HTTP, el navegador podra
+recuperar paginas web de cualquier servidor web que también se ajuste a las reglas de dicho RFC.
+Existen muchos otros protocolos de la capa de aplicacion que son propietarios y que intencio-
+nadamente no estan disponibles para todo el mundo. Por ejemplo, Skype utiliza protocolos de la
+capa de aplicacion propietarios.
+
+Es importante diferenciar entre aplicaciones de red y protocolos de la capa de aplicacion. Un
+protocolo de la capa de aplicacion es tnicamente un elemento de una aplicacion de red (jaunque
+uno muy importante, desde nuestro punto de vista!). Veamos un par de ejemplos. La Web es una
+aplicacion cliente-servidor que permite a los usuarios obtener documentos almacenados en servidores
+web bajo demanda. La aplicacién Web consta de muchos componentes, entre los que se incluyen
+un estandar para los formatos de documentos (es decir, HTML), navegadores web (como Firefox
+y Microsoft Internet Explorer), servidores web (por ejemplo, servidores Apache y Microsoft) y un
+protocolo de la capa de aplicacion. El protocolo de la capa de aplicacion de la Web, HTTP, define el
+formato y la secuencia de los mensajes que se pasan entre el navegador web y el servidor web. Por
+tanto, HTTP es solo una pieza (aunque una pieza importante) de la aplicacion Web. Otro ejemplo
+seria una aplicacion de correo electronico Internet, la cual también esta constituida por muchos
+componentes, entre los que se incluyen los servidores de correo que albergan los buzones de los
+usuarios; los clientes de correo (como Microsoft Outlook) que permiten a los usuarios leer y crear
+mensajes; un estandar para definir la estructura de los mensajes de correo electrénico y protocolos
+de la capa de aplicacion que definen como se pasan los mensajes entre los servidores, como se pasan
+los mensajes entre los servidores y los clientes de correo y como se interpretan los contenidos de las
+cabeceras de los mensajes. El principal protocolo de la capa de aplicacion para el correo electronico
+es SMTP (Simple Mail Transfer Protocol, Protocolo simple de transferencia de correo) [RFC 5321].
+
+
+ NEW PAGE 
+2.2. ¢ LA WEB Y HTTP
+
+Lineade | versién |sp|cddigo estado |sp| _ frase cr| If
+estado
+Nombre campo valor if
+cabecera: sp or
+Lineas de
+cabecera
+Nombre campo valor if
+cabecera: sp or
+Lineaen ———— cr] If
+blanco
+Cuerpo de
+entidad
+
+Figura 2.9 ¢ Formato general de un mensaje de respuesta HTTP.
+
+(Pulse dos veces la tecla retorno de carro después de escribir la ultima linea.) De este modo se abre
+una conexién TCP en el puerto 80 del host gaia.cs.umas.edu y luego se envia el mensaje de
+solicitud HTTP. Deberia ver un mensaje de respuesta que incluya el archivo base HTML de los pro-
+blemas interactivos de repaso de este libro. Para ver simplemente las lineas del mensaje HTTP y no
+recibir el objeto, sustituya GET por HEAD.
+
+En esta seccion hemos visto una serie de lineas de cabecera que pueden utilizarse en los
+mensajes HTTP de solicitud y respuesta. La especificacion de HTTP define un gran numero de otras
+lineas de cabecera que pueden ser insertadas por los navegadores, servidores web y servidores de
+almacenamiento en caché de la red. Hemos cubierto inicamente una pequefia parte de la totalidad
+de lineas de cabecera disponibles. A continuacion veremos unas pocas mas y en la Secci6n 2.2.5
+algunas otras, al hablar del almacenamiento en cachés web de la red. Puede leer una exposicion
+enormemente clara y comprensible acerca del protocolo HTTP, incluyendo sus cabeceras y codigos
+de estado en [Krishnamurty 2001].
+
+gComo decide un navegador qué lineas de cabecera incluir en un mensaje de solicitud?
+{Como decide un servidor web qué lineas de cabecera incluir en un mensaje de respuesta? Un
+navegador generara lineas de cabecera en funcion del tipo y la version del navegador (por ejemplo,
+un navegador HTTP/1.0 no generara ninguna linea de cabecera correspondiente a la version 1.1),
+de la configuracion del navegador que tenga el usuario (por ejemplo, el idioma preferido) y de
+si el navegador tiene actualmente en caché una version del objeto, posiblemente desactualizada.
+Los servidores web se comportan de forma similar: existen productos, versiones y configuraciones
+diferentes, que influyen en las lineas de cabecera que se incluiran en los mensajes de respuesta.
+
+2.2.4 Interaccion usuario-servidor: cookies
+
+Hemos mencionado anteriormente que un servidor HTTP no tiene memoria del estado de la cone-
+xion. Esto simplifica el disefio del servidor y ha permitido a los ingenieros desarrollar servidores
+web de alto rendimiento que pueden gestionar miles de conexiones TCP simultaneas. Sin embargo,
+para un sitio web, a menudo es deseable poder identificar a los usuarios, bien porque el servidor
+desea restringir el acceso a los usuarios 0 porque desea servir el contenido en funcion de la identidad
+del usuario. Para estos propdsitos, HTTP utiliza cookies. Las cookies, definidas en [RFC 6265],
+permiten a los sitios seguir la pista a los usuarios. Actualmente, la mayoria de los sitios web comer-
+ciales mas importantes utilizan cookies.
+
+Como se muestra en la Figura 2.10, la tecnologia de las cookies utiliza cuatro componentes:
+(1) una linea de cabecera de la cookie en el mensaje de respuesta HTTP; (2) una linea de cabecera
+de la cookie en el mensaje de solicitud HTTP; (3) el archivo de cookies almacenado en el sistema
+
+89
+
+ NEW PAGE 
+2.2. ¢ LA WEB Y HTTP
+
+Por tanto, el protocolo principal de la capa de aplicacion para correo electronico, SMTP, solo es un
+componente (aunque un componente importante) de la aplicacin de correo electronico.
+
+2.1.6 Aplicaciones de red analizadas en este libro
+
+Todos los dias se desarrollan nuevas aplicaciones de Internet, tanto de dominio publico como
+propietarias. En lugar de abordar un gran numero de aplicaciones de Internet a modo de enci-
+clopedia, hemos decidido centrarnos en unas pocas aplicaciones dominantes e importantes.
+En este capitulo abordaremos cinco aplicaciones relevantes: la Web, el correo electrénico, el
+servicio de directorio, los flujos de video y las aplicaciones P2P. En primer lugar veremos la
+Web, no solo porque es una aplicacion enormemente popular, sino porque también su protocolo
+de la capa de aplicacion, HTTP, es sencillo y facil de comprender. Después veremos el correo
+electronico, que fue la primera aplicacion de éxito en Internet. El correo electronico es mas
+complejo que la Web, en el sentido de que no utiliza uno sino varios protocolos de la capa de
+aplicacion. Después del correo electronico, abordaremos el sistema DNS, que proporciona un
+servicio de directorio a Internet. La mayoria de los usuarios no interacttan directamente con
+DNS; en su lugar, invocan indirectamente a DNS a través de otras aplicaciones (entre las que se
+incluyen las aplicaciones web, de transferencia de archivos y de correo electronico). DNS ilus-
+tra de forma muy conveniente como puede implementarse en la capa de aplicacion de Internet
+un elemento de la funcionalidad de red basica (la traduccion entre nombres de red y direcciones
+de red). Después examinaremos las aplicaciones P2P de comparticion de archivos y completare-
+mos nuestro estudio de las aplicaciones analizando los flujos de video a la carta, incluyendo la
+distribucion de video almacenado a través de redes de distribucion de contenido. En el Capitulo
+9 hablaremos mas en detalle de las aplicaciones multimedia, incluyendo la de voz sobre IP y la
+videoconferencia.
+
+2.2 La Web y HTTP
+
+Hasta principios de la década de 1990, Internet era utilizada principalmente por investigadores,
+profesores y estudiantes universitarios para acceder a hosts remotos; para transferir archivos desde
+los hosts locales a los hosts remotos, y viceversa, y para recibir y enviar noticias y mensajes de
+correo electrénico. Aunque estas aplicaciones eran (y continuan siendo) extremadamente utiles,
+Internet era practicamente desconocida fuera de las comunidades académica y de investigacion.
+Fue entonces, a principios de la década de 1990, cuando una nueva aplicacion importante aparecid
+en escena: la World Wide Web [Berners-Lee 1994]. La Web fue la primera aplicacion de Internet
+que atrajo la atencion del publico general. Cambio de manera dramatica, y continua cambiando, la
+forma en que las personas interacttian dentro y fuera de sus entornos de trabajo. Hizo que Internet
+pasara de ser una de entre muchas redes de datos, a ser practicamente la unica red de datos.
+
+Quiza lo que atrae a la mayoria de los usuarios es que la Web opera bajo demanda. Los usuarios
+reciben lo que desean y cuando lo desean. Es muy diferente a la radio y la television, que fuerzan a los
+usuarios a sintonizar los programas cuando el proveedor de contenido tiene el contenido disponible.
+Ademas de estar disponible bajo demanda, la Web posee muchas otras caracteristicas maravillosas
+que a todo el mundo le gustan y que todos valoran. Para cualquier persona, es tremendamente
+facil publicar informacion en la Web (todo el mundo puede convertirse en editor con unos costes
+extremadamente bajos). Los hipervinculos y los motores de busqueda nos ayudan a navegar a
+través de un océano de sitios web. Las fotografias y los videos estimulan nuestros sentidos. Los
+formularios, JavaScript, los applets de Java y muchos otros mecanismos nos permiten interactuar
+con las paginas y sitios. Y la Web y sus protocolos sirven como plataforma para YouTube, para el
+correo electronico basado en la Web (como Gmail) y para la mayoria de las aplicaciones moviles de
+Internet, incluyendo Instagram y Google Maps.
+
+81
+
+ NEW PAGE 
+82
+
+CAPITULO 2
+
+e LA CAPA DE APLICACION
+
+2.2.1 Introduccion a HTTP
+
+El corazon de la Web lo forma el Protocolo de transferencia de hipertexto (HTTP, HyperText
+Transfer Protocol), que es el protocolo de la capa de aplicacion de la Web. Esta definido en los
+documentos [RFC 1945] y [RFC 2616]. HTTP se implementa mediante dos programas: un
+programa cliente y un programa servidor. Ambos programas, que se ejecutan en sistemas terminales
+diferentes, se comunican entre si intercambiando mensajes HTTP. HTTP define la estructura de
+estos mensajes y como el cliente y el servidor intercambian los mensajes. Antes de explicar en
+detalle HTTP, vamos a hacer un breve repaso de la terminologia Web.
+
+Una pagina web (también denominada documento web) consta de objetos. Un objeto es
+simplemente un archivo (como por ejemplo un archivo HTML, una imagen JPEG, un applet
+Java o un clip de video) que puede direccionarse mediante un unico URL. La mayoria de las
+paginas web estan constituidas por un archivo base HTML y varios objetos referenciados. Por
+ejemplo, si una pagina web contiene texto HTML y cinco imagenes JPEG, entonces la pagina
+web contiene seis objetos: el archivo base HTML y las cinco imagenes. El archivo base HTML
+hace referencia a los otros objetos contenidos en la pagina mediante los URL de los objetos.
+Cada URL tiene dos componentes: el nombre de host del servidor que alberga al objeto y el
+nombre de la ruta al objeto. Por ejemplo, en el URL
+
+http: //www.unaEscuela.edu/unDepartamento/imagen.gif
+
+www.unaEscuela.edu corresponde a un nombre de host y /unDepartmento/imagen.gif es
+el nombre de una ruta. Puesto que los navegadores web (como Internet Explorer y Firefox) imple-
+mentan el lado del cliente de HTTP, en el contexto de la Web utilizaremos los términos navegador
+y cliente de forma indistinta. Los servidores web, que implementan el lado del servidor de HTTP,
+albergan los objetos web, siendo cada uno de ellos direccionable mediante un URL. Entre los
+servidores web mas populares se incluyen Apache y Microsoft Internet Information Server.
+HTTP define como los clientes web solicitan paginas web a los servidores y como estos
+servidores web transfieren esas paginas a los clientes. Mas adelante veremos la interaccion entre
+el cliente y el servidor en detalle, si bien la idea general se ilustra en la Figura 2.6. Cuando un
+usuario solicita una pagina web (por ejemplo, haciendo clic en un hipervinculo), el navegador envia
+al servidor mensajes de solicitud HTTP, pidiendo los objetos contenidos en la pagina. El servidor
+recibe las solicitudes y responde con mensajes de respuesta HTTP que contienen los objetos.
+HTTP utiliza TCP como su protocolo de transporte subyacente (en lugar de ejecutarse por
+encima de UDP). El cliente HTTP primero inicia una conexion TCP con el servidor. Una vez que la
+conexion se ha establecido, los procesos de navegador y de servidor acceden a TCP a través de sus
+
+Servidor ejecutando un
+servidor web Apache
+
+PC ejecutando Teléfono Android
+Internet Explorer ejecutando Google Chrome
+
+Figura 2.6 ¢ Comportamiento solicitud-respuesta de HTTP.
+
+ NEW PAGE 
+2.2 ¢ LA WEB Y HTTP
+
+interfaces de socket. Como se ha descrito en la Seccion 2.1, en el lado del cliente la interfaz de socket
+es la puerta entre el proceso cliente y la conexion TCP; en el lado del servidor, es la puerta entre el
+proceso servidor y la conexion TCP. El cliente envia mensajes de solicitud HTTP a su interfaz de
+socket y recibe mensajes de respuesta HTTP procedentes de su interfaz de socket. De forma similar,
+el servidor HTTP recibe mensajes de solicitud a través de su interfaz de socket y envia mensajes de
+respuesta a través de la misma. Una vez que el cliente envia un mensaje a su interfaz de socket, el
+mensaje deja de estar en las manos del cliente y pasa “a las manos” de TCP. Recuerde, de la Seccion
+2.1, que TCP proporciona un servicio de transferencia de datos fiable a HTTP. Esto implica que cada
+mensaje de solicitud HTTP enviado por un proceso cliente llegara intacto al servidor; del mismo
+modo, cada mensaje de respuesta HTTP enviado por el proceso servidor llegara intacto al cliente.
+Esta es una de las grandes ventajas de una arquitectura en capas: HTTP no tiene que preocuparse por
+las pérdidas de datos o por los detalles sobre como TCP recupera los datos perdidos o los reordena
+dentro de la red. Ese es el trabajo de TCP y de los protocolos de las capas inferiores de la pila de
+protocolos.
+
+Es importante observar que el servidor envia los archivos solicitados a los clientes sin
+almacenar ninguna informacion acerca del estado del cliente. Si un determinado cliente pide
+el mismo objeto dos veces en un espacio de tiempo de unos pocos segundos, el servidor no
+responde diciendo que acaba de servir dicho objeto al cliente; en su lugar, el servidor reenvia
+el objeto, ya que ha olvidado por completo que ya lo habia hecho anteriormente. Dado que un
+servidor HTTP no mantiene ninguna informacion acerca de los clientes, se dice que HTTP es un
+protocolo sin memoria del estado. Debemos destacar también que la Web utiliza la arquitectura
+de aplicacion cliente-servidor, descrita en la Seccién 2.1. Un servidor web siempre esta activo,
+con una direccion IP fija, y da servicio a solicitudes procedentes de, potencialmente, millones de
+navegadores distintos.
+
+2.2.2 Conexiones persistentes y no persistentes
+
+En muchas aplicaciones de Internet, el cliente y el servidor estan en comunicacion durante un periodo
+de tiempo amplio, haciendo el cliente una serie de solicitudes y respondiendo el servidor a dichas
+solicitudes. Dependiendo de la aplicacioén y de cémo se esté empleando, las solicitudes pueden
+hacerse una tras otra, periddicamente a intervalos regulares o de forma intermitente. Cuando esta
+interaccion cliente-servidor tiene lugar sobre TCP, el desarrollador de la aplicacion tiene que tomar
+una decision importante: ;deberia cada par solicitud/respuesta enviarse a través de una conexion
+TCP separada o deberian enviarse todas las solicitudes y sus correspondientes respuestas a través de
+la misma conexion TCP? Si se utiliza el primer método, se dice que la aplicacion emplea conexiones
+no persistentes; si se emplea la segunda opcidn, entonces se habla de conexiones persistentes.
+Con el fin de profundizar en esta cuestiOn de disefio, vamos a examinar las ventajas y desventajas
+de las conexiones persistentes en el contexto de una aplicaciOn especifica, en concreto HTTP, que
+puede utilizar ambos tipos de conexidn. Aunque HTTP emplea conexiones persistentes de manera
+predeterminada, los clientes y servidores HTTP se pueden configurar para emplear en su lugar
+conexiones no persistentes.
+
+HTTP con conexiones no persistentes
+
+Sigamos los pasos que permiten transferir una pagina web desde un servidor a un cliente en el caso
+de conexiones no persistentes. Supongamos que la pagina consta de un archivo base HTML y de 10
+imagenes JPEG, residiendo los 11 objetos en el mismo servidor. Supongamos también que el URL
+del archivo base HTML es:
+
+http: //www.unaEscuela.edu/unDepartmento/home. index
+
+Lo que ocurre es lo siguiente:
+
+83
+
+ NEW PAGE 
+84
+
+CAPITULO 2
+
+e LA CAPA DE APLICACION
+
+1. El proceso cliente HTTP inicia una conexidn TCP con el servidor www.unaEscuela.edu en
+el puerto numero 80, que es el numero de puerto predeterminado para HTTP. Asociados con la
+conexion TCP, habra un socket en el cliente y un socket en el servidor.
+
+2. Elcliente HTTP envia un mensaje de solicitud HTTP al servidor a través de su socket. El men-
+saje de solicitud incluye el nombre de la ruta /unDepartmento/home. index. (Mas adelante
+veremos con mas detalle los mensajes HTTP.)
+
+3. El proceso servidor HTTP recibe el mensaje de solicitud a través de su socket, recupera el objeto
+/unDepartmento/home. index de su medio de almacenamiento (RAM 0 disco), encapsula el
+objeto en un mensaje de respuesta HTTP y lo envia al cliente a través de su socket.
+
+4. El proceso servidor HTTP indica a TCP que cierre la conexion TCP. (Pero TCP realmente no
+termina la conexion hasta que esta seguro de que el cliente ha recibido el mensaje de respuesta
+en perfecto estado.)
+
+5. El cliente HTTP recibe el mensaje de respuesta. La conexion TCP termina. El mensaje indica
+que el objeto encapsulado es un archivo HTML. El cliente extrae el archivo del mensaje de
+respuesta, examina el archivo HTML y encuentra las referencias a los 10 objetos JPEG.
+
+6. Los cuatro primeros pasos se repiten entonces para cada uno de los objetos JPEG referenciados.
+
+Cuando el navegador recibe la pagina web, la muestra al usuario. Dos navegadores distintos
+pueden interpretar (es decir, mostrar al usuario) una pagina web de formas ligeramente distintas.
+HTTP no tiene nada que ver con como un cliente interpreta una pagina web. Las especificaciones
+HTTP ({[RFC 1945] y [RFC 2616]) tnicamente definen el protocolo de comunicacion entre el
+programa cliente HTTP y el programa servidor HTTP.
+
+Los pasos anteriores ilustran el uso de las conexiones no persistentes, donde cada conexion TCP
+se cierra después de que el servidor envie el objeto: la conexion no se mantiene (no persiste) para los
+restantes objetos. Observe que cada conexion TCP transporta exactamente un mensaje de solicitud
+y un mensaje de respuesta. Por tanto, en este ejemplo, cuando un usuario solicita la pagina web, se
+generan 11 conexiones TCP.
+
+En los pasos descritos anteriormente, hemos sido intencionadamente vagos en lo que respecta
+a si el cliente obtiene las diez imagenes JPEG a través de diez conexiones TCP en serie o si algunas
+de dichas imagenes se obtienen a través de conexiones TCP en paralelo. De hecho, los usuarios
+pueden configurar los navegadores modernos para controlar el grado de paralelismo. En sus modos
+predeterminados, la mayoria de los navegadores abren entre 5 y 10 conexiones TCP en paralelo y
+cada una de estas conexiones gestiona una transaccion solicitud-respuesta. Si el usuario lo prefiere, el
+numero maximo de conexiones en paralelo puede establecerse en uno, en cuyo caso se estableceran
+diez conexiones en serie. Como veremos en el siguiente capitulo, el uso de conexiones en paralelo
+reduce el tiempo de respuesta.
+
+Antes de continuar, vamos a realizar un calculo aproximado para estimar la cantidad de tiempo
+que transcurre desde que un cliente solicita el archivo base HTML hasta que recibe dicho archivo
+completo. Para ello, definimos el tiempo de ida y vuelta (RTT, Round-Trip Time), que es el
+tiempo que tarda un paquete pequefio en viajar desde el cliente al servidor y volver de nuevo al
+cliente. El RTT incluye los retardos de propagacion de los paquetes, los retardos de cola en los
+routers y switches intermedios y los retardos de procesamiento de los paquetes (estos retardos se
+explican en la Seccion 1.4). Consideremos ahora lo que ocurre cuando un usuario hace clic en un
+hipervinculo. Como se muestra en la Figura 2.7, esto hace que el navegador inicie una conexion
+TCP entre el navegador y el servidor web, lo que implica un proceso de “acuerdo en tres fases” (el
+cliente envia un pequefio segmento TCP al servidor, el servidor reconoce la recepcion y responde
+con otro pequefio segmento TCP y, por ultimo, el cliente devuelve un mensaje de reconocimiento
+al servidor). Las dos primeras partes de este proceso de acuerdo en tres fases tardan un periodo de
+tiempo igual a RTT. Después de completarse las dos primeras fases de la negociacion, el cliente envia
+a la conexion TCP el mensaje de solicitud HTTP combinado con la tercera parte de la negociacion
+(el mensaje de reconocimiento). Una vez que el mensaje de solicitud llega al servidor, este envia el
+
+ NEW PAGE 
+2.2 ¢ LA WEB Y HTTP 85
+
+Inicio de la
+conexién =§==—————
+TCP.
+RIT-
+Solicitud de ————=
+archivo
+RIT
++ Tiempo invertido en
+transmitir el archivo
+Recepcion del archivo completo-{
+
+Tiempo en Tiempo en
+el cliente el servidor
+
+Figura 2.7 ¢ Calculo aproximado del tiempo necesario para solicitar y recibir un
+archivo HTML.
+
+archivo HTML a través de la conexion TCP. Este mensaje de solicitud/respuesta HTTP consume
+otro periodo de tiempo RTT. Luego el tiempo de respuesta total es aproximadamente igual a dos
+RTT mas el tiempo de transmision del archivo HTML por parte del servidor.
+
+HTTP con conexiones persistentes
+
+Las conexiones no persistentes presentan algunos inconvenientes. En primer lugar, tiene que
+establecerse y gestionarse una conexion completamente nueva para cada objeto solicitado. Para
+cada una de estas conexiones, deben asignarse buffers TCP y tienen que gestionarse variables TCP
+tanto en el cliente como en el servidor. Esto puede sobrecargar de forma significativa al servidor
+web, ya que puede estar sirviendo solicitudes de cientos de clientes distintos simultaneamente. En
+segundo lugar, como ya hemos explicado, cada objeto sufre un retardo de entrega de dos RTT: un
+RTT para establecer la conexion TCP y otro RTT para solicitar y recibir un objeto.
+
+Con las conexiones persistentes de HTTP 1.1, el servidor deja la conexion TCP abierta después
+de enviar una respuesta. Las subsiguientes solicitudes y respuestas que tienen lugar entre el mismo
+cliente y el servidor pueden enviarse a través de la misma conexion. En concreto, una pagina web
+completa (en el ejemplo anterior, el archivo base HTML y las 10 imagenes) se puede enviar a través
+de una misma conexidn TCP persistente. Ademas, varias paginas web que residan en el mismo
+servidor pueden enviarse desde el servidor a un mismo cliente a través de una unica conexion TCP
+persistente. Estas solicitudes de objetos pueden realizarse una tras otra sin esperar a obtener las
+respuestas a las solicitudes pendientes (pipelining, procesamiento en cadena). Normalmente, el
+servidor HTTP cierra una conexion cuando no se ha utilizado durante cierto tiempo (un intervalo
+de fin de temporizacion configurable). Cuando el servidor recibe las solicitudes una tras otra,
+envia los objetos uno tras otro. El modo predeterminado de HTTP utiliza conexiones persistentes
+con procesamiento en cadena. Mas recientemente, HTTP/2 [RFC 7540] amplia la funcionalidad
+
+ NEW PAGE 
+86
+
+CAPITULO 2
+
+e LA CAPA DE APLICACION
+
+de HTTP 1.1, permitiendo entrelazar multiples solicitudes y respuestas en la misma conexiOn, y
+proporcionando también un mecanismo para priorizar los mensajes de solicitud y respuesta HTTP
+dentro de dicha conexion. En los problemas de repaso de los Capitulos 2 y 3 compararemos
+cuantitativamente el rendimiento de las conexiones persistentes y no persistentes. Le animamos
+también a que consulte [Heidemann 1997; Nielsen 1997; RFC 7540].
+
+2.2.3 Formato de los mensajes HTTP
+
+Las especificaciones HTTP [RFC 1945; RFC 2616]; RFC 7540) incluyen las definiciones de los
+formatos de los mensajes HTTP. A continuacion vamos a estudiar los dos tipos de mensajes HTTP
+existentes: mensajes de solicitud y mensajes de respuesta.
+
+Mensaje de solicitud HTTP
+
+A continuacion se muestra un mensaje de solicitud HTTP tipico:
+
+GET /unadireccion/pagina.html HTTP/1.1
+Host: www.unaEscuela.edu
+
+Connection: close
+
+User-agent: Mozilla/5.0
+Accept-language: fr
+
+Podemos aprender muchas cosas si miramos en detalle este sencillo mensaje de solicitud. En
+primer lugar, podemos comprobar que el mensaje esta escrito en texto ASCII normal, por lo que
+cualquier persona con conocimientos informaticos puede leerlo. En segundo lugar, vemos que el
+mensaje consta de cinco lineas, cada una de ellas seguida por un retorno de carro y un salto de
+linea. La ultima linea va seguida de un retorno de carro y un salto de linea adicionales. Aunque
+este mensaje en concreto esta formado por cinco lineas, un mensaje de solicitud puede constar
+de muchas mas lineas 0 tener tan solo una. La primera linea de un mensaje de solicitud HTTP se
+denomina linea de solicitud y las siguientes son las lineas de cabecera. La linea de solicitud consta
+de tres campos: el campo de método, el campo URL y el campo de la version HTTP. El campo que
+especifica el método puede tomar diferentes valores, entre los que se incluyen GET, POST, HEAD,
+PUT y DELETE. La inmensa mayoria de los mensajes de solicitud HTTP utilizan el método GET.
+Este método se emplea cuando el navegador solicita un objeto, identificandose dicho objeto en el
+campo URL. En este ejemplo, el navegador esta solicitando el objeto /unadireccion/pagina.
+html. El campo correspondiente a la version se explica por si mismo; en este ejemplo, el navegador
+utiliza la version HTTP/1.1.
+
+Analicemos ahora las lineas de cabecera de este ejemplo. La linea de cabecera Host: www.
+unaescuela.edu especifica el host en el que reside el objeto. Podria pensarse que esta linea de
+cabecera es innecesaria, puesto que ya existe una conexidn TCP activa con el host. Pero, como
+veremos en la SecciOn 2.2.5, las cachés proxy web necesitan la informacion proporcionada por
+la linea de cabecera del host. Al incluir la linea de cabecera Connection: close, el navegador
+esta diciendo al servidor que no desea molestarse en trabajar con conexiones persistentes, sino que
+desea que el servidor cierre la conexion después de enviar el objeto solicitado. La linea de cabecera
+User-agent: especifica el agente de usuario, es decir, el tipo de navegador que esta haciendo la
+solicitud al servidor. En este caso, el agente de usuario es Mozilla/5.0, un navegador Firefox. Esta
+linea de cabecera resulta util porque el servidor puede enviar versiones diferentes del mismo objeto
+a los distintos tipos de agentes de usuario (todas las versiones tienen la misma direcci6n URL). Por
+ultimo, la linea de cabecera Accept-language: indica que el usuario prefiere recibir una version
+en francés del objeto, si tal objeto existe en el servidor; en caso contrario, el servidor debe enviar
+la version predeterminada. La linea de cabecera Accept-language: solo es una de las muchas
+cabeceras de negociacion del contenido disponibles en HTTP.
+
+ NEW PAGE 
+2.2. ¢ LA WEB Y HTTP
+
+Linea de —— método |sp URL sp} Versién cr| If
+solicitud
+nombre campo de sp| valor | cr] If
+cabecera:
+Lineas de
+cabecera
+nombre campo de S| valor if
+cabecera: P cr
+Lineaen ———— cr] If
+blanco
+Cuerpo de
+entidad
+
+Figura 2.8 ¢ Formato general de un mensaje de solicitud HTTP.
+
+Una vez visto un ejemplo, vamos a estudiar el formato general de un mensaje de solicitud,
+ilustrado en la Figura 2.8. Podemos comprobar que el formato general es muy similar al usado en el
+ejemplo anterior. Sin embargo, fijese en que después de las lineas de cabecera (y el retorno de carro
+y el salto de linea adicionales) se incluye un “cuerpo de entidad”. Este campo queda vacio cuando
+se utiliza el método GET, pero no cuando se usa el método Post. A menudo, un cliente HTTP utiliza
+el método PosT cuando el usuario completa un formulario; por ejemplo, cuando especifica terminos
+para realizar una busqueda utilizando un motor de busqueda. Con un mensaje POST, el usuario
+solicita también una pagina web al servidor, pero el contenido concreto de la misma dependera de
+lo que el usuario haya escrito en los campos del formulario. Si el valor del campo de método es
+POST, entonces el cuerpo de la entidad contendra lo que el usuario haya introducido en los campos
+del formulario.
+
+No podemos dejar de mencionar que una solicitud generada con un formulario no necesaria-
+mente utiliza el método POST. En su lugar, a menudo los formularios HTML emplean el método
+GET e incluyen los datos de entrada (especificados en los campos del formulario) en el URL
+solicitado. Por ejemplo, si un formulario emplea el método GET y tiene dos campos, y las entradas a
+esos dos campos son monos y bananas, entonces el URL tendra la estructura www.unsitio.com/
+busquedadeanimales?monos&bananas. Probablemente habra visto direcciones URL ampliadas
+de este tipo, al navegar por la Web.
+
+El método HEAD es similar al método GET. Cuando un servidor recibe una solicitud con el
+método HEAD, responde con un mensaje HTTP, pero excluye el objeto solicitado. Los desarrolla-
+dores de aplicaciones a menudo utilizan el método HEAD para labores de depuracion. El método
+PUT suele utilizarse junto con herramientas de publicacion web. Esto permite a un usuario cargar
+un objeto en una ruta especifica (directorio) en un servidor web determinado. Las aplicaciones que
+necesitan cargar objetos en servidores web también emplean el método PuT. El método DELETE
+permite a un usuario o a una aplicacion borrar un objeto de un servidor web.
+
+Mensajes de respuesta HTTP
+
+A ccontinuacion se muestra un mensaje de respuesta HTTP tipico. Este mensaje podria ser la respuesta
+al ejemplo de mensaje de solicitud que acabamos de ver.
+
+HTTP/1.1 200 OK
+
+Connection: close
+
+Date: Tue, 18 Aug 2015 15:44:04 GMT
+Server: Apache/2.2.3 (CentOS)
+
+87
+
+ NEW PAGE 
+88 CAPITULO 2
+
+Uso de Wireshark para
+investigar el protocolo
+HTTP.
+
+e LA CAPA DE APLICACION
+
+Last-Modified: Tue, 18 Aug 2015 15:11:03 GMT
+Content-Length: 6821
+Content-Type: text/html
+
+(datos datos datos datos datos ...)
+
+Examinemos detenidamente este mensaje de respuesta. Tiene tres secciones: una linea de
+estado inicial, seis lineas de cabecera y después el cuerpo de entidad. El cuerpo de entidad es
+la parte mas importante del mensaje, ya que contiene el objeto solicitado en si (representado por
+datos datos datos datos datos ...). La linea de estado contiene tres campos: el que
+especifica la version del protocolo, un cddigo de estado y el correspondiente mensaje explicativo
+del estado. En este ejemplo, la linea de estado indica que el servidor esta utilizando HTTP/1.1
+y que todo es correcto (OK); es decir, que el servidor ha encontrado y esta enviando el objeto
+solicitado.
+
+Veamos ahora las lineas de cabecera. El servidor utiliza la linea de cabecera Connection:
+close para indicar al cliente que va a cerrar la conexion TCP después de enviar el mensaje. La linea
+de cabecera Date: indica la hora y la fecha en la que se creo la respuesta HTTP y fue enviada por el
+servidor. Observe que esta linea no especifica la hora en que el objeto fue creado o modificado por
+ultima vez; es la hora en la que el servidor recupera el objeto de su sistema de archivos, inserta el
+objeto en el mensaje de respuesta y lo envia. La linea de cabecera Server: indica que el mensaje
+fue generado por un servidor web Apache; es andloga a la linea de cabecera User-agent: del
+mensaje de solicitud HTTP. La linea de cabecera Last-Modified: especifica la hora y la fecha en
+que el objeto fue creado 0 modificado por ultima vez. Esta linea Last-Modified:, que enseguida
+estudiaremos en detalle, resulta fundamental para el almacenamiento en caché del objeto, tanto en
+el cliente local como en los servidores de almacenamiento en caché de la red (también conocidos
+como servidores proxy). La linea de cabecera Content-Length: especifica el numero de bytes del
+objeto que esta siendo enviado. La linea Content-Type: indica que el objeto incluido en el cuerpo
+de entidad es texto HTML. (El tipo de objeto esta indicado oficialmente por la linea de cabecera
+Content-Type: y no por la extension del archivo.)
+
+Una vez visto un ejemplo, vamos a pasar a examinar el formato general de un mensaje de
+respuesta, ilustrado en la Figura 2.9. Este formato general de mensaje de respuesta se corresponde
+con el del ejemplo anterior. Vamos a comentar algunas cosas mas acerca de los cédigos de estado
+y sus descripciones. El codigo de estado y su frase asociada indican el resultado de la solicitud.
+Algunos cédigos de estado comunes y sus frases asociadas son:
+
+* 200 OK: La solicitud se ha ejecutado con éxito y se ha devuelto la informacion en el mensaje de
+respuesta.
+
+* 301 Moved Permanently: El objeto solicitado ha sido movido de forma permanente; el nuevo
+URL se especifica en la linea de cabecera Location: del mensaje de respuesta. El software
+cliente recuperara automaticamente el nuevo URL.
+
+* 400 Bad Request: Se trata de un cddigo de error genérico que indica que la solicitud no ha
+sido comprendida por el servidor.
+
+* 404 Not Found: El documento solicitado no existe en este servidor.
+
+* 505 HTTP Version Not Supported: La version de protocolo HTTP solicitada no es sopor-
+tada por el servidor.
+
+jLe gustaria ver un mensaje de respuesta HTTP real? jEsto es muy recomendable y ademas es
+muy facil de hacer! En primer lugar, establezca una conexi6n Telnet con su servidor web favorito.
+A continuacion, escriba un mensaje de solicitud de una linea para obtener algun objeto que esté
+almacenado en ese servidor. Por ejemplo, si tiene acceso a la linea de comandos (prompt), escriba:
+
+telnet gaia.cs.umass.edu 80
+GET /kurose_ross/interactive/index.php HTTP/1.1
+Host: gaia.cs.umass.edu
+
+ NEW PAGE
