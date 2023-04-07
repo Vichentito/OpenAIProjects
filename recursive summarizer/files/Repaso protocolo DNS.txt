@@ -1,0 +1,749 @@
+104
+
+CAPITULO 2. © LA CAPA DE APLICACION
+
+Un servidor IMAP asociara cada mensaje con una carpeta; cuando un mensaje llega al servidor,
+se asocia con la carpeta INBOX (Bandeja de entrada) del destinatario, el cual puede entonces pasar
+el mensaje a una nueva carpeta creada por el usuario, leer el mensaje, borrarlo, etc. El protocolo
+IMAP proporciona comandos que permiten a los usuarios crear carpetas y mover los mensajes
+de una carpeta a otra. IMAP también proporciona comandos que permiten a los usuarios realizar
+busquedas en carpetas remotas para localizar mensajes que cumplan unos determinados criterios.
+Observe que, a diferencia de POP3, un servidor IMAP mantiene informacion acerca del estado a lo
+largo de las sesiones IMAP, como por ejemplo, los nombres de las carpetas y los mensajes asociados
+con cada una de ellas.
+
+Otra importante caracteristica de IMAP es que dispone de comandos que permiten a un agente
+de usuario obtener partes componentes de los mensajes. Por ejemplo, un agente de usuario puede
+obtener solo la cabecera del mensaje o solo una parte de un mensaje MIME de varias partes. Esta
+caracteristica resulta util cuando se emplea una conexiOn con un ancho de banda pequefio (por
+ejemplo, un enlace de médem de baja velocidad) entre el agente de usuario y su servidor de correo.
+Con una conexion de ancho de banda pequefio, puede que el usuario no quiera descargar todos los
+mensajes guardados en su buz6n y que desee saltarse los mensajes largos que pueda haber; por
+ejemplo un archivo de audio o de video.
+
+Correo electrénico web
+
+Actualmente, cada vez mas usuarios envian y acceden a su correo electronico a través de sus
+navegadores web. Hotmail introdujo a mediados de la década de 1990 el acceso basado en la
+Web; actualmente, también ofrece este servicio Yahoo, Google, asi como casi todas las principales
+universidades y empresas. Con este servicio, el agente de usuario es un navegador web corriente y
+el usuario se comunica con su buzén remoto a través de HTTP. Cuando un destinatario, como
+Benito, desea acceder a un mensaje de su buzon, este es enviado desde el servidor de correo
+de Benito al navegador del mismo utilizando el protocolo HTTP en lugar de los protocolos POP3
+o IMAP. Cuando un emisor, como Alicia, desea enviar un mensaje de correo electronico, este es
+transmitido desde su navegador a su servidor de correo a través de HTTP en lugar de mediante
+SMTP. Sin embargo, el servidor de correo de Alicia, continiia enviando mensajes a, y recibiendo
+mensajes de, otros servidores de correo que emplean SMTP.
+
+2.4 DNS: el servicio de directorio de Internet
+
+Las personas podemos ser identificadas de muchas maneras. Por ejemplo, podemos ser identi-
+ficadas por el nombre que aparece en nuestro certificado de nacimiento, por nuestro numero de
+la seguridad social o por el numero del carnet de conducir. Aunque cada uno de estos datos se
+puede utilizar para identificar a las personas, dentro de un determinado contexto un identificador
+puede ser mas apropiado que otro. Por ejemplo, las computadoras del IRS (la terrible agencia
+tributaria de Estados Unidos) prefieren utilizar los nimeros de la seguridad social de longitud fija
+que el nombre que aparece en el certificado de nacimiento. Por otro lado, las personas prefieren
+emplear el nombre que figura en los certificados de nacimiento, mas faciles de recordar, a los
+numeros de la seguridad social (puede imaginar que alguien le dijera “Hola. Mi nombre es 132-67-
+9875. Este es mi marido, 178-87-1146.’)
+
+No solo las personas podemos ser identificadas de diversas formas, los hosts de Internet también.
+Un identificador para los hosts es el nombre de host. Los nombres de host, como por ejemplo www.
+facebook.com, www.google.com, gaia.cs.umass.edu, son mnemonicos y son, por
+tanto, entendidos por las personas. Sin embargo, los nombres de host proporcionan poca o ninguna
+informacion acerca de la ubicacion del host dentro de Internet. (Un nombre de host como www.
+eurecom. fr, que termina con el cddigo de pais, . fr, nos informa de que es probable que el host
+
+ NEW PAGE 
+2.4 © DNS—SERVICIO DE DIRECTORIO DE INTERNET
+
+se encuentre en Francia, pero esto no dice mucho mas.) Ademas, puesto que los nombres de host
+pueden constar de caracteres alfanuméricos de longitud variable, podrian ser dificiles de procesar
+por los routers. Por estas razones, los hosts también se identifican mediante direcciones IP.
+
+En el Capitulo 4 veremos en detalle las direcciones IP, pero le resultara util leer ahora una
+breve exposiciOn sobre las mismas. Una direccién IP consta de cuatro bytes y sigue una rigida
+estructura jerarquica. El aspecto de una direccion IP es, por ejemplo, 121.7.106.83, donde cada
+punto separa uno de los bytes expresados en notacion decimal con valores comprendidos entre
+0 y 255. Una direccion IP es jerarquica porque al explorar la direccién de izquierda a derecha, se
+obtiene informacion cada vez mas especifica acerca del lugar en el que esta ubicado el host dentro
+de Internet (es decir, en qué red de la red de redes). De forma similar, cuando examinamos una
+direcci6n postal de abajo a arriba, obtenemos cada vez informacion mas especifica acerca del lugar
+definido por la direccion.
+
+2.4.1 Servicios proporcionados por DNS
+
+Acabamos de ver que hay dos formas de identificar un host, mediante un nombre de host y
+mediante una direccion IP. Las personas prefieren utilizar como identificador el nombre de host,
+mientras que los routers prefieren emplear las direcciones IP de longitud fija y que siguen una
+estructura jerarquica. Para reconciliar estas preferencias necesitamos un servicio de directorio
+que traduzca los nombres de host en direcciones IP. Esta es la tarea principal que lleva a cabo el
+Sistema de nombres de dominio (DNS, Domain Name System) de Internet. DNS es (1) una base
+de datos distribuida implementada en una jerarquia de servidores DNS y (2) un protocolo de la
+capa de aplicacion que permite a los hosts consultar la base de datos distribuida. Los servidores
+DNS suelen ser maquinas UNIX que ejecutan el software BIND (Berkeley Internet Name Domain,
+Dominio de nombres de Internet de Berkeley) [BIND 2016]. El protocolo DNS se ejecuta sobre
+UDP y utiliza el puerto 53.
+
+Otros protocolos de la capa de aplicacion, como HTTP y SMTP, emplean habitualmente DNS
+para traducir los nombres de host suministrados por el usuario en direcciones IP. Por ejemplo, veamos
+qué ocurre cuando un navegador (es decir, un cliente HTTP), que se ejecuta en un determinado host
+de usuario, solicita el URL www.unaescuela.edu/index.html. Para que el host del usuario
+pueda enviar un mensaje de solicitud HTTP al servidor web www.unaescuela.edu, el host del
+usuario debe obtener en primer lugar la direccion IP de www. unaescuela.edu. Esto se hace del
+siguiente modo:
+
+1. La propia maquina cliente ejecuta el lado del cliente de la aplicacion DNS.
+
+2. El navegador extrae el nombre de host, www. unaescuela.edu, del URL y pasa el nombre de
+host al lado del cliente de la aplicacion DNS.
+
+3. El cliente DNS envia una consulta que contiene el nombre de host a un servidor DNS.
+
+4. El cliente DNS recibe finalmente una respuesta, que incluye la direccion IP correspondiente al
+nombre del host.
+
+5. Una vez que el navegador recibe la direccion IP del servidor DNS, puede iniciar una conexion
+TCP con el proceso servidor HTTP localizado en el puerto 80 en esa direcci6n IP.
+
+Podemos ver a partir de este ejemplo que DNS afiade un retardo adicional, en ocasiones, sustancial,
+a las aplicaciones de Internet que le utilizan. Afortunadamente, como veremos mas adelante, la
+direccién IP deseada a menudo esta almacenada en caché en un servidor DNS “proximo”, lo que
+ayuda a reducir el trafico de red DNS, asi como el retardo medio del servicio DNS.
+
+DNS proporciona algunos otros servicios importantes ademas de la traduccion de los nombres
+de host en direcciones IP:
+
++ Alias de host. Un host con un nombre complicado puede tener uno o mas alias. Por ejem-
+plo, un nombre de host como relayl.west-coast.enterprise.com podria tener, digamos,
+dos alias como enterprise.com y www.enterprise.com. En este caso, el nombre de host
+
+105
+
+ NEW PAGE 
+114
+
+CAPITULO 2. © LA CAPA DE APLICACION
+
+proporciona el nombre de host canonico de un servidor de correo. Esta seccion de informacion
+adicional contiene un registro de tipo A que proporciona la direccion IP para el nombre de host
+canonico del servidor de correo.
+
+{Le gustaria enviar un mensaje de consulta DNS directamente desde el host en el que esta traba-
+jando a algtin servidor DNS? Esto podria hacerse facilmente con el programa nslookup, que esta
+disponible en la mayoria de las plataformas Windows y UNIX. Por ejemplo, en un host Windows
+basta con abrir la aplicacion Simbolo del sistema (prompt) e invocar al programa nslookup escribiendo
+simplemente “nslookup”. A continuaciOn, podra enviar una consulta DNS a cualquier servidor DNS
+(raiz, TLD 0 autoritativo). Después de recibir el mensaje de respuesta del servidor DNS, nslookup
+mostrara los registros incluidos en la respuesta (en un formato legible para las personas). Como
+alternativa a la ejecucion de nslookup desde su propio host, puede visitar uno de los muchos sitios web
+que permiten utilizar nslookup de forma remota (basta con escribir “nslookup” en un motor de busqueda
+para acceder a uno de estos sitios). La practica de laboratorio DNS Wireshark disponible al final de este
+capitulo le permitira explorar DNS en detalle.
+
+Insercion de registros en la base de datos DNS
+
+La exposicion anterior se ha centrado en como se recuperan los registros de la base de datos DNS.
+Es posible que ahora se esté preguntando como se introducen los registros en dicha base de datos.
+Veamos como se hace esto en el contexto de un ejemplo concreto. Suponga que hemos creado una
+nueva empresa llamada Network Utopia. Lo primero que seguramente deseara hacer es registrar
+el nombre de dominio networkutopia.com en un registro. Un registrador es una entidad
+comercial que verifica la unicidad del nombre de dominio, lo afade a la base de datos DNS (como
+veremos mas adelante) y percibe unas pequefias tasas por sus servicios. Antes de 1999, un unico
+registrador, Network Solutions, tenia el monopolio sobre el registro de nombres para los dominios
+com, net y org. Pero actualmente, existen muchas entidades registradoras que compiten por los
+clientes. La ICANN (/nternet Corporation for Assigned Names and Numbers, Corporacion de
+Internet para nombres y numeros asignados) acredita a las distintas entidades registradoras. En la
+direcciOn http: //www.internic.net puede encontrar una lista completa de estas entidades.
+
+Al registrar el nombre de dominio networkutopia.com en alguna entidad registradora,
+también tendra que proporcionarle los nombres y direcciones IP de sus servidores DNS autoritativos
+principal y secundario. Suponga que en nuestro ejemplo estos datos son: dnsl.networkutopia.
+com, dns2.networkutopia.com, 212.212.212.1 y 212.212.212.2. Para cada uno de estos
+dos servidores DNS autoritativos, el registrador se asegura de que se introduzca un registro de tipo
+NS y un registro de tipo A en los servidores TLD com. Especificamente, para el servidor autoritativo
+principal de networkutopia.com, la entidad registradora debera insertar los siguientes dos
+registros de recursos en el sistema DNS:
+
+(networkutopia.com, dnsl.networkutopia.com, NS)
+(dnsl.networkutopia.com, 212.212.212.1, A)
+
+También tendra que asegurarse de que el registro de recurso de tipo A para su servidor web www.
+networkutopia.com y el registro de recurso de tipo MX para su servidor de correo mail.
+networkutopia.com se han introducido en sus servidores DNS autoritativos. (Hasta hace poco,
+los contenidos de los servidores DNS se configuraban estaticamente; por ejemplo, a partir de un
+archivo de configuracion creado por un administrador del sistema. Sin embargo, recientemente se
+ha afiadido una opcion de actualizacion (UPDATE) al protocolo DNS que permite afadir o borrar
+dinamicamente los datos de la base de datos mediante mensajes DNS. En los documentos [RFC
+2136] y [RFC 3007] se especifican las actualizaciones dinamicas de DNS.)
+
+Una vez que haya completado estos pasos, los usuarios podran visitar su sitio web y enviar
+correos electronicos a los empleados de su empresa. Vamos a terminar esta exposicion sobre DNS
+verificando que esta afirmacion es cierta. Esta verificacion también le ayudara a consolidar lo que
+
+ NEW PAGE 
+2.4 © DNS—SERVICIO DE DIRECTORIO DE INTERNET
+
+VULNERABILIDADES DNS
+
+Hemos visto que DNS es un componente fundamental de la infraestructura de Internet y que muchos
+servicios importantes, entre los que incluyen las aplicaciones web y de correo electrénico, no podrian
+funcionar sin él. Por tanto, lo natural es preguntarse: sCémo puede ser atacado DNS? 3Es DNS
+un blanco facil, que espera a ser puesto fuera de servicio, arrastrando con él a la mayoria de las
+aplicaciones de Internet?
+
+EI primer tipo de ataque que nos viene a la mente es un ataque DDoS por de ancho de banda
+(véase la Seccién 1.6) contra los servidores DNS. Por ejemplo, un atacante podria intentar enviar
+a cada uno de los servidores DNS raiz una gran cantidad de paquetes, tantos que la mayor parte
+de las consultas DNS legitimas nunca fueran contestadas. Un ataque DDoS a gran escala contra
+servidores DNS raiz tuvo lugar realmente el 21 de octubre de 2002. En ese ataque, los atacantes
+utilizaron una botnet para enviar enormes cargas de mensajes ping ICMP a las direcciones IP de
+13 servidores DNS raiz. (Los mensajes ICMP se estudian en la Seccién 5.6. Por el momento, nos
+basta con saber que los paquetes ICMP son tipos especiales de datagramas IP.) Afortunadamente,
+este ataque a gran escala causé unos dafios minimos, sin tener apenas impacto sobre la experiencia
+en Internet de los usuarios. Los atacantes dirigieron con éxito gran cantidad de paquetes a los
+servidores raiz, pero muchos de estos servidores estaban protegidos mediante mecanismos de
+filtrado de paquetes configurados para bloquear siempre todos los mensajes ping ICMP dirigidos a
+los mismos. Estos servidores protegidos estaban resguardados y funcionaron normalmente. Ademas,
+la mayorfa de los servidores DNS locales tenian almacenadas en caché las direcciones IP de los
+servidores de dominio de nivel superior, permitiendo el procesamiento de consultas ignorando
+normalmente a los servidores DNS raiz.
+
+Un ataque DDoS potencialmente mds efectivo contra servidores DNS consistiria en enviar una gran
+cantidad de consultas DNS a los servidores de dominio de alto nivel; por ejemplo, a todos aquellos
+servidores que administren el dominio .com. Seria bastante complicado filtrar las consultas DNS
+dirigidas a servidores DNS; y los servidores de dominio de nivel superior no pueden ser puenteados
+tan facilmente como los servidores raiz. Pero la severidad de un ataque asi podria ser parcialmente
+mitigada por el almacenamiento en caché de los servidores DNS locales.
+
+El sistema DNS también podria ser atacado, en teorfa, de otras maneras. En un ataque por
+intermediacién (man-in-the-middle), el atacante intercepta las consultas procedentes de los hosts y
+devuelve respuestas falsas. En el ataque por envenenamiento DNS, el atacante envia respuestas falsas
+a un servidor DNS, engafidndole y haciendo que almacene en su caché registros falsos. Cualquiera de
+estos ataques podria utilizarse, por ejemplo, para redirigir a un usuario web inadvertido al sitio web
+del atacante. Sin embargo, estos ataques son dificiles de implementar, ya que requieren interceptar los
+paquetes o engafiar a los servidores [Skoudis 2006].
+
+En resumen, DNS ha demostrado ser sorprendentemente robusto frente a los ataques. Hasta el
+momento, no ha habido ningin ataque que haya conseguido interrumpir con éxito el servicio DNS.
+
+ha aprendido sobre DNS. Suponga que Alicia se encuentra en Australia y desea ver la pagina web
+www.networkutopia.com. Como hemos explicado anteriormente, su host enviara en primer lugar
+una consulta DNS a su servidor DNS local, el cual a su vez se pondra en contacto con un servidor
+TLD com. (El servidor DNS local también tendra que comunicarse con un servidor DNS raiz si
+no tiene en caché la direccion de un servidor TLD con.) El servidor TLD contendra los registros
+de recursos de tipo NS y de tipo A enumerados anteriormente, ya que la entidad registradora los
+habra almacenado en todos los servidores TLD com. El servidor TLD com envia entonces una
+respuesta al servidor DNS local de Alicia, conteniendo dicha respuesta los dos registros de recursos.
+A continuacion, el servidor DNS local transmite una consulta DNS a 212.212.212.1, solicitando
+
+115
+
+ NEW PAGE 
+116
+
+CAPITULO 2. © LA CAPA DE APLICACION
+
+el registro de tipo A correspondiente a www.networkutopia.com. Este registro proporciona la
+direccion IP del servidor web deseado, por ejemplo, 212.212.71.4, que el servidor DNS local
+pasa al host de Alicia. En este momento, el navegador de Alicia puede iniciar una conexion TCP con
+el host 212.212.71.4 y enviar una solicitud HTTP a través de la misma. Como ha podido ver, son
+muchas las cosas que suceden entre bastidores cuando navegamos por la Web.
+
+2.5 Distribucion de archivos P2P
+
+Las aplicaciones descritas en este capitulo hasta el momento, incluyendo las aplicaciones web,
+de correo electronico y DNS, emplean todas ellas arquitecturas cliente-servidor que dependen en
+gran medida de que exista una infraestructura de servidores siempre activos. Recuerde de la
+Seccion 2.1.1 que con una arquitectura P2P no se depende mas que minimamente (0 no se depende
+en absoluto) de que exista esa infraestructura de servidores siempre activos. En su lugar, una serie
+de parejas de hosts conectados de forma intermitente, denominados pares o peers, se comunican
+directamente entre si. Los pares no son propiedad de un proveedor de servicios, sino que son
+computadoras de escritorio o portatiles controlados por los usuarios.
+
+En esta seccion vamos a ver una aplicacion P2P muy corriente, la distribucion de un archivo de
+gran tamajio desde un unico servidor a muchos otros hosts (denominados pares). El archivo podria ser
+una nueva version del sistema operativo Linux, un parche software para una aplicacion o un sistema
+operativo existentes, un archivo de audio MP3 o un archivo de video MPEG. En la distribucion
+de archivos cliente-servidor, el servidor debe enviar una copia del archivo a cada uno de los pares,
+provocando una enorme sobrecarga en el servidor y consumiendo una gran cantidad de su ancho de
+banda. En la distribucion de archivos P2P, cada par puede redistribuir cualquier parte del archivo que
+ha recibido a cualesquiera otros pares, ayudando de este modo al servidor a llevar a cabo el proceso
+de distribucion. En 2016, el protocolo de distribucién de archivos P2P mas popular es BitTorrent.
+Originalmente, fue desarrollado por Bram Cohen, pero ahora existen muchos clientes BitTorrent
+independientes distintos que cumplen con el protocolo BitTorrent, al igual que existen diversos
+navegadores web que cumplen el protocolo HTTP. En esta subsecci6n examinaremos en primer
+lugar la caracteristica de auto-escalabilidad de las arquitecturas P2P en el contexto de la distribucion
+de archivos. Después describiremos en detalle BitTorrent, destacando sus funcionalidades y
+caracteristicas mas importantes.
+
+Escalabilidad de las arquitecturas P2P
+
+Con el fin de comparar las arquitecturas cliente-servidor con las arquitecturas P2P y para ilustrar la
+auto-escalabilidad inherente de P2P, ahora vamos a considerar un modelo cuantitativo simple para
+la distribucion de un archivo a un conjunto fijo de pares en ambos tipos de arquitectura. Como se
+muestra en la Figura 2.22, el servidor y los pares estan conectados a Internet mediante enlaces de
+acceso. Sea u, la velocidad de carga del enlace de acceso del servidor, u; la velocidad de carga del
+enlace de acceso del par 7 y d; la velocidad de descarga del enlace de acceso del par i. Sea F el tamafio
+en bits del archivo que se va a distribuir y NV el numero de pares que desean obtener una copia del
+archivo. El tiempo de distribucién es el tiempo que tardan los N pares en obtener una copia del
+archivo. En el analisis del tiempo de distribucion que proporcionamos a continuacion, para ambas
+arquitecturas, cliente-servidor y P2P, hemos hecho una simplificacion (pero generalmente precisa
+[Akella 2003]): suponer que el nucleo de Internet tiene el ancho de banda suficiente, lo que implica
+que todos los cuellos de botella se encuentran en el acceso a red. También hemos supuesto que el
+servidor y los clientes no estan participando en ninguna otra aplicacion de red, de modo que los
+anchos de banda para carga y descarga estan dedicados completamente a distribuir el archivo.
+
+En primer lugar, vamos a determinar el tiempo de distribucién para la arquitectura cliente-
+servidor, el cual denotaremos como D..,. En esta arquitectura, ninguno de los pares ayudan a distribuir
+el archivo. Tenemos que hacer las dos observaciones siguientes:
+
+ NEW PAGE 
+106
+
+CAPITULO 2. © LA CAPA DE APLICACION
+
+relayl.west-coast.enterprise.com se dice que es el nombre de host canénico. Los
+alias de nombres de host, cuando existen, normalmente son mas mnemonicos que los nombres
+canonicos. Una aplicacion puede invocar DNS para obtener el nombre de host canonico para un
+determinado alias, asi como la direccién IP del host.
+
++ Alias del servidor de correo. Por razones obvias, es enormemente deseable que las direcciones
+de correo electronico sean mnemonicas. Por ejemplo, si Benito tiene una cuenta de Yahoo Mail,
+su direccioén de correo puede ser tan simple como benito@yahoo.mail. Sin embargo, el
+nombre de host del servidor de correo de Yahoo es mas complicado y mucho menos mnemonico
+que simplemente yahoo.com (por ejemplo, el nombre canonico podria ser algo parecido a
+relayl.west-coast. yahoo.com). Una aplicacién de correo puede invocar al servicio DNS
+para obtener el nombre de host canonico para un determinado alias, asi como la direccion IP del
+host. De hecho, el registro MX (véase mas adelante) permite al servidor de correo y al servidor
+web de una empresa tener nombres de host (con alias) iguales; por ejemplo, tanto el servidor web
+como el servidor de correo de una empresa se pueden llamar enterprise.com.
+
+¢ Distribucién de carga. DNS también se emplea para realizar la distribucion de carga entre
+servidores replicados, como los servidores web replicados. Los sitios con una gran carga de
+trabajo, como cnn.com, estan replicados en varios servidores, ejecutandose cada servidor en un
+sistema terminal distinto y teniendo cada uno una direccion IP diferente. Para los servidores web
+replicados hay asociado un conjunto de direcciones IP con un unico nombre de host canonico.
+La base de datos DNS contiene este conjunto de direcciones IP. Cuando los clientes realizan una
+consulta DNS sobre un nombre asignado a un conjunto de direcciones, el servidor responde con
+el conjunto completo de direcciones IP, pero rota el orden de las direcciones en cada respuesta.
+Dado que normalmente un cliente envia su mensaje de solicitud HTTP a la direccién IP que
+aparece en primer lugar dentro del conjunto, la rotacion DNS distribuye el trafico entre los
+servidores replicados. La rotacion DNS también se emplea para el correo electronico de modo que
+multiples servidores de correo pueden tener el mismo alias. Ademas, las empresas de distribucion
+de contenido como Akamai han utilizado DNS de formas muy sofisticadas [Dilley 2002] para
+proporcionar la distribucion de contenido web (véase la Seccidn 2.6.3).
+
+DNS esta especificado en los documentos RFC 1034 y RFC 1035, y actualizado en varios RFC
+adicionales. Es un sistema complejo y aqui solo hemos visto los aspectos basicos de su funcio-
+namiento. El lector interesado puede consultar estos RFC y el libro de Abitz y Liu [Abitz 1993];
+también puede consultar el documento retrospectivo [Mockapetris 1988], que proporciona una
+descripcion sobre qué es DNS y el por qué de DNS; asimismo puede ver [Mockapetris 2005].
+
+2.4.2 Como funciona DNS
+
+Ahora vamos a presentar a alto nivel como funciona DNS. Nos centraremos en el servicio de traduc-
+cion nombre de host-direccién IP.
+
+Suponga que una determinada aplicacion (como por ejemplo un navegador web o un lector de
+correo), que se ejecuta en el host de un usuario, necesita traducir un nombre de host en una direccion
+IP. La aplicacion invocara al lado del cliente de DNS, especificando el nombre de host del que
+necesita la correspondiente traduccion. (En muchos sistemas basados en UNIX, gethostbyname ()
+es la llamada a funcion que una aplicacion utiliza para llevar a cabo la traduccion.) Entonces, la
+aplicacion DNS en el host del usuario entra en funcionamiento, enviando un mensaje de consulta a
+la red. Todos los mensajes de consulta y de respuesta DNS se envian dentro de datagramas UDP al
+puerto 53. Transcurrido un cierto retardo, del orden de milisegundos a segundos, el servicio DNS
+del host del usuario recibe un mensaje de respuesta DNS que proporciona la traduccion deseada, la
+cual se pasa entonces a la aplicacion que lo ha invocado. Por tanto, desde la perspectiva de dicha
+aplicacion que se ejecuta en el host del usuario, DNS es una caja negra que proporciona un servicio
+de traduccion simple y directo. Pero, de hecho, la caja negra que implementa el servicio es compleja,
+
+ NEW PAGE 
+2.4 © DNS—SERVICIO DE DIRECTORIO DE INTERNET
+
+EN LA PRACTICA
+
+DNS: FUNCIONES CRITICAS DE RED MEDIANTE EL PARADIGMA CLIENTE-
+SERVIDOR
+
+Como HTTP, FTP y SMTP, el protocolo DNS es un protocolo de la capa de aplicacién puesto que (1) se
+ejecuta entre sistemas terminales que estan en comunicacién utilizando el paradigma cliente-servidor y (2)
+se basa en un protocolo de transporte subyacente extremo a extremo para transferir los mensajes DNS
+entre los sistemas terminales en comunicacién. Sin embargo, desde otro punto de vista, la funcién de DNS
+es bastante diferente a la de las aplicaciones web de transferencia de archivos y de correo electrénico. A
+diferencia de estas aplicaciones, DNS no es una aplicacién con la que el usuario interactUe directamente;
+en su lugar, DNS lleva a cabo una de las funciones bdsicas en Internet: traducir los nombres de hosts en
+sus direcciones IP subyacentes para las aplicaciones de usuario y otras aplicaciones software de Internet.
+Hemos mencionado en la Seccién 1.2 que gran parte de la complejidad de la arquitectura de Internet
+se encuentra en las “fronteras” de la red. DNS, que implementa el importante proceso de traduccién de
+nombres en direcciones, utilizando clientes y servidores ubicados en la frontera de la red, es otro ejemplo
+mas de dicha filosofia de disefio.
+
+constando de un gran numero de servidores DNS distribuidos por todo el mundo, asi como de un
+protocolo de la capa de aplicacion que especifica como los servidores DNS y los hosts que realizan
+las consultas se comunican.
+
+Un disefio simple de DNS podria ser un servidor DNS que contuviera todas las correspondencias
+entre nombres y direcciones. En este disefio centralizado, los clientes simplemente dirigirian todas
+las consultas a un mismo servidor DNS y este responderia directamente a las consultas de los
+clientes. Aunque la simplicidad de este disefio es atractiva, es inapropiado para la red Internet de
+hoy dia a causa de la enorme (y creciente) cantidad de hosts. Entre los problemas con un disefio
+centralizado podemos citar los siguientes:
+
+* Un tnico punto de fallo. Si el servidor DNS falla, entonces jtambién falla toda la red Internet!
+
+* Volumen de trafico. Un unico servidor DNS tendria que gestionar todas las consultas DNS (de
+todas las solicitudes HTTP y mensajes de correo electrénico generados en cientos de millones
+de hosts).
+
+* Base de datos centralizada distante. Un unico servidor DNS no puede “estar cerca” de todos
+los clientes que efecttan consultas. Si colocamos ese nico servidor DNS en la ciudad de Nueva
+York, entonces todas las consultas desde Australia deberian viajar hasta el otro extremo del
+globo, quiza a través de enlaces lentos y congestionados. Esto podria llevar por tanto a retardos
+significativos.
+
+* Mantenimiento. Ese tnico servidor DNS tendria que mantener registros de todos los hosts de
+Internet. No solo seria una enorme base de datos centralizada, sino que tendria que ser actuali-
+zada con frecuencia con el fin de incluir todos los hosts nuevos.
+
+En resumen, una base de datos centralizada almacenada en un unico servidor DNS simplemente
+no podria escalarse. En consecuencia, el sistema DNS utiliza un disefio distribuido. De hecho, DNS
+es un estupendo ejemplo de como se puede implementar una base de datos distribuida en Internet.
+
+Una base de datos jerarquica y distribuida
+
+Para abordar el problema del escalado, DNS utiliza un gran numero de servidores, organizados de
+forma jerarquica y distribuidos alrededor de todo el mundo. Ningun servidor DNS dispone de todas
+las correspondencias de todos los hosts de Internet. En su lugar, las correspondencias estan reparti-
+das por los servidores DNS. En una primera aproximacion, podemos decir que existen tres clases de
+
+107
+
+ NEW PAGE 
+108
+
+CAPITULO 2. © LA CAPA DE APLICACION
+
+servidores DNS: los servidores DNS raiz, los servidores DNS de dominio de nivel superior (TLD,
+Top-Level Domain) y los servidores DNS autoritativos, organizados en una jerarquia como la mos-
+trada en la Figura 2.17. Con el fin de comprender como estas tres clases de servidores interactuan,
+suponga que un cliente DNS desea determinar la direccién IP correspondiente al nombre de host
+www.amazon.com. En una primera aproximacion tienen lugar los siguientes sucesos: primero, el
+cliente contacta con uno de los servidores raiz, el cual devuelve las direcciones IP para los servi-
+dores TLD del dominio de nivel superior com. A continuacion, el cliente contacta con uno de estos
+servidores TLD, que devuelve la direccion IP de un servidor autoritativo para amazon.com. Por
+ultimo, el cliente contacta con uno de los servidores autoritativos de amazon.com, el cual devuelve
+la direccion IP correspondiente al nombre de host www.amazon.com. Enseguida examinaremos este
+proceso de busqueda DNS con mas detalle. Pero en primer lugar, echemos un vistazo a estas tres
+clases de servidores DNS:
+
+* Servidores DNS raiz. Existen unos 400 servidores de nombres raiz distribuidos por todo el
+mundo. La Figura 2.18 muestra los paises que disponen de estos servidores, con los paises
+que tienen mas de diez servidores sombreados en gris oscuro. Trece organizaciones diferentes
+gestionan estos servidores de nombres raiz. Puede encontrar una lista completa de los servidores
+de nombres raiz, junto con las organizaciones que los gestionan y sus direcciones IP en [Root
+Servers 2016]. Los servidores de nombres raiz proporcionan las direcciones IP de los servidores
+TLD.
+
+* Servidores de dominio de nivel superior (TLD). Para todos los dominios de nivel superior,
+como son com, org, net, edu y gov, y todos los dominios de nivel superior correspondientes a
+los distintos paises, como por ejemplo, uk, fr, ca y jp, existe un servidor TLD (0 agrupacion de
+servidores). La empresa Verisign Global Registry Services mantiene los servidores TLD para
+el dominio de nivel superior com y la empresa Educause mantiene los servidores TLD
+para el dominio de nivel superior edu. La infraestructura de red que da soporte a un TLD puede
+ser muy grande y compleja; consulte [Osterweil 2012] para ver una introduccion de la red de
+Verisign. Consulte [TLD list 2016] para ver una lista de todos los dominios de nivel superior. Los
+servidores TLD proporcionan las direcciones IP para los servidores DNS autoritativos.
+
+* Servidores DNS autoritativos. Todas las organizaciones que tienen hosts accesibles publi-
+camente (como son los servidores web y los servidores de correo) a través de Internet deben
+proporcionar registros DNS accesibles publicamente que establezcan la correspondencia entre los
+nombres de dichos hosts y sus direcciones IP. Un servidor DNS autoritativo de una organizacion
+alberga estos registros DNS. Una organizacion puede elegir implementar su propio servidor
+DNS autoritativo para almacenar estos registros; alternativamente, la organizaciOn puede pagar
+por tener esos registros almacenados en un servidor DNS autoritativo de algun proveedor de
+servicios. La mayoria de las universidades y de las empresas de gran tamafio implementan y
+mantienen sus propios servidores DNS autoritativos principal y secundario (backup).
+
+Servidores
+
+DNS raiz
+Servidores Servidores Servidores
+DNS .com DNS .org DNS .edu
+
+Servidores DNS_ Servidores DNS __ Servidores DNS Servidores DNS_ Servidores DNS
+facebook.com amazon.com pbs.org nyu.edu umass.edu
+
+Figura 2.17 ¢ Parte de la jerarquia de los servidores DNS.
+
+ NEW PAGE 
+2.4 © DNS—SERVICIO DE DIRECTORIO DE INTERNET 109
+
+0 Servidores
+1-10 Servidores
+11+ Servidores
+
+| y
+\ J
+?
+
+Figura 2.18 ¢ Servidores DNS raiz en 2016.
+
+Todos los servidores DNS raiz, TLD y autoritativos pertenecen a la jerarquia de servidores
+DNS, como se muestra en la Figura 2.17. Existe otro tipo importante de servidor DNS conocido
+como servidor DNS local. Un servidor DNS local no pertenece estrictamente a la jerarquia de
+servidores, pero no obstante es importante dentro de la arquitectura DNS. Cada ISP (como por
+ejemplo un ISP residencial o un ISP institucional) tiene un servidor DNS local (tambi¢n denominado
+servidor de nombres predeterminado). Cuando un host se conecta a un ISP, este proporciona al
+host las direcciones IP de uno o mas de sus servidores DNS locales (normalmente a través de
+DHCP, lo que veremos en el Capitulo 4). Usted puede determinar facilmente la direccion IP de su
+servidor DNS local accediendo a las ventanas de estado de la red en Windows 0 UNIX. General-
+mente, un servidor DNS local de un host se encuentra “cerca” de ese host. En el caso de un ISP
+institucional, el servidor DNS local puede encontrarse en la misma LAN que el host; en el caso de un
+ISP residencial, estara separado del host no mas de unos pocos routers. Cuando un host realiza una
+consulta DNS, esta se envia al servidor DNS local, que acta como proxy, reenviando la consulta a
+la jerarquia de servidores DNS, como veremos mas detalladamente a continuacion.
+
+Veamos un ejemplo sencillo. Suponga que el host cse.nyu.edu desea conocer la direccion
+de gaia.cs.umass.edu. Suponga también que el servidor DNS local de la Universidad de
+Nueva York para cse.nyu.edu se denomina dns.nyu.edu y que un servidor DNS autoritativo
+para gaia.cs.umass.edu se llama dns.umass.edu. Como se muestra en la Figura 2.19,
+el host cse.nyu.edu envia en primer lugar un mensaje de consulta DNS a su servidor DNS
+local, dns.nyu.edu. El mensaje de consulta contiene el nombre de host que debe ser tradu-
+cido, gaia.cs.umass.edu. El servidor DNS local reenvia la consulta a un servidor DNS raiz,
+el cual toma el sufijo edu y devuelve al servidor DNS local una lista de las direcciones IP de los
+servidores TLD responsables del dominio edu. El servidor DNS local reenvia a continuacion el
+mensaje de consulta a uno de estos servidores TLD. El servidor TLD toma nota del sufijo umass.
+edu y responde con la direccién IP del servidor DNS autoritativo correspondiente a la Univer-
+sidad de Massachusetts, es decir, dns.umass.edu. Por ultimo, el servidor DNS local reenvia la
+consulta directamente a dns. umass. edu, que responde con la direccion IP de gaia.cs.umass.
+edu. Observe que en este ejemplo, para obtener la direccion correspondiente a un nombre
+de host, se han enviado ocho mensajes DNS: jcuatro mensajes de consulta y cuatro mensajes
+de respuesta! Pronto veremos como el almacenamiento en caché DNS reduce este trafico de
+consultas.
+
+ NEW PAGE 
+110 CAPITULO 2 © LA CAPA DE APLICACION
+
+Servidor DNS raiz
+
+Servidor DNS local Servidor DNS TLD
+dns.nyu.edu
+
+dns.umass.edu
+Host solicitante
+cse.nyu.edu
+
+gaia.cs.umass.edu
+
+®
+[sl Servidor DNS autoritativo
+——
+
+Figura 2.19 ¢ Interaccién de los distintos servidores DNS.
+
+En el ejemplo anterior suponiamos que el servidor TLD conoce el servidor DNS autori-
+tativo correspondiente al nombre de host. En general esto no es asi. En lugar de ello, el servidor TLD
+puede saber tnicamente de un servidor DNS intermedio, el cual a su vez sabe cual es el servidor
+DNS autoritativo para el nombre de host. Por ejemplo, suponga de nuevo que la Universidad
+de Massachusetts tiene un servidor DNS para la universidad, denominado dns.umass.edu.
+Suponga también que cada uno de los departamentos de la Universidad de Massachusetts tiene
+su propio servidor DNS y que cada servidor DNS departamental es un servidor autoritativo para
+todos los hosts del departamento. En este caso, cuando el servidor DNS intermedio dns.umass.
+edu recibe una consulta para un host cuyo nombre termina en cs.umass.edu, devuelve a dns.
+nyu.edu la direccion IP de dns.cs.umass.edu, que es autoritativo para todos los nombres de
+host que terminan con cs.umass.edu. El servidor DNS local dns.nyu.edu envia entonces la
+consulta al servidor DNS autoritativo, que devuelve la correspondencia deseada al servidor DNS
+local, el cual a su vez devuelve la correspondencia al host que ha hecho la solicitud. En este caso,
+jse han enviado un total de 10 mensajes!
+
+El ejemplo mostrado en la Figura 2.19 utiliza tanto consultas recursivas como consultas
+iterativas. La consulta enviada desde cse.nyu.edu a dns.nyu.edu es una consulta recur-
+siva, ya que la consulta solicita a dns . nyu. edu que obtenga por si mismo la correspondencia. Pero
+las tres consultas siguientes son iterativas puesto que todas las respuestas son devueltas directa-
+mente a dns.nyu.edu. En teoria, cualquier consulta DNS puede ser iterativa o recursiva. Por
+ejemplo, la Figura 2.20 muestra una cadena de consultas DNS para las que todas las consultas son
+recursivas. En la practica, las consultas normalmente siguen el patron mostrado en la Figura 2.19:
+la consulta procedente del host que hace la solicitud al servidor DNS local es recursiva y las restantes
+consultas son iterativas.
+
+ NEW PAGE 
+2.4 © DNS—SERVICIO DE DIRECTORIO DE INTERNET 111
+
+Servidor DNS raiz
+
+Servidor DNS local Servidor DNS TLD
+dns.nyu.edu
+
+©)
+\Z
+
+Servidor DNS autoritativo
+dns.umass.edu
+
+Zz
+
+gaia.cs.umass.edu
+
+Host solicitante
+cse.nyu.edu
+
+Figura 2.20 ¢ Consultas recursivas en DNS.
+
+Almacenamiento en caché DNS
+
+Hasta el momento hemos ignorado el almacenamiento en caché DNS, una funcionalidad
+extremadamente importante del sistema DNS. En realidad, DNS explota exhaustivamente el
+almacenamiento en caché para mejorar el comportamiento de los retardos y reducir el numero
+de mensajes DNS que van de un lado a otro por Internet. La idea que se esconde detras del
+almacenamiento en caché DNS es muy simple. En una cadena de consultas, cuando un servidor
+DNS recibe una respuesta DNS (que contiene, por ejemplo, una correspondencia entre un nombre
+de host y una direccion IP), puede almacenar esta informacion en su memoria local. Por ejemplo,
+en la Figura 2.19, cada vez que el servidor DNS local dns .nyu.edu recibe una respuesta de algun
+servidor DNS, puede almacenar en caché cualquier informacion contenida en esa respuesta. Si una
+relacion nombre de host/direccion IP se almacena en la caché de un servidor DNS y llegan otras
+consultas a ese mismo servidor DNS preguntando por el mismo nombre de host, el servidor DNS
+puede proporcionar la direccion IP deseada, incluso aunque no sea autoritativo para el nombre de
+host. Dado que los hosts y las correspondencias entre nombres de host y direcciones IP no son
+permanentes, los servidores DNS descartan la informacion almacenada en caché pasado un cierto
+periodo de tiempo (normalmente, unos dos dias).
+
+Por ejemplo, suponga que un host apricot.nyu.edu consulta a dns.nyu.edu
+solicitandole la direccion IP correspondiente al nombre de host cnn.com. Suponga también
+que unas pocas horas mas tarde, otro host de la Universidad de Nueva York, digamos kiwi.
+nyu.edu, también hace una consulta a dns .nyu.edu especificando el mismo nombre de host.
+Gracias al almacenamiento en caché, el servidor DNS local podra devolver de forma inmediata
+la direccion IP de cnn. com al segundo host que la ha solicitado sin tener que consultar a ningun
+
+ NEW PAGE 
+112
+
+CAPITULO 2. © LA CAPA DE APLICACION
+
+otro servidor DNS. Un servidor DNS local también puede almacenar en caché las direcciones
+IP de los servidores TLD, permitiendo asi a los servidores DNS locales saltarse a los servidores
+DNS raiz en una cadena de consultas. De hecho, gracias al almacenamiento en caché, todas las
+consultas DNS, excepto una pequefia fraccion de las mismas, se saltan a los servidores raiz.
+
+2.4.3 Registros y mensajes DNS
+
+Los servidores DNS que implementan conjuntamente la base de datos distribuida DNS
+almacenan los registros de recursos (RR), incluyendo los que proporcionan las correspon-
+dencias entre nombre de host y direccion IP. Cada mensaje de respuesta DNS transporta uno
+o mas registros de recursos. En esta y en la subsecciOn siguiente, proporcionamos una breve
+introduccion a los recursos y mensajes DNS; puede encontrar informacion detallada en [Abitz
+1993] o en los RFC sobre DNS [RFC 1034; RFC 1035].
+
+Un registro de recurso esta formado por los siguientes cuatro campos:
+
+(Nombre, Valor, Tipo, TTL)
+
+TTL es el tiempo de vida del registro de recurso; determina cuando un recurso deberia ser elimi-
+nado de una caché. En los registros de ejemplo dados a continuacion, hemos ignorado el campo TTL.
+El significado de Nombre y Valor depende del campo Tipo:
+
+* Si Tipo=A, entonces Nombre es un nombre de host y Valor es la direccién IP correspon-
+diente a dicho nombre. Por tanto, un registro de tipo A proporciona la correspondencia
+estandar nombre de host-direccion IP. Por ejemplo, (relayl.bar.foo.com, 145.37.93.
+126, A) es un registro de tipo A.
+
+* Si Tipo = NS, entonces Nombre es un dominio (como foo.com) y Valor es el nombre de
+host de un servidor DNS autoritativo que sabe como obtener las direcciones IP de los hosts
+del dominio. Este registro se utiliza para enrutar las consultas DNS a lo largo de la cadena de
+consultas. Por ejemplo, (f00.com, dns.foo.com, NS) es un registro de tipo NS.
+
+* SiTipo = CNAME, entonces Valor es un nombre de host candnico correspondiente al alias espe-
+cificado por Nombre. Este registro puede proporcionar a los hosts que hacen consultas el nombre
+candnico correspondiente a un nombre de host. Por ejemplo, (foo. com, relayl.bar.foo.
+com) es un registro CNAME.
+
+* SiTipo = Mx, entonces Valor es el nombre canonico de un servidor de correo que tiene un
+alias dado por Nombre. Por ejemplo, (fo00.com, mail.bar.foo.com, MX) es un registro MX.
+Los registros MX permiten a los nombres de host de los servidores de correo tener alias simples.
+Observe que utilizando el registro MX, una empresa puede tener el mismo alias para su servidor
+de correo y para uno de sus otros servidores (como por ejemplo, el servidor web). Para obtener
+el nombre canonico del servidor de correo, un cliente DNS consultaria un registro MX y para
+conocer el nombre canonico del otro servidor, consultaria el registro CNAME.
+
+Si un servidor DNS es autoritativo para un determinado nombre de host, entonces el servidor
+DNS contendra un registro de tipo A para el nombre de host. (Incluso aunque el servidor DNS no
+sea autoritativo, puede contener un registro de tipo A en su caché.) Si un servidor no es autoritativo
+para un nombre de host, entonces el servidor contendra un registro de tipo NS para el dominio que
+incluye el nombre de host; también contendra un registro de tipo A que proporcione la direccion
+IP del servidor DNS en el campo Valor del registro NS. Por ejemplo, suponga un servidor TLD
+edu que no es autoritativo para el host gaia.cs.umass.edu. Por tanto, este servidor contendra
+un registro para un dominio que incluye el host gaia.cs.umass.edu, por ejemplo, (umass.
+edu, dns.umass.edu, NS). El servidor TLD edu también contendria un registro de tipo A, que
+establece la correspondencia entre el servidor DNS dns.umass.edu y una direccion IP, como en
+(dns.umass.edu, 128.119.40.111, A).
+
+ NEW PAGE 
+2.4 © DNS—SERVICIO DE DIRECTORIO DE INTERNET
+
+Mensajes DNS
+
+Anteriormente en esta seccion hemos hecho referencia a los mensajes de respuesta y consultas DNS.
+Unicamente existen estas dos clases de mensajes DNS. Ademis, tanto los mensajes de respuesta
+como de consulta utilizan el mismo formato, que se muestra en la Figura 2.21. La semantica en los
+distintos campos de un mensaje DNS es la siguiente:
+
+* Los primeros 12 bytes constituyen la seccion de cabecera, la cual contiene una serie de campos.
+El primero de estos campos es un numero de 16 bits que identifica la consulta. Este identificador
+se copia en el mensaje de respuesta a la consulta, lo que permite al cliente establecer las
+correspondencias correctas entre las respuestas recibidas y las consultas enviadas. En el campo
+Indicadores se incluyen una serie de indicadores. Un indicador consulta/respuesta de | bit informa
+de si el mensaje es una consulta (0) 0 una respuesta (1). Un indicador autoritativo de | bit se activa
+en un mensaje de respuesta cuando un servidor DNS es un servidor autoritativo para un nombre
+solicitado. El indicador recursidn-deseada, también de | bit, se activa cuando un cliente (host o
+servidor DNS) desea que el servidor DNS realice una recursion cuando no disponga del registro.
+En un mensaje de respuesta, el campo de recursién-disponible de | bit se activa si el servidor DNS
+soporta la recursion. En la cabecera también se incluyen cuatro campos “nimero de”, que indican
+el numero de apariciones de los cuatro tipos de secciones de datos que siguen a la cabecera.
+
+* La seccién cuestiones contiene informacion acerca de la consulta que se va a realizar. Esta
+seccion incluye (1) un campo de nombre que contiene el nombre que se va a consultar y (2) un
+campo de tipo que especifica el tipo de cuestidn que se plantea acerca del nombre; por ejemplo, la
+direccion del host asociada con un nombre (tipo A) o el servidor de correo para un nombre (tipo
+MxX).
+
+* En una respuesta de un servidor DNS, la seccién respuestas contiene los registros del recurso
+para el nombre que fue consultado originalmente. Recuerde que en cada registro de recurso
+existe un parametro Tipo (por ejemplo, A, NS, CNAME y MX), un parametro Valor y el para-
+metro TTL. Una respuesta puede devolver varios registros de recursos, ya que un nombre de host
+puede tener asociadas varias direcciones IP (por ejemplo, para los servidores web replicados,
+como hemos visto anteriormente en esta seccion).
+
+* La -seccion autoridad contiene registros de otros servidores autoritativos.
+
+* La seccion informacion adicional contiene otros registros utiles. Por ejemplo, el campo de
+respuesta en un mensaje de respuesta a una consulta MX contiene un registro de recurso que
+
+Identificacion Indicadores
+N° de cuestiones N° de RR de respuesta +-12 bytes
+N° de RR de autoridad N° de RR adicionales
+Cuestiones |
+
++-Campos de nombre y
+
+(numero variable de cuestiones) a
+tipo para una consulta
+
+. . Respuestas | Registros RR en respuesta
+(numero variable de registros de recursos)
+a la consulta
+; Autoridad -Registros para
+(numero variable de registros de recursos) servidores autoritativos
+
+Informacion adicional
+
+P q |_Informacion de “ayuda”
+(numero variable de registros de recursos)
+
+adicional que se puede utilizar
+
+Figura 2.21 ¢ Formato de los mensajes DNS.
+
+113
+
+ NEW PAGE
